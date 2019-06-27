@@ -1,0 +1,52 @@
+spring:
+  redis:
+    mode: standalone
+    host: 127.0.0.1
+    port: 6379
+    password: 123456
+    pool:
+      maxActive: 200
+      maxWait: -1
+      maxIdle: 8
+      minIdle: 0
+    timeout: 0
+    database: 0
+    sentinel:
+      master: mymaster
+      nodes: 127.0.0.1:26379
+      port: 26379
+  datasource:
+    url: jdbc:mysql://127.0.0.1:3306/demo?characterEncoding=utf8&useSSL=true
+    driverClassName: com.mysql.jdbc.Driver
+    username: root
+    password: 123456
+
+  data:
+    elasticsearch:
+      # 集群名
+      cluster-name: elasticsearch_nsh
+      # 连接节点,注意在集群中通信都是9300端口，否则会报错无法连接上！
+      #cluster-nodes: 127.0.0.1:9300
+      # 是否本地连接
+      local: false
+      properties:
+        path:
+          data: /usr/local/var/lib/elasticsearch/
+          logs: /usr/local/var/log/elasticsearch/
+      #repositories:
+        # 仓库中数据存储
+       # enabled: true
+mybatis:
+  type-aliases-package: com.springboot.demo.test.pojo
+
+server:
+  port: 8080
+
+logging:
+  level:
+    com:
+      springboot:
+        demo:
+          test:
+            dao: debug
+    root: INFO

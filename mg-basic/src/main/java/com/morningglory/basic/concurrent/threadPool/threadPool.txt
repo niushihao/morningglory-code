@@ -1,0 +1,8 @@
+1.层次结构
+    Executor
+        |
+  ExecutorService
+        |
+ AbstractExecutorService
+        |
+ThreadPoolExecutor 、ForkJoinPool、ScheduledThreadPoolExecutor

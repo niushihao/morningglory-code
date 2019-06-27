@@ -1,0 +1,76 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper
+        PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+        "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.morningglory.mvc.dao.ItemDao">
+
+    <sql id="table_name">
+        item
+    </sql>
+
+    <sql id="columns_all">
+        id,
+        <include refid="columns_exclude_id"/>
+    </sql>
+
+    <sql id="columns_exclude_id">
+        `item_code`,`item_name`,`price`,`number`
+    </sql>
+
+    <sql id="values_exclude_id">
+        #{itemCode},#{itemName},#{price},#{number}
+    </sql>
+
+    <sql id="criteria">
+        <where>
+            <if test="name != null">AND `name` like CONCAT(#{name},'%')</if>
+            <if test="age != null">AND `age` = #{age}</if>
+        </where>
+    </sql>
+
+    <insert id="add" parameterType="Item" useGeneratedKeys="true" keyProperty="id">
+        INSERT INTO
+        <include refid="table_name"/>
+        (<include refid="columns_exclude_id"/>)
+        VALUES
+        (<include refid="values_exclude_id"/>)
+    </insert>
+
+    <insert id="batchAdd" parameterType="list" useGeneratedKeys="true" keyProperty="id">
+        INSERT INTO
+        <include refid="table_name"/>
+        (<include refid="columns_exclude_id"/>)
+        VALUES
+        <foreach item="item" collection="list" separator=",">
+            (#{item.itemCode},#{item.itemName},#{item.price},#{item.number})
+        </foreach>
+    </insert>
+
+    <update id="buy">
+        update
+        <include refid="table_name"/>
+        set number = number - #{number}
+        where id = #{id} and number >= #{number}
+    </update>
+
+    <select id="findById" resultType="Item">
+        SELECT
+        <include refid="columns_all" />
+        FROM
+        <include refid="table_name" />
+        where id = #{id}
+        for update
+        <!--lock in share mode-->
+    </select>
+
+    <update id="update">
+        UPDATE
+        <include refid="table_name" />
+        <set>
+            <if test="itemName != null"> item_name = #{itemName}</if>
+            <if test="number != null"> number = #{number}</if>
+        </set>
+
+    </update>
+
+</mapper>

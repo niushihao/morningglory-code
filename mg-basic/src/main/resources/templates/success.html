@@ -1,0 +1,27 @@
+<!DOCTYPE html>
+<html lang="en"  xmlns:th="http://www.thymeleaf.org">
+<head>
+    <meta charset="UTF-8">
+    <title>Title</title>
+    </meta>
+</head>
+<body>
+<h1>成功！！！</h1>
+<!--th:text意思是将div里面的文本内容设置为指定的-->
+<div th:text="${hello}">这是现显示欢迎信息</div>
+<hr/>
+
+<div th:text="${hello}"></div><!-- 会转义特殊字符，打印：<h1>你好</h1> -->
+<div th:utext="${hello}"></div><!-- 不转移特殊字符,打印：你好（大标题格式）-->
+<hr/>
+
+<!--  th:each每次便利都会生成这个标签 -->
+<h4 th:text="${user}" th:each="user:${users}"></h4><!-- th:each写在h4上，打印n个h4标签-->
+<hr/>
+
+<h4>
+    <span th:each="user:${users}">[[${user}]]</span><!-- h:each写在span里，打印n个span标签 -->
+</h4>
+
+</body>
+</html>

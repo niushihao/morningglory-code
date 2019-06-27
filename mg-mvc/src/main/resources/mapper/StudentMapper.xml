@@ -1,0 +1,61 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper
+        PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+        "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.morningglory.mvc.dao.StudentDao">
+
+    <sql id="table_name">
+        student
+    </sql>
+
+    <sql id="columns_all">
+        id,
+        <include refid="columns_exclude_id"/>
+    </sql>
+
+    <sql id="columns_exclude_id">
+        `name`,`age`
+    </sql>
+
+    <sql id="values_exclude_id">
+        #{name},#{age}
+    </sql>
+
+    <sql id="criteria">
+        <where>
+            <if test="name != null">AND `name` like CONCAT(#{name},'%')</if>
+            <if test="age != null">AND `age` = #{age}</if>
+        </where>
+    </sql>
+
+    <insert id="addStudent" parameterType="Student" useGeneratedKeys="true" keyProperty="id">
+        INSERT INTO
+        <include refid="table_name"/>
+        (<include refid="columns_exclude_id"/>)
+        VALUES
+        (<include refid="values_exclude_id"/>)
+    </insert>
+
+    <insert id="batchAddStudent" parameterType="list" useGeneratedKeys="true" keyProperty="id">
+        INSERT INTO
+        <include refid="table_name"/>
+        (<include refid="columns_exclude_id"/>)
+        VALUES
+        <foreach item="item" collection="list" separator=",">
+            (#{item.name},#{item.age})
+        </foreach>
+    </insert>
+
+    <select id="findById" parameterType="long" resultType="Student">
+        select * from student where id = #{id};
+    </select>
+
+    <select id="listByName" parameterType="string" resultType="Student">
+        select * from student where name like CONCAT(#{name},'%')
+    </select>
+
+    <select id="listByPage" resultType="com.morningglory.mvc.model.pojo.Student">
+        select * from student where name like CONCAT(#{page.name},'%')
+    </select>
+
+</mapper>
