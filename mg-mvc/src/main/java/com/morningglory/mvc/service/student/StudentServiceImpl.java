@@ -1,9 +1,9 @@
 package com.morningglory.mvc.service.student;
 
+import com.morningglory.model.Student;
 import com.morningglory.mvc.dao.StudentDao;
 import com.morningglory.mvc.page.Page;
 import com.morningglory.mvc.page.StudentPageRequest;
-import com.morningglory.mvc.model.pojo.Student;
 import lombok.extern.slf4j.Slf4j;
 import org.springframework.stereotype.Service;
 

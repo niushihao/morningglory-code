@@ -1,6 +1,6 @@
 package com.morningglory.mvc.dao;
 
-import com.morningglory.mvc.model.pojo.Item;
+import com.morningglory.model.Item;
 import org.apache.ibatis.annotations.Mapper;
 import org.apache.ibatis.annotations.Param;
 

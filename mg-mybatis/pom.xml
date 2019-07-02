@@ -19,6 +19,13 @@
             <artifactId>mybatis</artifactId>
             <version>3.4.6</version>
         </dependency>
+
+        <!--数据库模型 -->
+        <dependency>
+            <groupId>morningglory-group</groupId>
+            <artifactId>mg-model</artifactId>
+            <version>${parent.version}</version>
+        </dependency>
     </dependencies>
 
 </project>

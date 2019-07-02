@@ -54,7 +54,7 @@
         select * from student where name like CONCAT(#{name},'%')
     </select>
 
-    <select id="listByPage" resultType="com.morningglory.mvc.model.pojo.Student">
+    <select id="listByPage" resultType="Student">
         select * from student where name like CONCAT(#{page.name},'%')
     </select>
 

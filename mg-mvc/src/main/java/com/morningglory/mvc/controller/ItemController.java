@@ -1,7 +1,7 @@
 package com.morningglory.mvc.controller;
 
 import com.google.common.collect.Lists;
-import com.morningglory.mvc.model.pojo.Item;
+import com.morningglory.model.Item;
 import com.morningglory.mvc.model.request.ItemBuyRequest;
 import com.morningglory.mvc.service.item.ItemService;
 import lombok.extern.slf4j.Slf4j;

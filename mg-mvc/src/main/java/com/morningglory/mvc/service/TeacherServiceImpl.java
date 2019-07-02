@@ -1,6 +1,6 @@
 package com.morningglory.mvc.service;
 
-import com.morningglory.mvc.model.pojo.Teacher;
+import com.morningglory.model.Teacher;
 import org.springframework.beans.factory.InitializingBean;
 import org.springframework.context.annotation.Lazy;
 import org.springframework.stereotype.Service;

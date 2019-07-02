@@ -1,6 +1,6 @@
 package com.morningglory.mybatis.mapper;
 
-import com.morningglory.mybatis.pojo.Student;
+import com.morningglory.model.Student;
 import org.apache.ibatis.annotations.Mapper;
 import org.apache.ibatis.annotations.Param;
 

@@ -16,6 +16,7 @@
         <module>mg-leetcode</module>
         <module>mg-mybatis</module>
         <module>mg-redis</module>
+        <module>mg-model</module>
     </modules>
     <packaging>pom</packaging>
 

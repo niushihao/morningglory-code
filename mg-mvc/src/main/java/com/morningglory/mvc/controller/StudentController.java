@@ -1,9 +1,9 @@
 package com.morningglory.mvc.controller;
 
 import com.google.common.collect.Lists;
+import com.morningglory.model.Student;
 import com.morningglory.mvc.page.Page;
 import com.morningglory.mvc.page.StudentPageRequest;
-import com.morningglory.mvc.model.pojo.Student;
 import com.morningglory.mvc.service.student.StudentService;
 import org.springframework.web.bind.annotation.*;
 

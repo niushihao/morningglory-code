@@ -1,4 +1,4 @@
-package com.morningglory.mvc.model.pojo;
+package com.morningglory.model;
 
 import lombok.Data;
 

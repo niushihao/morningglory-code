@@ -18,5 +18,12 @@
             <artifactId>mybatis-spring-boot-starter</artifactId>
             <version>1.1.1</version>
         </dependency>
+
+        <!--数据库模型 -->
+        <dependency>
+            <groupId>morningglory-group</groupId>
+            <artifactId>mg-model</artifactId>
+            <version>${parent.version}</version>
+        </dependency>
     </dependencies>
 </project>

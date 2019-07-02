@@ -1,0 +1,34 @@
+{
+  "template": "student",
+  "alias": "index_student",
+  "settings": {
+    "index.number_of_shards": 1,
+    "number_of_replicas": 4,
+    "similarity": {
+      "IgnoreTFSimilarity": {
+        "type": "IgoreTFSimilarity"
+      }
+    }
+  },
+  "mappings": {
+    "student": {
+      "properties": {
+        "id": {
+          "type": "long"
+        },
+        "name": {
+          "type": "text"
+        },
+        "age": {
+          "type": "integer"
+        }/*,
+        "title": {
+          "search_analyzer": "ikSmart",
+          "similarity": "IgnoreTFSimilarity",
+          "analyzer": "ik",
+          "type": "text"
+        },*/
+      }
+    }
+  }
+}

@@ -1,8 +1,7 @@
 package com.morningglory.mvc.service;
 
 
-import com.morningglory.mvc.model.pojo.Teacher;
-
+import com.morningglory.model.Teacher;
 import javax.validation.Valid;
 import javax.validation.constraints.NotNull;
 

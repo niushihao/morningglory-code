@@ -1,8 +1,8 @@
 package com.morningglory.mybatis;
 
 import com.alibaba.fastjson.JSON;
+import com.morningglory.model.Student;
 import com.morningglory.mybatis.mapper.StudentMapper;
-import com.morningglory.mybatis.pojo.Student;
 import lombok.extern.slf4j.Slf4j;
 import org.apache.ibatis.io.Resources;
 import org.apache.ibatis.session.SqlSession;

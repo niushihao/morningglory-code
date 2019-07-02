@@ -1,7 +1,7 @@
 package com.morningglory.mvc.dao;
 
+import com.morningglory.model.Student;
 import com.morningglory.mvc.page.StudentPageRequest;
-import com.morningglory.mvc.model.pojo.Student;
 import org.apache.ibatis.annotations.*;
 
 import java.util.List;

@@ -1,6 +1,6 @@
 package com.morningglory.mvc.page;
 
-import com.morningglory.mvc.model.pojo.Student;
+import com.morningglory.model.Student;
 import lombok.Data;
 
 /**

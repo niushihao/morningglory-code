@@ -35,10 +35,7 @@ public class EsHLClientTest {
 
     public static void main(String[] args) throws IOException {
 
-        RestHighLevelClient client = new RestHighLevelClient(
-                RestClient.builder(
-                        new HttpHost("localhost", 9200, "http")
-                        ));
+        RestHighLevelClient client = getClient();
 
         // 创建索引
         createIndex(client);
@@ -65,6 +62,13 @@ public class EsHLClientTest {
 
     }
 
+    public static RestHighLevelClient getClient(){
+        RestHighLevelClient client = new RestHighLevelClient(
+                RestClient.builder(
+                        new HttpHost("localhost", 9200, "http")
+                ));
+        return client;
+    }
     private static void fieldCapability(RestHighLevelClient client) throws IOException {
         FieldCapabilitiesRequest request = new FieldCapabilitiesRequest()
                 .fields("field")

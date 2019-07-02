@@ -17,14 +17,23 @@ public class EsClientTest {
 
     public static void main(String[] args) throws IOException {
 
-        RestClient restClient = RestClient.builder(
-                new HttpHost("localhost", 9200, "http"),
-                new HttpHost("localhost", 9201, "http")).build();
-
+        RestClient restClient = getClient();
         Request request = new Request(
                 "GET",
                 "/");
         Response response = restClient.performRequest(request);
         System.out.println(EntityUtils.toString(response.getEntity()));
+    }
+
+    /**
+     * 获取client
+     * @return
+     */
+    public static RestClient getClient(){
+        RestClient restClient = RestClient.builder(
+                new HttpHost("localhost", 9200, "http"),
+                new HttpHost("localhost", 9201, "http")).build();
+
+        return restClient;
     }
 }

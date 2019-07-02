@@ -1,6 +1,6 @@
 package com.morningglory.mvc.service.item;
 
-import com.morningglory.mvc.model.pojo.Item;
+import com.morningglory.model.Item;
 import com.morningglory.mvc.model.request.ItemBuyRequest;
 
 import java.util.List;
