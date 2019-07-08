@@ -68,18 +68,25 @@ public class JDBCExample {
 
             conn = DriverManager.getConnection(DB_URL,USER,PASS);
 
-            String sql = "SELECT * FROM student where name = ?";
+            /**
+             * tableName或者orderBy中有占位符是不行的，因为preparedStatement在设值时都会加上单引号
+             * 所以mybatis的tableName和orderBy等都要用${}而不能用#{}
+              */
+            //String sql = "SELECT * FROM student where name like ? order by ?";
+
+            String sql = "SELECT * FROM student where name like ?";
             PreparedStatement preparedStatement = conn.prepareStatement(sql);
             // anything' OR 'x'='x
-            preparedStatement.setString(1,"anything' OR 'x'='x");
-            //preparedStatement.setString(1,"%t%");
+            preparedStatement.setString(1,"%用户%");
+
             log.info("preparedStatement = {}",preparedStatement.toString());
             ResultSet resultSet = preparedStatement.executeQuery();
 
             while (resultSet.next()){
                 int id = resultSet.getInt("id");
+                int age = resultSet.getInt("age");
 
-                log.info("ID = {}",id);
+                log.info("ID = {},age = {}",id,age);
             }
 
             resultSet.close();

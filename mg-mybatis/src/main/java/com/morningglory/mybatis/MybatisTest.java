@@ -32,7 +32,7 @@ public class MybatisTest {
         //Object findById = sqlSession.selectOne("com.morningglory.mybatis.mapper.StudentMapper.findById", 1L);
         //log.info(JSON.toJSONString(findById));
 
-        sqlSession = sqlSessionFactory.openSession();
+
         // 获取mapper
         StudentMapper mapper = sqlSession.getMapper(StudentMapper.class);
         Student student = mapper.findById(1L);
