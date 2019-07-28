@@ -57,8 +57,13 @@ public class StudentController {
     }
 
     @GetMapping("/list")
-    public List<Student> list(String name){
+    public List<Student> listByName(String name){
         return studentService.listByName(name);
+    }
+
+    @GetMapping("/sum")
+    public List<Student> sum(String name){
+        return studentService.sum(name);
     }
 
     @DeleteMapping("/delete/{studentId}")

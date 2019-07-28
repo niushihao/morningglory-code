@@ -55,5 +55,11 @@ public class ItemServiceImpl implements ItemService{
         return true;
     }
 
+    @Override
+    @Transactional(rollbackFor = Exception.class)
+    public Boolean addStock(Long itemId, Long number) {
+        return itemDao.addNumber(itemId,number) > 0;
+    }
+
 
 }

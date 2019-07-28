@@ -25,5 +25,13 @@
             <artifactId>mg-model</artifactId>
             <version>${parent.version}</version>
         </dependency>
+
+        <!-- https://mvnrepository.com/artifact/io.airlift/http-client -->
+        <dependency>
+            <groupId>io.airlift</groupId>
+            <artifactId>http-client</artifactId>
+            <version>0.178</version>
+        </dependency>
+
     </dependencies>
 </project>

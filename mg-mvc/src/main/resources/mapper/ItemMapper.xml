@@ -46,6 +46,12 @@
         </foreach>
     </insert>
 
+    <update id="addNumber">
+        update
+        <include refid="table_name"/>
+        set number = number + #{number}
+        where id = #{id}
+    </update>
     <update id="buy">
         update
         <include refid="table_name"/>

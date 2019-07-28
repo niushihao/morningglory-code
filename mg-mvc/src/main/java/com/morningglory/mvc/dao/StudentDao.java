@@ -42,7 +42,6 @@ public interface StudentDao {
      */
     /*@Delete("delete from "+ TABLE_NAME +" where id = #{info.id}")*/
     void deleteStudent(@Param("info")Long id);
-
     /**
      * 查询学生信息
      * @param name

@@ -52,7 +52,7 @@ public class BulkStudentIndex {
         Student s1 = new Student();
         s1.setId(1L);
         s1.setName("张晓明");
-        s1.setAge(15);
+        s1.setAge(null);
 
         Student s2 = new Student();
         s2.setId(2L);

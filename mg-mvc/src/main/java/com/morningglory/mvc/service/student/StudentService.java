@@ -4,6 +4,7 @@ import com.morningglory.model.Student;
 import com.morningglory.mvc.page.Page;
 import com.morningglory.mvc.page.StudentPageRequest;
 
+import java.io.IOException;
 import java.util.List;
 
 /**
@@ -33,6 +34,13 @@ public interface StudentService {
      * @return
      */
     List<Student> listByName(String name);
+
+    /**
+     * 求和
+     * @param name
+     * @return
+     */
+    List<Student> sum(String name);
 
     /**
      * 分页查询学生信息

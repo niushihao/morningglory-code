@@ -34,5 +34,11 @@ public interface ItemService {
      */
     Boolean unsafeBuy(ItemBuyRequest request);
 
-
+    /**
+     * 增加库存
+     * @param 商品ID
+     * @param 增加的库存数
+     * @return
+     */
+    Boolean addStock(Long itemId , Long number);
 }

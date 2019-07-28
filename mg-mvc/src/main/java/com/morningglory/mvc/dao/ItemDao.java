@@ -23,6 +23,13 @@ public interface ItemDao {
     Integer batchAdd(List<Item> items);
 
     /**
+     * 增加库存
+     * @param itemId
+     * @param number
+     * @return
+     */
+    Integer addNumber(@Param("id") Long itemId, @Param("number") Long number);
+    /**
      * 购买商品
      * @param id
      * @param number
