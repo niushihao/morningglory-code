@@ -41,4 +41,9 @@ public interface ItemService {
      * @return
      */
     Boolean addStock(Long itemId , Long number);
+
+    /**
+     * 列表从查询
+     */
+    List<Item> list();
 }

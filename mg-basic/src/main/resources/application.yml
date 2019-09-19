@@ -1,20 +1,5 @@
 spring:
-  redis:
-    mode: standalone
-    host: 127.0.0.1
-    port: 6379
-    password: 123456
-    pool:
-      maxActive: 200
-      maxWait: -1
-      maxIdle: 8
-      minIdle: 0
-    timeout: 0
-    database: 0
-    sentinel:
-      master: mymaster
-      nodes: 127.0.0.1:26379
-      port: 26379
+
   datasource:
     url: jdbc:mysql://127.0.0.1:3306/demo?characterEncoding=utf8&useSSL=true
     driverClassName: com.mysql.jdbc.Driver

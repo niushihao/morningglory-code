@@ -26,6 +26,15 @@
             <artifactId>mg-model</artifactId>
             <version>${parent.version}</version>
         </dependency>
+
+        <!-- https://mvnrepository.com/artifact/net.sf.jsqlparser/jsqlparser -->
+        <!-- https://mvnrepository.com/artifact/com.github.jsqlparser/jsqlparser -->
+        <dependency>
+            <groupId>com.github.jsqlparser</groupId>
+            <artifactId>jsqlparser</artifactId>
+            <version>1.4</version>
+        </dependency>
+
     </dependencies>
 
 </project>

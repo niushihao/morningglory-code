@@ -21,6 +21,9 @@ public interface StudentMapper {
      */
      Student findById(@Param("id") Long id);
 
+
+     Student findByName(@Param("id") Long id);
+
     /**
      * 新增
      * @param student

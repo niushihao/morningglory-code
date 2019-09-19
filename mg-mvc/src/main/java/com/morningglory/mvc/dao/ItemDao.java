@@ -50,4 +50,10 @@ public interface ItemDao {
      * @return
      */
     Integer update(Item info);
+
+    /**
+     * 查询列表
+     * @return
+     */
+    List<Item> list();
 }

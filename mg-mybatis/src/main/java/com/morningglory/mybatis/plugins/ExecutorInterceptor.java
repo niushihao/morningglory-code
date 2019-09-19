@@ -5,10 +5,16 @@ import org.apache.ibatis.executor.Executor;
 import org.apache.ibatis.mapping.BoundSql;
 import org.apache.ibatis.mapping.MappedStatement;
 import org.apache.ibatis.mapping.SqlCommandType;
+import org.apache.ibatis.mapping.SqlSource;
 import org.apache.ibatis.plugin.*;
+import org.apache.ibatis.reflection.DefaultReflectorFactory;
+import org.apache.ibatis.reflection.MetaObject;
+import org.apache.ibatis.reflection.factory.DefaultObjectFactory;
+import org.apache.ibatis.reflection.wrapper.DefaultObjectWrapperFactory;
 import org.apache.ibatis.session.ResultHandler;
 import org.apache.ibatis.session.RowBounds;
 
+import java.lang.reflect.Field;
 import java.util.Properties;
 
 
@@ -32,12 +38,43 @@ public class ExecutorInterceptor implements Interceptor {
         // 获取拦截器指定的方法类型, 通常需要拦截 update
         String methodName = invocation.getMethod().getName();
         String sql = mappedStatement.getBoundSql(parameter).getSql();
+
         String id = mappedStatement.getId();
 
+        MappedStatement newStatement = newMappedStatement(mappedStatement, new BoundSqlSqlSource(mappedStatement.getBoundSql(parameter)));
+        MetaObject msObject =  MetaObject.forObject(newStatement, new DefaultObjectFactory(), new DefaultObjectWrapperFactory(),new DefaultReflectorFactory());
+        msObject.setValue("sqlSource.boundSql.sql", sql);
+        invocation.getArgs()[0] = newStatement;
         log.info("ExecutorInterceptor, methodName: {}, commandType: {}, sql: {}, id: {}"
                 , methodName, commandType,sql,id);
 
         return invocation.proceed();
+    }
+
+    private MappedStatement newMappedStatement(MappedStatement ms, SqlSource newSqlSource) {
+        MappedStatement.Builder builder =
+                new MappedStatement.Builder(ms.getConfiguration(), ms.getId(), newSqlSource, ms.getSqlCommandType());
+        builder.resource(ms.getResource());
+        builder.fetchSize(ms.getFetchSize());
+        builder.statementType(ms.getStatementType());
+        builder.keyGenerator(ms.getKeyGenerator());
+        if (ms.getKeyProperties() != null && ms.getKeyProperties().length != 0) {
+            StringBuilder keyProperties = new StringBuilder();
+            for (String keyProperty : ms.getKeyProperties()) {
+                keyProperties.append(keyProperty).append(",");
+            }
+            keyProperties.delete(keyProperties.length() - 1, keyProperties.length());
+            builder.keyProperty(keyProperties.toString());
+        }
+        builder.timeout(ms.getTimeout());
+        builder.parameterMap(ms.getParameterMap());
+        builder.resultMaps(ms.getResultMaps());
+        builder.resultSetType(ms.getResultSetType());
+        builder.cache(ms.getCache());
+        builder.flushCacheRequired(ms.isFlushCacheRequired());
+        builder.useCache(ms.isUseCache());
+
+        return builder.build();
     }
 
     @Override
@@ -49,4 +86,17 @@ public class ExecutorInterceptor implements Interceptor {
     public void setProperties(Properties properties) {
 
     }
+
+    //    定义一个内部辅助类，作用是包装sq
+    class BoundSqlSqlSource implements SqlSource {
+        private BoundSql boundSql;
+        public BoundSqlSqlSource(BoundSql boundSql) {
+            this.boundSql = boundSql;
+        }
+        @Override
+        public BoundSql getBoundSql(Object parameterObject) {
+            return boundSql;
+        }
+    }
 }
+

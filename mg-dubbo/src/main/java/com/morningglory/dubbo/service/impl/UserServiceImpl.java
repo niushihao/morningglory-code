@@ -1,5 +1,6 @@
 package com.morningglory.dubbo.service.impl;
 
+import com.alibaba.dubbo.rpc.RpcContext;
 import com.morningglory.dubbo.module.DubboRequest;
 import com.morningglory.dubbo.service.DemoService;
 
@@ -15,7 +16,9 @@ public class UserServiceImpl implements DemoService<DubboRequest> {
   @Override
   public String sayHi(DubboRequest str) throws InterruptedException {
     System.out.println(str.getId());
-    Thread.sleep(10000L);
+    //Thread.sleep(10000L);
+    RpcContext context = RpcContext.getContext();
+    System.out.println(context.get("name"));
     return "Hi,"+str;
   }
 

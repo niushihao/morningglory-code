@@ -61,5 +61,10 @@ public class ItemServiceImpl implements ItemService{
         return itemDao.addNumber(itemId,number) > 0;
     }
 
+    @Override
+    public List<Item> list() {
+        return itemDao.list();
+    }
+
 
 }

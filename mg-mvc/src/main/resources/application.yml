@@ -4,13 +4,17 @@ spring:
     driverClassName: com.mysql.jdbc.Driver
     username: root
     password: 123456
-
+  redis:
+    host: localhost
+    port: 6379
+    password: 123456
+    database: 0
 mybatis:
   type-aliases-package: com.morningglory.model
   mapper-locations: classpath:mapper/*.xml
 
 server:
-  port: 8080
+  port: 8081
 
 logging:
   level:
@@ -19,3 +23,13 @@ logging:
         mvc:
           dao: debug
     root: INFO
+terminus:
+  acl:
+    enable: false
+    projectCode: QN_
+    appCode: PMP
+    defaultTenant: 10000000000
+    dubbo:
+      registers:
+      - zookeeper://${ZOOKEEPER_DUBBO:localhost:2181}
+      version: 1.0.0

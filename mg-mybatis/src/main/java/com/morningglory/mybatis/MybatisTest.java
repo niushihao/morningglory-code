@@ -28,11 +28,13 @@ public class MybatisTest {
         // 获取sqlSession
         SqlSession sqlSession = sqlSessionFactory.openSession();
 
+
+
         // 获取mapper
-        //Object findById = sqlSession.selectOne("com.morningglory.mybatis.mapper.StudentMapper.findById", 1L);
-        //log.info(JSON.toJSONString(findById));
+        Object findById = sqlSession.selectOne("com.morningglory.mybatis.mapper.StudentMapper.findById", 1L);
+        log.info(JSON.toJSONString(findById));
 
-
+        sqlSession.selectOne("com.morningglory.mybatis.mapper.StudentMapper.findByName","123");
         // 获取mapper
         StudentMapper mapper = sqlSession.getMapper(StudentMapper.class);
         Student student = mapper.findById(1L);

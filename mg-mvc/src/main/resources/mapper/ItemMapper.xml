@@ -69,7 +69,7 @@
         <!--lock in share mode-->
     </select>
 
-    <update id="update">
+    <update id="update" parameterType="Item">
         UPDATE
         <include refid="table_name" />
         <set>
@@ -78,5 +78,9 @@
         </set>
 
     </update>
+
+    <select id="list" resultType="Item">
+        select * from <include refid="table_name" />
+    </select>
 
 </mapper>

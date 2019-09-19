@@ -1,7 +1,8 @@
-package com.morningglory.dubbo;
+package com.morningglory.dubbo.consumer;
 
 import com.alibaba.dubbo.config.ApplicationConfig;
 import com.alibaba.dubbo.config.ReferenceConfig;
+import com.alibaba.dubbo.rpc.RpcContext;
 import com.morningglory.dubbo.module.DubboRequest;
 import com.morningglory.dubbo.service.DemoService;
 
@@ -18,6 +19,7 @@ public class Consumer {
     ApplicationConfig applicationConfig = new ApplicationConfig();
     applicationConfig.setName("NC");
 
+
     ReferenceConfig<DemoService> config = new ReferenceConfig();
     config.setApplication(applicationConfig);
     config.setInterface(DemoService.class);
@@ -26,6 +28,10 @@ public class Consumer {
     config.setAsync(false);
 
     DemoService demoService = config.get();
+    RpcContext.getContext().set("name","nsh1");
+    RpcContext.getServerContext().set("name","nsh2");
+    RpcContext.getContext().setAttachment("name", "userValue3");
+
     System.out.println(demoService.sayHi(new DubboRequest().setId(1)));
 
   }

@@ -1,18 +1,22 @@
 package com.morningglory.mvc.controller;
 
+import com.alibaba.fastjson.JSON;
 import com.google.common.collect.Lists;
 import com.morningglory.model.Item;
 import com.morningglory.mvc.model.request.DecimalRequest;
 import com.morningglory.mvc.model.request.ItemBuyRequest;
 import com.morningglory.mvc.service.item.ItemService;
+import io.terminus.acl.plugin.component.DataAuthComponent;
 import lombok.extern.slf4j.Slf4j;
-import org.springframework.web.bind.annotation.PostMapping;
-import org.springframework.web.bind.annotation.RequestBody;
-import org.springframework.web.bind.annotation.RequestMapping;
-import org.springframework.web.bind.annotation.RestController;
+import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.data.redis.core.RedisTemplate;
+import org.springframework.data.redis.core.StringRedisTemplate;
+import org.springframework.web.bind.annotation.*;
 
 import javax.annotation.Resource;
 import java.util.List;
+import java.util.Map;
+import java.util.Set;
 import java.util.concurrent.BrokenBarrierException;
 import java.util.concurrent.CyclicBarrier;
 import java.util.concurrent.Executor;
@@ -30,6 +34,12 @@ public class ItemController {
 
     @Resource
     private ItemService itemService;
+
+    @Resource
+    private StringRedisTemplate redisTemplate;
+
+    @Autowired(required = false)
+    private DataAuthComponent dataAuthComponent;
 
     /**
      * 新增商品
@@ -62,6 +72,32 @@ public class ItemController {
         return true;
     }
 
+    @GetMapping("list")
+    public List<Item> list(){
+        String o = redisTemplate.opsForValue().get("123");
+        final Object o1 = redisTemplate.opsForValue().get("123");
+        Boolean aBoolean = redisTemplate.hasKey("123");
+        Boolean aBoolean1 = redisTemplate.hasKey("123");
+        log.info("o = {}", JSON.toJSONString(o));
+
+        Object str = redisTemplate.opsForValue().get("STR");
+        log.info("str = {}", JSON.toJSONString(str));
+
+        //redisTemplate.opsForValue().set("yyy","123");
+        Object yyy = redisTemplate.opsForValue().get("yyy");
+
+        log.info("yyy = {}", JSON.toJSONString(yyy));
+
+        Set keys = redisTemplate.keys("1*");
+        log.info("keys = {}",keys);
+
+        redisTemplate.opsForValue().set("tttt","123123");
+
+        itemService.list();
+
+        return null;
+        //return itemService.list();
+    }
     /**
      * 购买商品
      *
@@ -110,7 +146,6 @@ public class ItemController {
             executor.execute(runnable);
         }
 
-
         return true;
     }
 
@@ -156,6 +191,22 @@ public class ItemController {
     @PostMapping("/add/decimal")
     public Boolean addDecimal(@RequestBody DecimalRequest request){
         log.info("request = {}",request.getDecimal());
+        return true;
+    }
+
+    @GetMapping("data")
+    public Boolean getDataAuth(){
+        /*DataAuthQueryByOperationRequest request = new DataAuthQueryByOperationRequest();
+        request.setModelCode("item");
+        request.setOperationCode("list");
+        List<DataAttributeDTO> dataAttributeDTOS = dataAuthComponent.queryUserDataAuthorization(request);
+        log.info("size = {}",dataAttributeDTOS.size());
+        //List<DataPermissionAuthDataResultDTO<Object>> datas  = (List<DataPermissionAuthDataResultDTO<Object>>) this.redisTemplate.opsForValue().get("1_[list]_[item]");
+
+        Object o = redisTemplate.opsForValue().get("1_[list]_[item]");
+        List<DataPermissionAuthDataResultDTO> dataPermissionAuthDataResultDTOS = JSONArray.parseArray(o.toString(), DataPermissionAuthDataResultDTO.class);
+        log.info("o = {}", JSON.toJSONString(o));
+        log.info("size = {}",dataPermissionAuthDataResultDTOS.size());*/
         return true;
     }
 }

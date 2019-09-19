@@ -26,12 +26,11 @@
             <version>${parent.version}</version>
         </dependency>
 
-        <!-- https://mvnrepository.com/artifact/io.airlift/http-client -->
-        <dependency>
-            <groupId>io.airlift</groupId>
-            <artifactId>http-client</artifactId>
-            <version>0.178</version>
-        </dependency>
+        <!--<dependency>
+            <groupId>io.terminus.acl</groupId>
+            <artifactId>client-plugin</artifactId>
+            <version>1.0.5.2.CNOOC-SNAPSHOT</version>
+        </dependency>-->
 
     </dependencies>
 </project>

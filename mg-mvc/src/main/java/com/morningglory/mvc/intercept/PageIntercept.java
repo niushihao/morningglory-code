@@ -38,6 +38,7 @@ public class PageIntercept implements Interceptor {
 
         MetaObject metaObject = MetaObject.forObject(statementHandler, SystemMetaObject.DEFAULT_OBJECT_FACTORY, SystemMetaObject.DEFAULT_OBJECT_WRAPPER_FACTORY,new DefaultReflectorFactory());
         MappedStatement mappedStatement = (MappedStatement) metaObject.getValue("delegate.mappedStatement");
+
         String id = mappedStatement.getId();
         if(id.endsWith(PAGE_QUERY)){
 
