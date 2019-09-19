@@ -26,11 +26,11 @@
             <version>${parent.version}</version>
         </dependency>
 
-        <!--<dependency>
+        <dependency>
             <groupId>io.terminus.acl</groupId>
             <artifactId>client-plugin</artifactId>
             <version>1.0.5.2.CNOOC-SNAPSHOT</version>
-        </dependency>-->
+        </dependency>
 
     </dependencies>
 </project>
