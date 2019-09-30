@@ -18,6 +18,7 @@
         <module>mg-redis</module>
         <module>mg-model</module>
         <module>mg-binlog</module>
+        <module>mg-docker-compose</module>
     </modules>
     <packaging>pom</packaging>
 
@@ -368,6 +369,18 @@
             <groupId>org.apache.curator</groupId>
             <artifactId>curator-framework</artifactId>
             <version>4.0.1</version>
+        </dependency>
+
+        <dependency>
+            <groupId>net.logstash.logback</groupId>
+            <artifactId>logstash-logback-encoder</artifactId>
+            <version>5.3</version>
+        </dependency>
+
+        <dependency>
+            <groupId>com.101tec</groupId>
+            <artifactId>zkclient</artifactId>
+            <version>0.10</version>
         </dependency>
     </dependencies>
 

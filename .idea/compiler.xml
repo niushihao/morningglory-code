@@ -7,6 +7,8 @@
         <sourceTestOutputDir name="target/generated-test-sources/test-annotations" />
         <outputRelativeToContentRoot value="true" />
         <module name="mg-basic" />
+        <module name="mg-binlog" />
+        <module name="mg-docker-compose" />
         <module name="mg-dubbo" />
         <module name="mg-es" />
         <module name="mg-leetcode" />
@@ -17,5 +19,9 @@
         <module name="mg-zk" />
       </profile>
     </annotationProcessing>
+    <bytecodeTargetLevel>
+      <module name="mg-docker" target="1.8" />
+      <module name="mg-docker-compose" target="1.8" />
+    </bytecodeTargetLevel>
   </component>
 </project>

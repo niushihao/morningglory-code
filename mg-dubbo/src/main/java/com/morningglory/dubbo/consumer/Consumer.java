@@ -17,7 +17,7 @@ public class Consumer {
 
   public static void main(String[] args) throws InterruptedException {
     ApplicationConfig applicationConfig = new ApplicationConfig();
-    applicationConfig.setName("NC");
+    applicationConfig.setName("nsh");
 
 
     ReferenceConfig<DemoService> config = new ReferenceConfig();

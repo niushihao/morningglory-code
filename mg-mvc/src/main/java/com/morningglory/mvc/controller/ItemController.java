@@ -14,6 +14,7 @@ import org.springframework.data.redis.core.StringRedisTemplate;
 import org.springframework.web.bind.annotation.*;
 
 import javax.annotation.Resource;
+import javax.servlet.http.HttpServletRequest;
 import java.util.List;
 import java.util.Map;
 import java.util.Set;
@@ -57,7 +58,6 @@ public class ItemController {
 
         return true;
     }
-
     /**
      * 批量新增商品
      *
@@ -73,7 +73,8 @@ public class ItemController {
     }
 
     @GetMapping("list")
-    public List<Item> list(){
+    public List<Item> list(HttpServletRequest request){
+        log.info("uri = "+request.getRequestURI());
         String o = redisTemplate.opsForValue().get("123");
         final Object o1 = redisTemplate.opsForValue().get("123");
         Boolean aBoolean = redisTemplate.hasKey("123");

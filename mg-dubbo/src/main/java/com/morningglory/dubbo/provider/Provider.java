@@ -49,7 +49,9 @@ public class Provider {
 
     userConfig.export();
 
-    System.in.read();
+    //System.in.read();
+
+    Thread.sleep(100000L);
 
     Runtime.getRuntime().addShutdownHook(new Thread() {
 
