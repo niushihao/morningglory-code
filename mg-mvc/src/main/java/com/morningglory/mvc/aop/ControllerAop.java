@@ -21,7 +21,7 @@ public class ControllerAop {
     @Pointcut("execution(public * com.morningglory.mvc.controller..*.*(..))")
     public void pointcut(){};
 
-    @Around("pointcut()")
+    @Around("staticadvicer()")
     public Object printLog(ProceedingJoinPoint joinPoint) throws Throwable {
 
         log.info("controller-aop-begin");

@@ -51,7 +51,7 @@ public class RedisConfigBean {
         factory.setPort(Integer.valueOf(port));
         factory.setPassword(password);
         factory.setDatabase(Integer.valueOf(database));
-        log.info("acl_client_plugin redis config host:[{}],pwd:[{}],database:[{}]",hostName, password,database);
+        log.info("redis initialized with property host:[{}],pwd:[{}],database:[{}]",hostName, password,database);
         return factory;
     }
 

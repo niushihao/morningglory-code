@@ -1,17 +1,14 @@
-package com.morningglory.model;
-
-import lombok.Data;
+package com.morningglory.so;
 
 import java.time.LocalDateTime;
 import java.util.Date;
 
 /**
  * @Author: qianniu
- * @Date: 2019-06-13 20:09
+ * @Date: 2019-11-27 16:04
  * @Desc:
  */
-@Data
-public class Student extends BaseModel{
+public class StudentSO {
 
     /**
      * 姓名
@@ -42,4 +39,14 @@ public class Student extends BaseModel{
      * 测试es日期类型
      */
     private LocalDateTime dateTime;
+
+    /**
+     * 商品id
+     */
+    private Long itemId;
+
+    /**
+     * 商品名称
+     */
+    private String itemName;
 }

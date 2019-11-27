@@ -17,10 +17,25 @@
           "type": "long"
         },
         "name": {
-          "type": "text"
+          "type": "keyword"
         },
         "age": {
           "type": "integer"
+        },
+        "interest":{
+          "type": "text"
+        },
+        "desc":{
+          "analyzer": "ik_max_word",
+          "type": "text"
+        },
+        "birthday":{
+          "type":"date",
+          "format": "yyy-MM-dd HH:mm:ss||yyyy-MM-dd||epoch_millis"
+        },
+        "date_time":{
+          "type":"date",
+          "format": "yyyy-MM-dd HH:mm:ss"
         }/*,
         "title": {
           "search_analyzer": "ikSmart",

@@ -26,11 +26,5 @@
             <version>${parent.version}</version>
         </dependency>
 
-        <dependency>
-            <groupId>io.terminus.acl</groupId>
-            <artifactId>client-plugin</artifactId>
-            <version>1.0.5.2.CNOOC-QN-SNAPSHOT</version>
-        </dependency>
-
     </dependencies>
 </project>

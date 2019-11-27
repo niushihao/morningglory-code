@@ -1,5 +1,6 @@
-package com.morningglory.mvc.aop;
+package com.morningglory.mvc.aop.executionadvicer;
 
+import com.morningglory.mvc.aop.executionadvicer.ControllerInterceptor;
 import org.aopalliance.aop.Advice;
 import org.springframework.aop.Pointcut;
 import org.springframework.aop.aspectj.AspectJExpressionPointcut;
@@ -14,7 +15,6 @@ import org.springframework.stereotype.Component;
  * @Desc:
  */
 @Component
-
 public class ControllerPostProcessor extends AbstractAdvisingBeanPostProcessor implements InitializingBean {
 
     private String execution = "execution(public * com.morningglory.mvc.controller..*.*(..))";

@@ -14,7 +14,7 @@ mybatis:
   mapper-locations: classpath:mapper/*.xml
 
 server:
-  port: 8081
+  port: 7081
 
 logging:
   level:
@@ -23,13 +23,7 @@ logging:
         mvc:
           dao: debug
     root: INFO
-terminus:
-  acl:
-    enable: false
-    projectCode: QN_
-    appCode: PMP
-    defaultTenant: 10000000000
-    dubbo:
-      registers:
-      - zookeeper://${ZOOKEEPER_DUBBO:localhost:2181}
-      version: 1.0.0
+
+es:
+  host: 127.0.0.1
+  port: 9200

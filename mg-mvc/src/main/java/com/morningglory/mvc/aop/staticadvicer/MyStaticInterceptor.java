@@ -1,21 +1,21 @@
-package com.morningglory.mvc.aop;
+package com.morningglory.mvc.aop.staticadvicer;
 
 import lombok.extern.slf4j.Slf4j;
 import org.aopalliance.intercept.MethodInterceptor;
 import org.aopalliance.intercept.MethodInvocation;
-
 /**
  * @Author: qianniu
- * @Date: 2019-08-06 15:33
+ * @Date: 2019-10-15 14:12
  * @Desc:
  */
 @Slf4j
-public class ControllerInterceptor implements MethodInterceptor {
+public class MyStaticInterceptor implements MethodInterceptor {
+
     @Override
     public Object invoke(MethodInvocation invocation) throws Throwable {
-        log.info("ControllerInterceptor-begin");
+        log.info("MyStaticInterceptor-begin");
         Object returnValue = invocation.proceed();
-        log.info("ControllerInterceptor-end");
+        log.info("MyStaticInterceptor-end");
         return returnValue;
     }
 }

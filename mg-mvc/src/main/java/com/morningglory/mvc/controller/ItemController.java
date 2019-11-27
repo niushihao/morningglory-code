@@ -6,17 +6,14 @@ import com.morningglory.model.Item;
 import com.morningglory.mvc.model.request.DecimalRequest;
 import com.morningglory.mvc.model.request.ItemBuyRequest;
 import com.morningglory.mvc.service.item.ItemService;
-import io.terminus.acl.plugin.component.DataAuthComponent;
 import lombok.extern.slf4j.Slf4j;
 import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.data.redis.core.RedisTemplate;
 import org.springframework.data.redis.core.StringRedisTemplate;
 import org.springframework.web.bind.annotation.*;
 
 import javax.annotation.Resource;
 import javax.servlet.http.HttpServletRequest;
 import java.util.List;
-import java.util.Map;
 import java.util.Set;
 import java.util.concurrent.BrokenBarrierException;
 import java.util.concurrent.CyclicBarrier;
@@ -38,9 +35,6 @@ public class ItemController {
 
     @Resource
     private StringRedisTemplate redisTemplate;
-
-    @Autowired(required = false)
-    private DataAuthComponent dataAuthComponent;
 
     /**
      * 新增商品
