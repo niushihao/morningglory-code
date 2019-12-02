@@ -1,7 +1,7 @@
 package com.morningglory.mvc.dao;
 
 import com.morningglory.model.Student;
-import com.morningglory.mvc.page.StudentPageRequest;
+import com.morningglory.request.StudentSearchRequest;
 import org.apache.ibatis.annotations.*;
 
 import java.util.List;
@@ -55,5 +55,5 @@ public interface StudentDao {
      * @param request
      * @return
      */
-    List<Student> listByPage(@Param("page") StudentPageRequest request);
+    List<Student> listByPage(@Param("page") StudentSearchRequest request);
 }

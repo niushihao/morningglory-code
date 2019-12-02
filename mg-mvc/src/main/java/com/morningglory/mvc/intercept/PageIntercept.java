@@ -1,7 +1,7 @@
 package com.morningglory.mvc.intercept;
 
-import com.morningglory.mvc.page.Page;
-import com.morningglory.mvc.page.StudentPageRequest;
+import com.morningglory.page.Page;
+import com.morningglory.request.StudentSearchRequest;
 import lombok.extern.slf4j.Slf4j;
 import org.apache.ibatis.executor.parameter.ParameterHandler;
 import org.apache.ibatis.executor.statement.StatementHandler;
@@ -46,7 +46,7 @@ public class PageIntercept implements Interceptor {
             String sql = boundSql.getSql();
 
             Map<String,Object> params = (Map<String, Object>) boundSql.getParameterObject();
-            Page pageRequest = (StudentPageRequest) params.get("page");
+            Page pageRequest = (StudentSearchRequest) params.get("page");
 
 
 

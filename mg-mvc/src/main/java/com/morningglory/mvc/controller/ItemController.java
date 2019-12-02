@@ -3,11 +3,10 @@ package com.morningglory.mvc.controller;
 import com.alibaba.fastjson.JSON;
 import com.google.common.collect.Lists;
 import com.morningglory.model.Item;
-import com.morningglory.mvc.model.request.DecimalRequest;
-import com.morningglory.mvc.model.request.ItemBuyRequest;
+import com.morningglory.request.DecimalRequest;
+import com.morningglory.request.ItemBuyRequest;
 import com.morningglory.mvc.service.item.ItemService;
 import lombok.extern.slf4j.Slf4j;
-import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.data.redis.core.StringRedisTemplate;
 import org.springframework.web.bind.annotation.*;
 

@@ -2,7 +2,7 @@ package com.morningglory.mvc.service.item;
 
 import com.morningglory.model.Item;
 import com.morningglory.mvc.dao.ItemDao;
-import com.morningglory.mvc.model.request.ItemBuyRequest;
+import com.morningglory.request.ItemBuyRequest;
 import lombok.extern.slf4j.Slf4j;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;

@@ -1,4 +1,4 @@
-package com.morningglory.mvc.model.request;
+package com.morningglory.request;
 
 import lombok.Data;
 

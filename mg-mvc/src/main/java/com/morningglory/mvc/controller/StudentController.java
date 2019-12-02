@@ -2,12 +2,15 @@ package com.morningglory.mvc.controller;
 
 import com.google.common.collect.Lists;
 import com.morningglory.model.Student;
-import com.morningglory.mvc.page.Page;
-import com.morningglory.mvc.page.StudentPageRequest;
+import com.morningglory.page.Page;
 import com.morningglory.mvc.service.student.StudentService;
+import com.morningglory.request.StudentSearchRequest;
 import org.springframework.web.bind.annotation.*;
 
 import javax.annotation.Resource;
+import java.io.IOException;
+import java.lang.reflect.InvocationTargetException;
+import java.util.Collections;
 import java.util.List;
 
 /**
@@ -73,8 +76,17 @@ public class StudentController {
     }
 
     @GetMapping("/page")
-    public Page<List<Student>> page(@RequestBody StudentPageRequest request){
+    public Page<List<Student>> page(@RequestBody StudentSearchRequest request){
 
-        return studentService.listByNameByPage(request);
+        try {
+            return studentService.listByNameByPage(request);
+        } catch (IOException e) {
+            e.printStackTrace();
+        } catch (InvocationTargetException e) {
+            e.printStackTrace();
+        } catch (IllegalAccessException e) {
+            e.printStackTrace();
+        }
+        return null;
     }
 }

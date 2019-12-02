@@ -15,7 +15,6 @@ import org.springframework.context.annotation.Configuration;
  * @Date: 2019-09-09 22:06
  * @Desc:
  */
-
 @ConditionalOnBean(AutoConfigBean1.class)
 @Slf4j
 @AutoConfigureOrder(2)

@@ -1,13 +1,11 @@
 import com.alibaba.otter.canal.client.CanalConnector;
 import com.alibaba.otter.canal.client.CanalConnectors;
 import com.alibaba.otter.canal.common.utils.AddressUtils;
-import com.alibaba.otter.canal.protocol.CanalEntry;
 import com.alibaba.otter.canal.protocol.Message;
 import lombok.extern.slf4j.Slf4j;
 import org.apache.commons.collections4.CollectionUtils;
 
 import java.net.InetSocketAddress;
-import java.util.List;
 import java.util.concurrent.TimeUnit;
 
 /**
@@ -24,7 +22,7 @@ public class SingleConnector {
         String ip = AddressUtils.getHostIp();
         log.info("ip = {}",ip);
         CanalConnector connector = CanalConnectors.newSingleConnector(
-                new InetSocketAddress(ip, 11111)
+                new InetSocketAddress("localhost", 11111)
                 ,"example"
                 ,"","");
 

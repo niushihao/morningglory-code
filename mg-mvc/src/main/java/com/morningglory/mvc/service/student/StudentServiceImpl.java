@@ -1,18 +1,30 @@
 package com.morningglory.mvc.service.student;
 
-import com.alibaba.fastjson.JSON;
+import com.morningglory.enums.EsIndexEnums;
 import com.morningglory.model.Student;
 import com.morningglory.mvc.dao.StudentDao;
-import com.morningglory.mvc.page.Page;
-import com.morningglory.mvc.page.StudentPageRequest;
+import com.morningglory.mvc.util.EsUtil;
+import com.morningglory.page.Page;
+import com.morningglory.request.StudentSearchRequest;
 import lombok.extern.slf4j.Slf4j;
+import org.apache.commons.lang3.StringUtils;
+import org.elasticsearch.action.search.SearchRequest;
+import org.elasticsearch.action.search.SearchRequestBuilder;
+import org.elasticsearch.action.search.SearchResponse;
+import org.elasticsearch.client.RequestOptions;
+import org.elasticsearch.client.RestHighLevelClient;
+import org.elasticsearch.index.query.BoolQueryBuilder;
+import org.elasticsearch.index.query.ConstantScoreQueryBuilder;
+import org.elasticsearch.index.query.QueryBuilder;
+import org.elasticsearch.index.query.QueryBuilders;
+import org.elasticsearch.search.SearchHit;
+import org.elasticsearch.search.builder.SearchSourceBuilder;
+import org.springframework.scheduling.annotation.Async;
 import org.springframework.stereotype.Service;
-import org.springframework.util.CollectionUtils;
-import sun.net.www.http.HttpClient;
 
 import javax.annotation.Resource;
 import java.io.IOException;
-import java.text.SimpleDateFormat;
+import java.lang.reflect.InvocationTargetException;
 import java.util.*;
 import java.util.stream.Collectors;
 
@@ -27,6 +39,9 @@ public class StudentServiceImpl implements StudentService {
 
     @Resource
     private StudentDao studentDao;
+
+    @Resource
+    private RestHighLevelClient esClient;
     @Override
     public Boolean addStudent(Student student) {
 
@@ -86,15 +101,35 @@ public class StudentServiceImpl implements StudentService {
 
 
     @Override
-    public Page<List<Student>> listByNameByPage(StudentPageRequest request) {
+    @Async
+    public Page<List<Student>> listByNameByPage(StudentSearchRequest request) throws IOException, InvocationTargetException, IllegalAccessException {
 
-        List<Student> students = studentDao.listByPage(request);
+        SearchRequest searchRequest = new SearchRequest(EsIndexEnums.index_student.name());
+        SearchSourceBuilder builder = new SearchSourceBuilder();
+
+        BoolQueryBuilder boolQuery = QueryBuilders.boolQuery();
+        QueryBuilder query = QueryBuilders.constantScoreQuery(boolQuery);
+
+        if(StringUtils.isNotBlank(request.getName())){
+            boolQuery.must(QueryBuilders.wildcardQuery("name","*"+request.getName()+"*"));
+        }
+        if(request.getMinAge() > 0){
+            boolQuery.must(QueryBuilders.rangeQuery("age").gte(request.getMinAge()));
+        }
+        if(request.getMaxAge() > 0){
+            boolQuery.must(QueryBuilders.rangeQuery("age").lte(request.getMaxAge()));
+        }
+        builder.query(query).from(request.getPageNo()).size(request.getPageSize()).sort("age");
+        log.info("es request = {}",builder);
+        searchRequest.source(builder);
+        SearchResponse searchResponse = esClient.search(searchRequest, RequestOptions.DEFAULT);
+        List<Student> students = EsUtil.toPojo(Student.class, searchResponse.getHits());
 
         Page<List<Student>> response = new Page<>();
         response.setResult(students);
-        response.setTotal(request.getTotal());
+        response.setTotal(Long.valueOf(searchResponse.getHits().totalHits).intValue());
         response.setPageNo(request.getPageNo());
-        response.setPageSize(request.getPageSize());
+        response.setPageSize(students.size());
         return response;
     }
 }

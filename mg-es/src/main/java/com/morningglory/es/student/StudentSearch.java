@@ -1,16 +1,25 @@
 package com.morningglory.es.student;
 
+import com.alibaba.fastjson.JSON;
 import com.morningglory.es.EsHLClientTest;
 import lombok.extern.slf4j.Slf4j;
 import org.elasticsearch.action.search.SearchRequest;
 import org.elasticsearch.action.search.SearchResponse;
 import org.elasticsearch.client.RequestOptions;
 import org.elasticsearch.client.RestHighLevelClient;
+import org.elasticsearch.index.query.BoolQueryBuilder;
+import org.elasticsearch.index.query.QueryBuilder;
 import org.elasticsearch.index.query.QueryBuilders;
 import org.elasticsearch.index.query.RangeQueryBuilder;
+import org.elasticsearch.search.aggregations.Aggregation;
+import org.elasticsearch.search.aggregations.AggregationBuilder;
+import org.elasticsearch.search.aggregations.AggregationBuilders;
+import org.elasticsearch.search.aggregations.bucket.terms.TermsAggregationBuilder;
 import org.elasticsearch.search.builder.SearchSourceBuilder;
 
+import javax.management.Query;
 import java.io.IOException;
+import java.util.Map;
 
 /**
  * @Author: qianniu
@@ -27,10 +36,47 @@ public class StudentSearch {
         //findById(client);
 
         // name text类型，默认分词器
-        findByName(client);
+        //findByName(client);
 
         // 根据兴趣查询
         //findByInterest(client);
+
+        // 复杂查询
+        //complexQuery(client);
+
+        // 聚合查询
+        aggQuery(client);
+
+
+    }
+
+    /**
+     * 聚合查询
+     * @param client
+     */
+    private static void aggQuery(RestHighLevelClient client) throws IOException {
+        SearchRequest request = new SearchRequest("index_student");
+        TermsAggregationBuilder aggregationBuilder = AggregationBuilders.terms("group_age").field("age")
+                .subAggregation(AggregationBuilders.sum("sum").field("age"));
+        SearchSourceBuilder builder = new SearchSourceBuilder();
+        builder.aggregation(aggregationBuilder).size(0);
+        log.info("aggQuery = {}",builder.toString());
+        request.source(builder);
+        SearchResponse response = client.search(request, RequestOptions.DEFAULT);
+        Map<String, Aggregation> stringAggregationMap = response.getAggregations().asMap();
+        log.info("aggQuery response = {}",JSON.toJSONString(stringAggregationMap));
+    }
+
+    private static void complexQuery(RestHighLevelClient client) throws IOException {
+        SearchRequest request = new SearchRequest("index_student");
+        QueryBuilder source = QueryBuilders.constantScoreQuery(QueryBuilders.boolQuery()
+                        .must(QueryBuilders.termQuery("interest", "球"))
+                        .must(QueryBuilders.rangeQuery("age").gte(10).lte(100)));
+        SearchSourceBuilder builder = new SearchSourceBuilder();
+        builder.query(source);
+        request.source(builder);
+        log.info("complexQuery = {}",builder.toString());
+        SearchResponse search = client.search(request, RequestOptions.DEFAULT);
 
     }
 

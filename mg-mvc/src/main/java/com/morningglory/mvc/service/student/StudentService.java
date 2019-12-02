@@ -1,10 +1,11 @@
 package com.morningglory.mvc.service.student;
 
 import com.morningglory.model.Student;
-import com.morningglory.mvc.page.Page;
-import com.morningglory.mvc.page.StudentPageRequest;
+import com.morningglory.page.Page;
+import com.morningglory.request.StudentSearchRequest;
 
 import java.io.IOException;
+import java.lang.reflect.InvocationTargetException;
 import java.util.List;
 
 /**
@@ -47,5 +48,5 @@ public interface StudentService {
      * @param request
      * @return
      */
-    Page<List<Student>> listByNameByPage(StudentPageRequest request);
+    Page<List<Student>> listByNameByPage(StudentSearchRequest request) throws IOException, InvocationTargetException, IllegalAccessException;
 }

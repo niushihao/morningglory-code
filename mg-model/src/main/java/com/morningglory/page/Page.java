@@ -1,4 +1,4 @@
-package com.morningglory.mvc.page;
+package com.morningglory.page;
 
 import lombok.Data;
 
