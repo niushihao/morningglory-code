@@ -4,7 +4,6 @@ import lombok.extern.slf4j.Slf4j;
 
 import java.io.IOException;
 import java.net.InetSocketAddress;
-import java.net.ServerSocket;
 import java.nio.ByteBuffer;
 import java.nio.channels.*;
 import java.util.Iterator;
@@ -12,7 +11,7 @@ import java.util.Iterator;
 /**
  * @Author: qianniu
  * @Date: 2019-12-10 13:28
- * @Desc:
+ * @Desc: 单线程监听所有channel 有就绪的就线性处理
  */
 @Slf4j
 public class NioSocketServer {
