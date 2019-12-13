@@ -58,7 +58,7 @@ public class CanalDispatcher{
 
 
     private void initTask() {
-        new DispatcherTask(canalHandlerList,false,canalConnector);
+        new DispatcherTask(canalHandlerList,false,canalConnector).start();
 
     }
 

@@ -1,6 +1,7 @@
 package com.morningglory.basic.netty;
 
 import io.netty.bootstrap.Bootstrap;
+import io.netty.buffer.ByteBuf;
 import io.netty.buffer.Unpooled;
 import io.netty.channel.*;
 import io.netty.channel.nio.NioEventLoopGroup;
@@ -51,7 +52,7 @@ public class EchoClient {
 
 
     @ChannelHandler.Sharable
-    public class EchoClientHandler extends SimpleChannelInboundHandler{
+    public class EchoClientHandler extends SimpleChannelInboundHandler<ByteBuf>{
 
         /**
          * 当被通知 Channel 是活跃的时候，发 送一条消息
@@ -63,23 +64,15 @@ public class EchoClient {
                     CharsetUtil.UTF_8));
         }
 
-
-        /**
-         *  记录已接收 消息的转储
-         * @param channelHandlerContext
-         * @param o
-         * @throws Exception
-         */
-        @Override
-        protected void channelRead0(ChannelHandlerContext channelHandlerContext, Object o) throws Exception {
-            System.out.println(
-                    "Client received: " + o);
-        }
-
         @Override
         public void exceptionCaught(ChannelHandlerContext ctx, Throwable cause) {
             cause.printStackTrace();
             ctx.close();
+        }
+
+        @Override
+        protected void channelRead0(ChannelHandlerContext channelHandlerContext, ByteBuf byteBuf) throws Exception {
+            System.out.println("Client received: " + byteBuf.toString(CharsetUtil.UTF_8));
         }
     }
 
@@ -88,5 +81,6 @@ public class EchoClient {
         String host = "127.0.0.1";
         int port = 9999;
         new EchoClient(host, port).start();
+        Thread.sleep(1000000);
     }
 }

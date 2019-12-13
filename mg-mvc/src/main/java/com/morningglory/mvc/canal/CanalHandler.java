@@ -1,4 +1,10 @@
 package com.morningglory.mvc.canal;
+
+import com.google.common.collect.Lists;
+
+import java.util.ArrayList;
+import java.util.List;
+
 /**
  * @Author: qianniu
  * @Date: 2019-12-01 12:57
@@ -51,6 +57,5 @@ public interface CanalHandler<T> {
      * @param Obj
      */
     default void doAlter(T Obj){}
-
 
 }

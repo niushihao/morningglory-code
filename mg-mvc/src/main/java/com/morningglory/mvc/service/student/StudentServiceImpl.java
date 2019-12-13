@@ -21,6 +21,7 @@ import org.elasticsearch.search.SearchHit;
 import org.elasticsearch.search.builder.SearchSourceBuilder;
 import org.springframework.scheduling.annotation.Async;
 import org.springframework.stereotype.Service;
+import org.springframework.transaction.annotation.Transactional;
 
 import javax.annotation.Resource;
 import java.io.IOException;
@@ -43,6 +44,7 @@ public class StudentServiceImpl implements StudentService {
     @Resource
     private RestHighLevelClient esClient;
     @Override
+    @Transactional(rollbackFor = Exception.class)
     public Boolean addStudent(Student student) {
 
         int num = studentDao.addStudent(student);

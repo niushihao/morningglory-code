@@ -25,13 +25,13 @@ public class LockTest {
     public static void main(String[] args) throws InterruptedException {
 
         // 重入锁测试
-        //lockTest();
+        lockTest();
 
         // 模拟阻塞队列
         //lockWithCondition();
 
         // 读写锁
-        readWriteLock();
+        //readWriteLock();
     }
 
     /**
@@ -112,7 +112,7 @@ public class LockTest {
             num++;
 
             try {
-                Thread.sleep(3000);
+                Thread.sleep(30000);
                 System.out.println(Thread.currentThread().getName()+"获取num ="+num+" ,执行时间= "+ LocalDateTime.now());
             } catch (InterruptedException e) {
                 e.printStackTrace();

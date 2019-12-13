@@ -23,10 +23,14 @@ public class UserServiceImpl implements DemoService<DubboRequest> {
   }
 
   @Override
-  public String sayHi(DubboRequest request, String name) {
-    return "Hello , "+ name;
+  public String sayHi(DubboRequest request, String name,Integer age) {
+    return "(str)Hello , "+ name +" and age ="+age;
   }
 
+  @Override
+  public String sayHi(DubboRequest request, Long age) {
+    return "(long)Hello , "+ age;
+  }
 
 
 }

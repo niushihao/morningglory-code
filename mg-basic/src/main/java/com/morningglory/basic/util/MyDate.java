@@ -21,5 +21,7 @@ public class MyDate {
 
         System.out.println(String.format("%04","1"));
 
+        int i = Integer.parseInt("0x3e03", 16);
+        System.out.println(i);
     }
 }

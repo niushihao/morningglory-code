@@ -43,15 +43,13 @@ public class Provider {
     userConfig.setRef(userService);
     userConfig.setApplication(applicationConfig);
     userConfig.setRegistry(registryConfig);
-    //userConfig.setProtocol(protocol);
+    userConfig.setProtocol(protocol);
     userConfig.setTimeout(20000);
     userConfig.setAsync(false);
 
     userConfig.export();
 
-    //System.in.read();
-
-    Thread.sleep(100000L);
+    System.in.read();
 
     Runtime.getRuntime().addShutdownHook(new Thread() {
 

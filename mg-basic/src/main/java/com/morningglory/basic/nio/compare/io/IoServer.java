@@ -30,7 +30,7 @@ public class IoServer {
 
                 //线程池处理
                 /*Runnable runnable = () -> {
-                    handler(socket);
+                    handler(bio);
                 };
                 executor.execute(runnable);*/
             }

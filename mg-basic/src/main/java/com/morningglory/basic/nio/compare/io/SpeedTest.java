@@ -6,14 +6,19 @@ import java.io.*;
  * @Author: nsh
  * @Date: 2018/7/19
  * @Description: 分别是用inputStream.read(),inputStream.read(byte[]),
+ * testStream用时：1260
+ * testByteBuffer用时：305
+ * testByReaderAndWriter用时：3794
+ * testByBufferReaderAndWriter用时：3537
+ * testByReaderAndWriterLine用时：3662
  */
 public class SpeedTest {
 
     public static void main(String[] args) {
 
-        String from = "/Users/nsh/Downloads/Java8实战.pdf";
+        String from = "/Users/nsh/Downloads/Spring源码深度解析.pdf";
 
-        String to = "/Users/nsh/Downloads/Java9实战.pdf";
+        String to = "/Users/nsh/Downloads/Spring源码深度解析1.pdf";
 
 
         File fromFile = new File(from);

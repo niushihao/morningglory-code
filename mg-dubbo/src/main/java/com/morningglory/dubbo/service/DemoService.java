@@ -14,6 +14,8 @@ public interface DemoService<T> {
 
   String sayHi(T str) throws InterruptedException;
 
-  String sayHi(DubboRequest request, String name);
+  String sayHi(DubboRequest request, String name, Integer age);
+
+  String sayHi(DubboRequest request, Long age);
 
 }
