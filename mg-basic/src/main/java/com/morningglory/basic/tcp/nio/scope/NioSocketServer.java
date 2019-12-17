@@ -24,7 +24,7 @@ public class NioSocketServer {
 
     private Selector selector;
 
-    private ThreadPoolExecutor executor = new ThreadPoolExecutor(10,20,0, TimeUnit.SECONDS,new LinkedBlockingDeque(100));
+    private ThreadPoolExecutor executor = new ThreadPoolExecutor(5,10,0, TimeUnit.SECONDS,new LinkedBlockingDeque(100));
 
     public void init() throws IOException {
         ServerSocketChannel serverSocketChannel = ServerSocketChannel.open();

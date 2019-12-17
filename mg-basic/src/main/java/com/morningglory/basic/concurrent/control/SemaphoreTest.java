@@ -7,7 +7,7 @@ import java.util.concurrent.Semaphore;
 /**
  * @Author: qianniu
  * @Date: 2019-05-10 17:51
- * @Desc: 限制并发线程数,类似于lock,只是Semaphore初始化时指定了state的大小，没此acquire将state减1直到小于0，小于0时会放入队列
+ * @Desc: 限制并发线程数,类似于lock,只是Semaphore初始化时指定了state的大小，每此acquire将state减1直到小于0，小于0时会放入队列
  *        release是将state加一，然后唤醒队列中的头结点。
  */
 public class SemaphoreTest {

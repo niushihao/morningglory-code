@@ -8,8 +8,8 @@ import java.util.concurrent.Executors;
 /**
  * @Author: qianniu
  * @Date: 2019-05-13 12:43
- * @Desc: 线程到达摸个状态后在一起并发执行，或者在并发执行前先执行指定任务
- *        通过整合lock和Condition来实现，初始化时指定count大小，每次await减1，然后调用Condition的await方法，知道减到0时
+ * @Desc: 线程到达某个状态后在一起并发执行，或者在并发执行前先执行指定任务
+ *        通过整合lock和Condition来实现，初始化时指定count大小，每次await减1，然后调用Condition的await方法，直到减到0时
  *        ，通过signalAll唤醒所有线程去执行
  */
 public class CyclicBarrierTest {
