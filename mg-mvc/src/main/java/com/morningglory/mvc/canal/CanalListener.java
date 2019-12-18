@@ -1,13 +1,12 @@
 package com.morningglory.mvc.canal;
-
-import com.alibaba.otter.canal.client.CanalConnector;
 import com.alibaba.otter.canal.protocol.CanalEntry;
 import com.alibaba.otter.canal.protocol.Message;
 import com.google.protobuf.InvalidProtocolBufferException;
 import com.morningglory.mvc.util.CanalUtil;
 import lombok.extern.slf4j.Slf4j;
 import org.apache.commons.collections4.CollectionUtils;
-
+import org.springframework.stereotype.Component;
+import javax.annotation.Resource;
 import java.lang.reflect.ParameterizedType;
 import java.util.List;
 import java.util.Map;
@@ -16,53 +15,31 @@ import java.util.stream.Collectors;
 
 /**
  * @Author: qianniu
- * @Date: 2019-12-02 16:32
+ * @Date: 2019-12-01 13:10
  * @Desc:
  */
+@Component
 @Slf4j
-public class DispatcherTask extends Thread{
-
-    private static int DEFAULT_BATCH_SIZE = 5 * 1024;
+public class CanalListener {
 
     private Map<String,CanalHandler> handlerMap;
-    private volatile Boolean shutDown = false;
-    private CanalConnector canalConnector;
 
-    public DispatcherTask(List<CanalHandler> canalHandlerList, Boolean shutDown, CanalConnector canalConnector) {
-        this.handlerMap = canalHandlerList.stream().collect(Collectors.toMap(CanalHandler::getTable, Function.identity()));
-        this.shutDown = shutDown;
-        this.canalConnector = canalConnector;
-    }
+    @Resource
+    private List<CanalHandler> handlerList;
 
-    public void shutDown(){
-        this.shutDown = true;
-    }
-
-    @Override
-    public void run() {
-        log.info("canal task 开始工作");
-        while (!shutDown){
-            Message message = canalConnector.getWithoutAck(DEFAULT_BATCH_SIZE);
-            if(CollectionUtils.isEmpty(message.getEntries())){
-                try {
-                    Thread.sleep(1000);
-                } catch (InterruptedException e) {
-                    e.printStackTrace();
-                }
-                continue;
-            }
-
-            doDispatcher(message.getEntries());
-            canalConnector.ack(message.getId());
-
+    public void onMessage(Message message){
+        List<CanalEntry.Entry> entries = message.getEntries();
+        if(CollectionUtils.isEmpty(entries)){
+            return;
         }
-        log.info("canal task 停止工作");
+
+        dispatch(entries);
     }
 
-    private void doDispatcher(List<CanalEntry.Entry> entries) {
-
+    private void dispatch(List<CanalEntry.Entry> entries) {
         for(CanalEntry.Entry entry : entries){
-            if(CanalEntry.EntryType.TRANSACTIONBEGIN == entry.getEntryType() || CanalEntry.EntryType.TRANSACTIONEND == entry.getEntryType()){
+            if(CanalEntry.EntryType.TRANSACTIONBEGIN == entry.getEntryType()
+                    || CanalEntry.EntryType.TRANSACTIONEND == entry.getEntryType()){
                 continue;
             }
 
@@ -115,6 +92,14 @@ public class DispatcherTask extends Thread{
 
         }
 
+    }
 
+    public void init() {
+        if(CollectionUtils.isEmpty(handlerList)){
+            return;
+        }
+        handlerMap = handlerList.stream()
+                .collect(Collectors.toMap(CanalHandler::getTable, Function.identity()));
+        log.info("canal listener init");
     }
 }

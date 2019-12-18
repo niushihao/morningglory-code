@@ -1,12 +1,12 @@
 package com.morningglory.mvc.listener;
 
-import com.morningglory.mvc.canal.CanalDispatcher;
+import com.morningglory.mvc.canal.CanalClient;
+import com.morningglory.mvc.canal.CanalListener;
 import lombok.extern.slf4j.Slf4j;
 import org.springframework.context.ApplicationListener;
 import org.springframework.context.event.ContextRefreshedEvent;
 import org.springframework.stereotype.Component;
 
-import javax.annotation.PostConstruct;
 import javax.annotation.Resource;
 
 /**
@@ -19,13 +19,17 @@ import javax.annotation.Resource;
 public class ApplicationStartListener implements ApplicationListener<ContextRefreshedEvent>{
 
     @Resource
-    private CanalDispatcher canalDispatcher;
+    private CanalClient canalClient;
+
+    @Resource
+    private CanalListener canalListener;
 
     @Override
     public void onApplicationEvent(ContextRefreshedEvent event) {
 
         log.info("容器启动成功");
-        canalDispatcher.init();
+        canalClient.setListener(canalListener);
+        canalClient.init();
     }
 
 }

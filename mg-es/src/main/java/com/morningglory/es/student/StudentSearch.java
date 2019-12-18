@@ -52,6 +52,7 @@ public class StudentSearch {
 
     /**
      * 聚合查询
+     * 因为聚合是这查询结果范围内操作的，任何可以适用于查询的过滤器也可以应用在聚合上
      * @param client
      */
     private static void aggQuery(RestHighLevelClient client) throws IOException {

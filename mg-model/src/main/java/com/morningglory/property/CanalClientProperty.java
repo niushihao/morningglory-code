@@ -22,6 +22,8 @@ public class CanalClientProperty {
 
     private String destination;
 
+    private String subscribe;
+
     private String userName;
 
     private String password;
