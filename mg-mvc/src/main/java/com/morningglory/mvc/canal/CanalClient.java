@@ -4,11 +4,12 @@ import com.alibaba.otter.canal.client.CanalConnectors;
 import com.alibaba.otter.canal.protocol.Message;
 import com.morningglory.property.CanalClientProperty;
 import lombok.extern.slf4j.Slf4j;
-import org.apache.commons.collections4.CollectionUtils;
+import org.apache.commons.collections.CollectionUtils;
+
 import java.net.InetSocketAddress;
 /**
  * @Author: qianniu
- * @Date: 2019-12-17 13:36
+ * @Date: 2019-12-17 00:36
  * @Desc: canal客户端
  */
 @Slf4j

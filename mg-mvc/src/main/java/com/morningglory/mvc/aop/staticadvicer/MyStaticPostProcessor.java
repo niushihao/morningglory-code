@@ -19,7 +19,7 @@ public class MyStaticPostProcessor extends AbstractAdvisingBeanPostProcessor imp
     public void afterPropertiesSet() throws Exception {
 
         MyStaticPointcut pointcut = new MyStaticPointcut();
-
+        pointcut.setClassFilter(pointcut);
         this.advisor = new DefaultPointcutAdvisor(pointcut,createAdvice());
     }
 

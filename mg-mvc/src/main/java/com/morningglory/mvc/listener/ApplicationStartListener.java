@@ -27,9 +27,14 @@ public class ApplicationStartListener implements ApplicationListener<ContextRefr
     @Override
     public void onApplicationEvent(ContextRefreshedEvent event) {
 
-        log.info("容器启动成功");
-        canalClient.setListener(canalListener);
-        canalClient.init();
+        try {
+            log.info("容器启动成功,开始连接canal");
+            canalClient.setListener(canalListener);
+            canalClient.init();
+        }catch (Exception e){
+            log.error("canal连接失败。。");
+        }
+
     }
 
 }

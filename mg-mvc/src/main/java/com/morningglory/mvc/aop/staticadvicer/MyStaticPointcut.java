@@ -2,6 +2,7 @@ package com.morningglory.mvc.aop.staticadvicer;
 
 import com.google.common.base.Joiner;
 import com.google.common.collect.Lists;
+import lombok.extern.slf4j.Slf4j;
 import org.springframework.aop.ClassFilter;
 import org.springframework.aop.support.StaticMethodMatcherPointcut;
 import org.springframework.util.CollectionUtils;
@@ -14,6 +15,7 @@ import java.util.List;
  * @Date: 2019-10-15 13:44
  * @Desc:
  */
+@Slf4j
 public class MyStaticPointcut extends StaticMethodMatcherPointcut implements ClassFilter {
 
     List<String> writeList = Lists.newArrayList("com.morningglory.mvc.service.item.ItemServiceImpl.list");
@@ -39,6 +41,7 @@ public class MyStaticPointcut extends StaticMethodMatcherPointcut implements Cla
         String name = clazz.getName();
         for(String path : writeList){
             if(path.startsWith(name)){
+                log.info("MyStaticPointcut matches true");
                 return true;
             }
         }

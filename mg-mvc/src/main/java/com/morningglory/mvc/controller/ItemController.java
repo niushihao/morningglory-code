@@ -8,6 +8,7 @@ import com.morningglory.request.ItemBuyRequest;
 import com.morningglory.mvc.service.item.ItemService;
 import lombok.extern.slf4j.Slf4j;
 import org.springframework.data.redis.core.StringRedisTemplate;
+import org.springframework.transaction.annotation.Transactional;
 import org.springframework.web.bind.annotation.*;
 
 import javax.annotation.Resource;
@@ -28,6 +29,10 @@ import java.util.concurrent.Executors;
 @RequestMapping("item")
 @Slf4j
 public class ItemController {
+
+    public ItemController() {
+        log.info("1111");
+    }
 
     @Resource
     private ItemService itemService;
@@ -66,8 +71,8 @@ public class ItemController {
     }
 
     @GetMapping("list")
-    public List<Item> list(HttpServletRequest request){
-        log.info("uri = "+request.getRequestURI());
+    public List<Item> list(Long id){
+        log.info("id = {}",id);
         String o = redisTemplate.opsForValue().get("123");
         final Object o1 = redisTemplate.opsForValue().get("123");
         Boolean aBoolean = redisTemplate.hasKey("123");

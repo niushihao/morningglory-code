@@ -21,7 +21,11 @@ public class FastCopyFile
     FileChannel fcin = fin.getChannel();
     FileChannel fcout = fout.getChannel();
 
-    ByteBuffer buffer = ByteBuffer.allocateDirect( 1024 );
+    // 这种方式最快
+    fcout.transferFrom(fcin,0,fcin.size());
+
+    // 这种方式并不是最快的
+    /*ByteBuffer buffer = ByteBuffer.allocateDirect( 1024 );
 
     while (true) {
       buffer.clear();
@@ -35,6 +39,6 @@ public class FastCopyFile
       buffer.flip();
 
       fcout.write( buffer );
-    }
+    }*/
   }
 }

@@ -11,10 +11,13 @@
         <module name="mg-docker-compose" />
         <module name="mg-dubbo" />
         <module name="mg-es" />
+        <module name="mg-fsm" />
+        <module name="mg-graphql" />
         <module name="mg-leetcode" />
         <module name="mg-model" />
         <module name="mg-mvc" />
         <module name="mg-mybatis" />
+        <module name="mg-netty" />
         <module name="mg-redis" />
         <module name="mg-zk" />
       </profile>

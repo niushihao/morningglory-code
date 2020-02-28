@@ -7,9 +7,9 @@ import javax.jws.WebService;
 /**
  * @Author: qianniu
  * @Date: 2019-04-19 10:58
- * @Desc:
+ * @Desc:http://service.nsh.com
  */
-@WebService(serviceName = "SmsService",targetNamespace = "http://service.nsh.com")
+@WebService(serviceName = "SmsService",targetNamespace = "")
 @Service
 public class SmsServiceImpl implements SmsService{
     @Override

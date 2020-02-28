@@ -10,9 +10,9 @@ import javax.jws.WebService;
 /**
  * @Author: qianniu
  * @Date: 2019-04-19 10:54
- * @Desc:
+ * @Desc:http://service.nsh.com
  */
-@WebService(name ="SmsService",targetNamespace = "http://service.nsh.com")
+@WebService(name ="SmsService",targetNamespace = "")
 public interface SmsService {
 
     @WebMethod

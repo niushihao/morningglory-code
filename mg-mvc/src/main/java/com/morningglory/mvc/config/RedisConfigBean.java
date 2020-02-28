@@ -26,7 +26,7 @@ public class RedisConfigBean {
     private Environment environment;
 
     @Bean
-    @ConfigurationProperties(prefix="spring.redis.")
+    @ConfigurationProperties(prefix="spring.redis")
     public JedisPoolConfig redisConfig(){
         JedisPoolConfig config = new JedisPoolConfig();
         return config;

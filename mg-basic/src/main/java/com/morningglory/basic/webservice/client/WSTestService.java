@@ -1,6 +1,12 @@
 package com.morningglory.basic.webservice.client;
 
 
+import com.morningglory.basic.webservice.service.SmsService;
+import org.apache.cxf.endpoint.Client;
+import org.apache.cxf.jaxws.JaxWsProxyFactoryBean;
+import org.apache.cxf.jaxws.endpoint.dynamic.JaxWsDynamicClientFactory;
+import org.junit.Test;
+
 /**
  * @Author: qianniu
  * @Date: 2019-04-19 11:15
@@ -8,7 +14,7 @@ package com.morningglory.basic.webservice.client;
  */
 public class WSTestService {
 
-    /*@Test
+    @Test
     public void testSendSms(){
 
         JaxWsDynamicClientFactory dcf = JaxWsDynamicClientFactory.newInstance();
@@ -30,6 +36,16 @@ public class WSTestService {
     }
 
     @Test
+    public void testSendSms1(){
+        JaxWsProxyFactoryBean bean = new JaxWsProxyFactoryBean();
+        bean.setServiceClass(SmsService.class);
+        bean.setAddress("http://localhost:8080/services/SmsService");
+        SmsService smsService = (SmsService)bean.create();
+        String result = smsService.sendSms("123");
+        System.out.println(result);
+    }
+
+    /*@Test
     public void testSendDTO() throws IOException {
 
         JaxWsProxyFactoryBean bean = new JaxWsProxyFactoryBean();
@@ -126,16 +142,17 @@ public class WSTestService {
             e.printStackTrace();
         }
     }
+    */
 
     @Test
     public void sendSMS(){
 
-       *//* JaxWsProxyFactoryBean bean = new JaxWsProxyFactoryBean();
-        bean.setServiceClass(com.nsh.service.SmsService.class);
-        bean.setAddress("http://192.168.12.69:8080/smg/webService/smsOper?wsdl");
-        com.nsh.service.SmsService sendSms = (com.nsh.service.SmsService)bean.create();
-        String result = sendSms.sendSms("123");*//*
+       JaxWsProxyFactoryBean bean = new JaxWsProxyFactoryBean();
+        bean.setServiceClass(com.morningglory.basic.webservice.service.SmsService.class);
+        bean.setAddress("http://127.0.0.1:8080/smg/webService/smsOper?wsdl");
+        SmsService sendSms = (com.morningglory.basic.webservice.service.SmsService)bean.create();
+        String result = sendSms.sendSms("123");
 
     }
-*/
+
 }

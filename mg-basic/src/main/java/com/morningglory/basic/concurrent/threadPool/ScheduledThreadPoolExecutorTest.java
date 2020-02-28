@@ -33,10 +33,10 @@ public class ScheduledThreadPoolExecutorTest {
         ScheduledFuture<?> begin_scheduled = executor.schedule(runnable, 5, TimeUnit.SECONDS);
 
         // 按固定的频率执行，不受执行时长影响，到点就执行
-        executor.scheduleAtFixedRate(runnable,0,3,TimeUnit.SECONDS);
+        executor.scheduleAtFixedRate(runnable,0,10,TimeUnit.SECONDS);
 
         //任务执行完后，按固定的延后时间再执行。
-        executor.scheduleWithFixedDelay(runnable,0,3,TimeUnit.SECONDS);
+        //executor.scheduleWithFixedDelay(runnable,0,3,TimeUnit.SECONDS);
 
     }
 }

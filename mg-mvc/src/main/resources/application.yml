@@ -32,5 +32,27 @@ canal:
   host: 127.0.0.1
   port: 11111
   destination: example
-  subscribe: demo\\..*
+  subscribe: demo,cnooc_acl
+
+terminus:
+  acl:
+    projectCode: cnooc
+    defaultTenant: 10000000000
+    dubbo:
+      registers:
+      - zookeeper://127.0.0.1:2181
+    dataAuth:
+      mybatisProxy: false
+      terminusEsProxy: false
+      extensionProxy: true
+      basePackages: com.morningglory.mvc.controller
+      methods:
+       -
+        name: list
+        params: java.lang.Long
+       -
+        name: list1
+        params:
+
+
 

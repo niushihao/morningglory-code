@@ -1,6 +1,8 @@
 package com.morningglory.basic.nio.compare.io;
 
 import java.io.*;
+import java.nio.channels.FileChannel;
+import java.nio.file.*;
 
 /**
  * @Author: nsh
@@ -11,10 +13,12 @@ import java.io.*;
  * testByReaderAndWriter用时：3794
  * testByBufferReaderAndWriter用时：3537
  * testByReaderAndWriterLine用时：3662
+ * testChannel 200
+ * testFileCopy 288
  */
 public class SpeedTest {
 
-    public static void main(String[] args) {
+    public static void main(String[] args) throws IOException {
 
         String from = "/Users/nsh/Downloads/Spring源码深度解析.pdf";
 
@@ -24,17 +28,39 @@ public class SpeedTest {
         File fromFile = new File(from);
         File toFile = new File(to);
 
+        testFileCopy(fromFile,toFile);
 
         testByteStream(fromFile,toFile);
+
         testByteBuffer(fromFile,toFile);
 
         testByReaderAndWriter(fromFile,toFile);
+
         testByBufferReaderAndWriter(fromFile,toFile);
+
         testByReaderAndWriterLine(fromFile,toFile);
 
+        testChannel(fromFile,toFile);
+    }
 
+    private static void testFileCopy(File fromFile, File toFile) throws IOException {
+        long begin = System.currentTimeMillis();
+        // Files.copy底层方法与[testByteStream]相同;Files.move是包装了Files.copy方法
+        Files.copy(fromFile.toPath(),toFile.toPath());
+        System.out.println("testFileCopy用时："+(System.currentTimeMillis() -begin));
+    }
 
+    private static void testChannel(File fromFile, File toFile) throws IOException {
 
+        long begin = System.currentTimeMillis();
+        FileInputStream inputStream = new FileInputStream(fromFile);
+        FileOutputStream outputStream = new FileOutputStream(toFile);
+        FileChannel inChannel = inputStream.getChannel();
+        FileChannel outChannel = outputStream.getChannel();
+        // transferTo 和 transferFrom效率基本一样
+        inChannel.transferTo(0,inChannel.size(),outChannel);
+        //outChannel.transferFrom(inChannel,0,inChannel.size());
+        System.out.println("testChannel用时："+(System.currentTimeMillis() -begin));
     }
 
     /**

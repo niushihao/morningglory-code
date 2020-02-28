@@ -5,13 +5,15 @@
     <file url="file://$PROJECT_DIR$/mg-basic" charset="UTF-8" />
     <file url="file://$PROJECT_DIR$/mg-binlog" charset="UTF-8" />
     <file url="file://$PROJECT_DIR$/mg-docker-compose" charset="UTF-8" />
-    <file url="file://$PROJECT_DIR$/mg-docker-compose" charset="UTF-8" />
     <file url="file://$PROJECT_DIR$/mg-dubbo" charset="UTF-8" />
     <file url="file://$PROJECT_DIR$/mg-es" charset="UTF-8" />
+    <file url="file://$PROJECT_DIR$/mg-fsm" charset="UTF-8" />
+    <file url="file://$PROJECT_DIR$/mg-graphql" charset="UTF-8" />
     <file url="file://$PROJECT_DIR$/mg-leetcode" charset="UTF-8" />
     <file url="file://$PROJECT_DIR$/mg-model" charset="UTF-8" />
     <file url="file://$PROJECT_DIR$/mg-mvc" charset="UTF-8" />
     <file url="file://$PROJECT_DIR$/mg-mybatis" charset="UTF-8" />
+    <file url="file://$PROJECT_DIR$/mg-netty" charset="UTF-8" />
     <file url="file://$PROJECT_DIR$/mg-redis" charset="UTF-8" />
     <file url="file://$PROJECT_DIR$/mg-zk" charset="UTF-8" />
   </component>

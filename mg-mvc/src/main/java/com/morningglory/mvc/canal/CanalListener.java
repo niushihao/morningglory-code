@@ -4,7 +4,7 @@ import com.alibaba.otter.canal.protocol.Message;
 import com.google.protobuf.InvalidProtocolBufferException;
 import com.morningglory.mvc.util.CanalUtil;
 import lombok.extern.slf4j.Slf4j;
-import org.apache.commons.collections4.CollectionUtils;
+import org.apache.commons.collections.CollectionUtils;
 import org.springframework.stereotype.Component;
 import javax.annotation.Resource;
 import java.lang.reflect.ParameterizedType;
@@ -15,7 +15,7 @@ import java.util.stream.Collectors;
 
 /**
  * @Author: qianniu
- * @Date: 2019-12-01 13:10
+ * @Date: 2019-12-01 00:10
  * @Desc:
  */
 @Component
@@ -53,9 +53,8 @@ public class CanalListener {
                 String schemaName = entry.getHeader().getSchemaName();
                 String tableName = entry.getHeader().getTableName();
                 List<CanalEntry.RowData> rowDataList = rowChange.getRowDatasList();
-
+                CanalHandler handler = this.handlerMap.get(tableName);
                 for(CanalEntry.RowData rowData : rowDataList){
-                    CanalHandler handler = this.handlerMap.get(tableName);
                     if(handler == null){
                         log.warn("tableName:{} 没有对应的处理器",tableName);
                         continue;
@@ -80,6 +79,7 @@ public class CanalListener {
                             handler.doCreate(entity);
                             break;
                         case ALTER:
+                            log.info("执行了alert= {}",rowChange.getSql());
                             handler.doAlter(entity);
                             break;
                     }

@@ -27,10 +27,11 @@ public class EchoServer {
 
     private void start() throws InterruptedException {
         final EchoServerHandler serverHandler = new EchoServerHandler();
-        EventLoopGroup group = new NioEventLoopGroup();
+        EventLoopGroup boosGroup = new NioEventLoopGroup();
+        EventLoopGroup workerGroup = new NioEventLoopGroup();
         try {
             ServerBootstrap server = new ServerBootstrap();
-            server.group(group)
+            server.group(boosGroup,workerGroup)
                     .channel(NioServerSocketChannel.class)
                     .localAddress(new InetSocketAddress("127.0.0.1",port))
                     .childHandler(new ChannelInitializer<SocketChannel>() {
@@ -45,7 +46,8 @@ public class EchoServer {
         } catch (InterruptedException e) {
             e.printStackTrace();
         } finally {
-            group.shutdownGracefully().sync();
+            boosGroup.shutdownGracefully().sync();
+            workerGroup.shutdownGracefully().sync();
         }
 
 

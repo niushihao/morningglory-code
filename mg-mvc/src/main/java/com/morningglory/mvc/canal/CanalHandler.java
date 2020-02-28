@@ -2,7 +2,7 @@ package com.morningglory.mvc.canal;
 
 /**
  * @Author: qianniu
- * @Date: 2019-12-01 12:57
+ * @Date: 2019-12-01 00:57
  * @Desc:
  */
 public interface CanalHandler<T> {

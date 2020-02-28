@@ -10,7 +10,7 @@ import java.util.Map;
 /**
  * @Author: qianniu
  * @Date: 2019-12-02 10:37
- * @Desc:
+ * @Desc: canal工具类
  */
 public class CanalUtil {
 

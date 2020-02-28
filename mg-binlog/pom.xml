@@ -11,5 +11,10 @@
 
     <artifactId>mg-binlog</artifactId>
 
-
+    <dependencies>
+        <dependency>
+            <groupId>com.alibaba.otter</groupId>
+            <artifactId>canal.client</artifactId>
+        </dependency>
+    </dependencies>
 </project>

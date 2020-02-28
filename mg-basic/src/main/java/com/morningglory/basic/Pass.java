@@ -7,7 +7,9 @@ package com.morningglory.basic;
  */
 public class Pass {
 
-    public static void main(String[] args) {
+    public static void main(String[] args) throws InterruptedException {
+
+        Thread.sleep(10000000);
 
         System.out.println(2%4);
         System.out.println(4%2);

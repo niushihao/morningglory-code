@@ -23,13 +23,13 @@ import redis.clients.jedis.Jedis;
 import redis.clients.jedis.JedisPool;
 import redis.clients.jedis.JedisPoolConfig;
 
-@Configuration
+/*@Configuration
 @EnableAutoConfiguration
-@EnableCaching
+@EnableCaching*/
 @Slf4j
 public class RedisConfig {
 
-    @Value("${spring.redis.mode}")
+    @Value("${spring.redis.mode:standalone}")
     private String mode;
 
     @Value("${spring.redis.host}")
@@ -41,10 +41,10 @@ public class RedisConfig {
     @Value("${spring.redis.password}")
     private String password;
 
-    @Value("${spring.redis.sentinel.master}")
+    @Value("${spring.redis.sentinel.master:master}")
     private String master;
 
-    @Value("${spring.redis.sentinel.nodes}")
+    @Value("${spring.redis.sentinel.nodes:127.0.0.1:6379}")
     private String hostAndPorts;
 
 

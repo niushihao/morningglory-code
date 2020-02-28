@@ -14,6 +14,7 @@ public class MyStaticInterceptor implements MethodInterceptor {
     @Override
     public Object invoke(MethodInvocation invocation) throws Throwable {
         log.info("MyStaticInterceptor-begin");
+        invocation.getArguments();
         Object returnValue = invocation.proceed();
         log.info("MyStaticInterceptor-end");
         return returnValue;

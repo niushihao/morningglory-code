@@ -1,22 +1,29 @@
 package com.morningglory.basic.nio;// $Id$
 
-import java.io.*;
-import java.nio.*;
-import java.nio.channels.*;
 
-public class CreateBuffer
-{
-  static public void main( String args[] ) throws Exception {
-    ByteBuffer buffer = ByteBuffer.allocate( 1024 );
+import lombok.extern.slf4j.Slf4j;
 
-    buffer.put( (byte)'a' );
-    buffer.put( (byte)'b' );
-    buffer.put( (byte)'c' );
+import java.nio.IntBuffer;
 
-    buffer.flip();
+@Slf4j
+public class CreateBuffer {
 
-    System.out.println( (char)buffer.get() );
-    System.out.println( (char)buffer.get() );
-    System.out.println( (char)buffer.get() );
+  public static void main( String args[] ) throws Exception {
+
+    IntBuffer buffer = IntBuffer.allocate(10);
+    log.info("after init = {}",buffer);
+    buffer.put(1);
+    buffer.put(2);
+    buffer.put(3);
+    buffer.put(4);
+    buffer.put(5);
+    log.info("after put = {}",buffer);
+
+    IntBuffer slice = buffer.slice();
+    slice.position(2);
+    log.info("slice = {}",slice);
+    slice.put(6);
+    log.info("after slice put = {},buffer = {}",slice,buffer.get(7));
+
   }
 }

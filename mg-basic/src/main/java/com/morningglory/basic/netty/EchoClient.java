@@ -41,6 +41,9 @@ public class EchoClient {
                                     .addLast(new EchoClientHandler());
                         }
                     });
+            ChannelFuture f= b.connect(host,port).sync();
+            //等待异步连接操作
+            f.channel().closeFuture().sync();
 
         }catch (Exception e){
 
@@ -52,7 +55,7 @@ public class EchoClient {
 
 
     @ChannelHandler.Sharable
-    public class EchoClientHandler extends SimpleChannelInboundHandler<ByteBuf>{
+    public class EchoClientHandler extends SimpleChannelInboundHandler{
 
         /**
          * 当被通知 Channel 是活跃的时候，发 送一条消息
@@ -71,8 +74,8 @@ public class EchoClient {
         }
 
         @Override
-        protected void channelRead0(ChannelHandlerContext channelHandlerContext, ByteBuf byteBuf) throws Exception {
-            System.out.println("Client received: " + byteBuf.toString(CharsetUtil.UTF_8));
+        protected void channelRead0(ChannelHandlerContext ctx, Object msg) throws Exception {
+            System.out.println("Client received: " + msg.toString());
         }
     }
 

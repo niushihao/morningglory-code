@@ -13,6 +13,7 @@ import org.springframework.test.context.junit4.SpringJUnit4ClassRunner;
 import redis.clients.jedis.Jedis;
 import redis.clients.jedis.JedisPubSub;
 
+import javax.annotation.Resource;
 import java.util.Set;
 
 import static org.springframework.boot.test.context.SpringBootTest.WebEnvironment.RANDOM_PORT;
@@ -27,7 +28,7 @@ public class RedisTest {
     @Autowired
     RedisTemplate redisTemplate;
 
-    //@Resource(name = "getJedisPool")
+    @Resource(name = "getJedisPool")
     Jedis jedis;
 
     //@Resource(name = "getDevJedisPool")
