@@ -22,6 +22,7 @@
         <module>mg-netty</module>
         <module>mg-fsm</module>
         <module>mg-graphql</module>
+        <module>mg-rpc</module>
     </modules>
     <packaging>pom</packaging>
 
@@ -57,7 +58,7 @@
         <version.commons.validator>1.5.1</version.commons.validator>
         <version.commons-email>1.2</version.commons-email>
         <version.ibatis>2.3.4.726</version.ibatis>
-        <version.dubbo>2.5.3</version.dubbo>
+        <version.dubbo>2.7.5</version.dubbo>
         <version.guava>25.1-jre</version.guava>
         <version.joda-time>2.3</version.joda-time>
         <!--validator-->
@@ -69,6 +70,13 @@
         <lombok.version>1.16.20</lombok.version>
         <version.canal.client>1.1.3</version.canal.client>
         <version.log4j>1.2.17</version.log4j>
+        <tomcat_embed_version>8.5.31</tomcat_embed_version>
+        <jsonrpc_version>1.2.0</jsonrpc_version>
+        <portlet_version>2.0</portlet_version>
+        <servlet_version>3.1.0</servlet_version>
+        <zookeeper_version>3.4.13</zookeeper_version>
+        <curator_version>4.0.1</curator_version>
+        <resteasy_version>3.10.0.Final</resteasy_version>
     </properties>
 
     <dependencies>
@@ -122,6 +130,12 @@
             <groupId>org.json</groupId>
             <artifactId>json</artifactId>
             <version>20160810</version>
+        </dependency>
+
+        <dependency>
+            <groupId>javax.servlet</groupId>
+            <artifactId>javax.servlet-api</artifactId>
+            <version>${servlet_version}</version>
         </dependency>
 
     </dependencies>
@@ -292,18 +306,98 @@
                 <version>4.1.29.Final</version>
             </dependency>
 
-            <!-- https://mvnrepository.com/artifact/com.alibaba/dubbo -->
+            <!-- https://mvnrepository.com/artifact/org.apache.dubbo/dubbo -->
             <dependency>
-                <groupId>com.alibaba</groupId>
+                <groupId>org.apache.dubbo</groupId>
                 <artifactId>dubbo</artifactId>
-                <version>2.6.6</version>
+                <version>2.7.5</version>
             </dependency>
+
 
             <!-- https://mvnrepository.com/artifact/org.dom4j/dom4j -->
             <dependency>
                 <groupId>org.dom4j</groupId>
                 <artifactId>dom4j</artifactId>
                 <version>2.1.1</version>
+            </dependency>
+
+            <dependency>
+                <groupId>org.apache.tomcat.embed</groupId>
+                <artifactId>tomcat-embed-core</artifactId>
+                <version>${tomcat_embed_version}</version>
+            </dependency>
+
+            <!-- jsonrpc4j -->
+            <dependency>
+                <groupId>com.github.briandilley.jsonrpc4j</groupId>
+                <artifactId>jsonrpc4j</artifactId>
+                <version>${jsonrpc_version}</version>
+            </dependency>
+
+            <dependency>
+                <groupId>javax.portlet</groupId>
+                <artifactId>portlet-api</artifactId>
+                <version>${portlet_version}</version>
+            </dependency>
+
+            <dependency>
+                <groupId>org.apache.zookeeper</groupId>
+                <artifactId>zookeeper</artifactId>
+                <version>${zookeeper_version}</version>
+                <exclusions>
+                    <exclusion>
+                        <groupId>io.netty</groupId>
+                        <artifactId>netty</artifactId>
+                    </exclusion>
+                    <exclusion>
+                        <artifactId>slf4j-api</artifactId>
+                        <groupId>org.slf4j</groupId>
+                    </exclusion>
+                    <exclusion>
+                        <artifactId>slf4j-log4j12</artifactId>
+                        <groupId>org.slf4j</groupId>
+                    </exclusion>
+                </exclusions>
+            </dependency>
+
+            <dependency>
+                <groupId>org.apache.curator</groupId>
+                <artifactId>curator-framework</artifactId>
+                <version>${curator_version}</version>
+                <exclusions>
+                    <exclusion>
+                        <groupId>org.apache.zookeeper</groupId>
+                        <artifactId>zookeeper</artifactId>
+                    </exclusion>
+                    <exclusion>
+                        <artifactId>slf4j-api</artifactId>
+                        <groupId>org.slf4j</groupId>
+                    </exclusion>
+                </exclusions>
+            </dependency>
+
+            <dependency>
+                <groupId>org.apache.curator</groupId>
+                <artifactId>curator-x-discovery</artifactId>
+                <version>${curator_version}</version>
+                <exclusions>
+                    <exclusion>
+                        <groupId>org.apache.zookeeper</groupId>
+                        <artifactId>zookeeper</artifactId>
+                    </exclusion>
+                </exclusions>
+            </dependency>
+
+            <!-- https://mvnrepository.com/artifact/org.jboss.resteasy/resteasy-jaxrs -->
+            <dependency>
+                <groupId>org.jboss.resteasy</groupId>
+                <artifactId>resteasy-jaxrs</artifactId>
+                <version>${resteasy_version}</version>
+            </dependency>
+            <dependency>
+                <groupId>org.jboss.resteasy</groupId>
+                <artifactId>resteasy-client</artifactId>
+                <version>${resteasy_version}</version>
             </dependency>
 
 

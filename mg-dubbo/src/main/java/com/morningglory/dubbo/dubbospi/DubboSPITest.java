@@ -1,6 +1,7 @@
 package com.morningglory.dubbo.dubbospi;
 
-import com.alibaba.dubbo.common.extension.ExtensionLoader;
+
+import org.apache.dubbo.common.extension.ExtensionLoader;
 
 /**
  * @Author: qianniu

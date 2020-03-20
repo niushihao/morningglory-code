@@ -1,0 +1,2 @@
+consumerContext=com.morningglory.dubbo.api.consumer.ConsumerContextFilter
+providerContext=com.morningglory.dubbo.api.provider.ProviderContextFilter

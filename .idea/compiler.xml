@@ -19,6 +19,7 @@
         <module name="mg-mybatis" />
         <module name="mg-netty" />
         <module name="mg-redis" />
+        <module name="mg-rpc" />
         <module name="mg-zk" />
       </profile>
     </annotationProcessing>

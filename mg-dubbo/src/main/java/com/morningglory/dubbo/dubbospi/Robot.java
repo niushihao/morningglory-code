@@ -1,6 +1,6 @@
 package com.morningglory.dubbo.dubbospi;
 
-import com.alibaba.dubbo.common.extension.SPI;
+import org.apache.dubbo.common.extension.SPI;
 
 /**
  * @Author: qianniu

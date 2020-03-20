@@ -21,6 +21,13 @@
             <groupId>com.graphql-java</groupId>
             <artifactId>graphql-java</artifactId>
         </dependency>
+
+        <!--数据库模型 -->
+        <dependency>
+            <groupId>morningglory-group</groupId>
+            <artifactId>mg-model</artifactId>
+            <version>${parent.version}</version>
+        </dependency>
     </dependencies>
 
 </project>

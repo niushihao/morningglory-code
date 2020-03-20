@@ -1,7 +1,7 @@
 package com.morningglory.dubbo.wrapper;
 
-import com.alibaba.dubbo.common.bytecode.Wrapper;
 import com.morningglory.dubbo.dubbospi.OptimusPrime;
+import org.apache.dubbo.common.bytecode.Wrapper;
 
 /**
  * @Author: qianniu

@@ -1,11 +1,12 @@
 package com.morningglory;
+import com.morningglory.schema.GQLSchema;
+import com.morningglory.schema.SchemaContext;
+import com.morningglory.schema.StudentSchema;
 import graphql.ExecutionResult;
 import graphql.GraphQL;
 import graphql.GraphQLError;
-import org.springframework.web.bind.annotation.RequestMapping;
-import org.springframework.web.bind.annotation.RequestMethod;
-import org.springframework.web.bind.annotation.RequestParam;
-import org.springframework.web.bind.annotation.RestController;
+import graphql.schema.GraphQLSchema;
+import org.springframework.web.bind.annotation.*;
 
 import java.util.List;
 
@@ -17,14 +18,17 @@ import java.util.List;
 @RestController
 public class GraphQLController {
 
-    @RequestMapping(value = "graphql",method = RequestMethod.GET)
-    public Object graphQLQuery(@RequestParam("query") String query){
+    @RequestMapping(value = "graphql/{modelKey}",method = RequestMethod.GET)
+    public Object graphQLQuery(@PathVariable String modelKey,@RequestParam("query") String query){
 
-        ExecutionResult execute = new GraphQL(Query.querySchema).execute(query);
+        GQLSchema gqlSchema = SchemaContext.get(modelKey);
+        GraphQLSchema schema = gqlSchema.getSchema();
+        ExecutionResult execute = new GraphQL(schema).execute(query);
         List<GraphQLError> errors = execute.getErrors();
         if(errors.size() > 0){
             return errors;
         }
         return execute.getData();
     }
+
 }
