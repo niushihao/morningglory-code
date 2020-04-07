@@ -1,0 +1,14 @@
+---
+spring:
+  profiles: dev
+  active: dev
+environment: dev
+http:
+  url: 127.0.0.1
+
+---
+spring:
+  profiles: test
+environment: test
+http:
+  url: 127.0.0.2

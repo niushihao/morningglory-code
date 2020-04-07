@@ -28,6 +28,8 @@ public class NettyServerConfig extends NettyBaseConfig{
 
     public static final int WRITE_BUFFER_LOW_WATERMARK = 1048576;
 
+    public static final long RPC_REQUEST_TIMEOUT = 30 * 1000;
+
     public static final boolean ENABLESERVERPOOLEDBYTEBUFALLOCATOR = true;
 
     public static final String DEFAULT_BOSS_THREAD_PREFIX = "NettyBoss";

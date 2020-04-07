@@ -2,6 +2,8 @@ package com.morningglory.basic.netty.server;
 
 import com.morningglory.basic.netty.AbstractRpcRemoting;
 import com.morningglory.basic.netty.conf.NettyServerConfig;
+import com.morningglory.basic.netty.protocol.ProtocolV1Decoder;
+import com.morningglory.basic.netty.protocol.ProtocolV1Encoder;
 import com.morningglory.basic.thread.NamedThreadFactory;
 import io.netty.bootstrap.ServerBootstrap;
 import io.netty.channel.*;
@@ -82,7 +84,9 @@ public abstract class AbstractRpcRemotingServer extends AbstractRpcRemoting impl
                     protected void initChannel(SocketChannel ch) throws Exception {
                         ch.pipeline().addLast(
                                 // netty的心跳实现,0表示忽略,当空闲时间超过设置的时间后会触发回调userEventTriggered
-                                new IdleStateHandler(15,0,0));
+                                new IdleStateHandler(15,0,0))
+                                .addLast(new ProtocolV1Decoder())
+                                .addLast(new ProtocolV1Encoder());
                         if (null != channelHandlers) {
                             addChannelPipelineLast(ch, channelHandlers);
                         }

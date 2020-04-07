@@ -7,6 +7,7 @@ import com.morningglory.request.DecimalRequest;
 import com.morningglory.request.ItemBuyRequest;
 import com.morningglory.mvc.service.item.ItemService;
 import lombok.extern.slf4j.Slf4j;
+import org.springframework.beans.factory.annotation.Value;
 import org.springframework.data.redis.core.StringRedisTemplate;
 import org.springframework.transaction.annotation.Transactional;
 import org.springframework.web.bind.annotation.*;
@@ -39,6 +40,9 @@ public class ItemController {
 
     @Resource
     private StringRedisTemplate redisTemplate;
+
+    @Value("http.url")
+    private String url;
 
     /**
      * 新增商品
@@ -73,6 +77,7 @@ public class ItemController {
     @GetMapping("list")
     public List<Item> list(Long id){
         log.info("id = {}",id);
+        log.info("url = {}",url);
         String o = redisTemplate.opsForValue().get("123");
         final Object o1 = redisTemplate.opsForValue().get("123");
         Boolean aBoolean = redisTemplate.hasKey("123");

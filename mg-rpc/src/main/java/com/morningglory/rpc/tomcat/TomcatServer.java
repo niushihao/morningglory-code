@@ -33,11 +33,12 @@ public class TomcatServer {
         tomcat.getConnector().setProperty("URIEncoding","UTF-8");
         tomcat.getConnector().setProperty("connectionTimeout","60000");
         tomcat.getConnector().setProperty("maxKeepAliveRequests","-1");
-        tomcat.getConnector().setProtocol("org.apache.coyote.http11.Http11NioProtocol");
+        //tomcat.getConnector().setProtocolH("org.apache.coyote.http11.Http11NioProtocol");
 
         Context context = tomcat.addContext("/",baseDir);
         Tomcat.addServlet(context,"dispatcher",new DispatcherServlet());
-        context.addServletMapping("/*", "dispatcher");
+        context.addServletMappingDecoded("/*", "dispatcher");
+        //context.addServletMapping("/*", "dispatcher");
 
         // tell tomcat to fail on startup failures.
         System.setProperty("org.apache.catalina.startup.EXIT_ON_INIT_FAILURE", "true");

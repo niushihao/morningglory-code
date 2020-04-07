@@ -22,7 +22,7 @@ public class SingleConnector {
         String ip = AddressUtils.getHostIp();
         log.info("ip = {}",ip);
         CanalConnector connector = CanalConnectors.newSingleConnector(
-                new InetSocketAddress("localhost", 11111)
+                new InetSocketAddress("10.109.6.165", 11111)
                 ,"example"
                 ,"","");
 

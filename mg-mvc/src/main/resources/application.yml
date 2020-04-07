@@ -1,4 +1,6 @@
 spring:
+  profiles:
+#    include: common
   datasource:
     url: jdbc:mysql://127.0.0.1:3306/demo?characterEncoding=utf8&useSSL=true
     driverClassName: com.mysql.jdbc.Driver

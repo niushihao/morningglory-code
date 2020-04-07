@@ -1,6 +1,7 @@
 package com.morningglory.basic.netty;
 
 import com.morningglory.basic.netty.protocol.Message;
+import com.morningglory.basic.netty.server.ServerMessageSender;
 import io.netty.channel.ChannelHandlerContext;
 
 /**
@@ -10,5 +11,5 @@ import io.netty.channel.ChannelHandlerContext;
  */
 public interface MessageListener {
 
-    void onMessage(Message message, ChannelHandlerContext ctx);
+    void onMessage(Message message, ChannelHandlerContext ctx, ServerMessageSender sender);
 }

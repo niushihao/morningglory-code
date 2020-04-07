@@ -29,6 +29,12 @@
             <groupId>morningglory-group</groupId>
             <artifactId>mg-model</artifactId>
             <version>${parent.version}</version>
+            <exclusions>
+                <exclusion>
+                    <artifactId>commons-lang3</artifactId>
+                    <groupId>org.apache.commons</groupId>
+                </exclusion>
+            </exclusions>
         </dependency>
 
         <dependency>
@@ -44,6 +50,12 @@
         <dependency>
             <groupId>com.alibaba.otter</groupId>
             <artifactId>canal.client</artifactId>
+            <exclusions>
+                <exclusion>
+                    <artifactId>fastjson</artifactId>
+                    <groupId>com.alibaba</groupId>
+                </exclusion>
+            </exclusions>
         </dependency>
 
         <dependency>
@@ -82,6 +94,5 @@
             <artifactId>client-plugin</artifactId>
             <version>4.1.0.CNOOC-NSH-SNAPSHOT</version>
         </dependency>-->
-
     </dependencies>
 </project>

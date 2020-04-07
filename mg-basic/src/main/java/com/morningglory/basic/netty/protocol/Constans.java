@@ -27,4 +27,24 @@ public class Constans {
      * Message type: Heartbeat Response
      */
     public static final byte MSGTYPE_HEARTBEAT_RESPONSE = 4;
+
+    /**
+     * HEAD_LENGTH of protocol v1
+     */
+    public static final int V1_HEAD_LENGTH = 16;
+
+    /**
+     * Magic code
+     */
+    public static final byte[] MAGIC_CODE_BYTES = {(byte) 0xda, (byte) 0xda};
+
+    /**
+     * Protocol version
+     */
+    public static final byte VERSION = 1;
+
+    /**
+     * Max frame length
+     */
+    public static final int MAX_FRAME_LENGTH = 1024 * 1024;
 }

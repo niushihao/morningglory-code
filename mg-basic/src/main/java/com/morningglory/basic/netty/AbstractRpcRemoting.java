@@ -161,15 +161,51 @@ public abstract class AbstractRpcRemoting extends ChannelDuplexHandler implement
         this.channelHandlers = handlers;
     }
 
-    protected Object sendAsyncRequestWithResponse(Channel channel, Object msg)throws TimeoutException{
-        return sendAsyncRequestWithResponse(null, channel, msg, 3000);
-    }
-
+    /**
+     * 异步发送消息并同步等待响应结果
+     * @param address
+     * @param channel
+     * @param msg
+     * @param timeout
+     * @return
+     * @throws TimeoutException
+     */
     protected Object sendAsyncRequestWithResponse(String address, Channel channel, Object msg, long timeout) throws TimeoutException{
         if(timeout <= 0){
             throw new RuntimeException("必须设置超时时间");
         }
         return sendAsyncRequest(address, channel, msg, timeout);
+    }
+
+    /**
+     * 异步发送消息，不关系响应结果
+     * @param channel
+     * @param msg       要发送的消息
+     * @return
+     * @throws TimeoutException
+     */
+    protected Object sendAsyncRequestWithoutResponse(Channel channel, Object msg) throws
+            TimeoutException {
+        return sendAsyncRequest(null, channel, msg, 0);
+    }
+
+    /**
+     * 异步发送响应消息
+     * @param request   请求消息
+     * @param channel   通道
+     * @param msg       返回消息
+     */
+    protected void sendResponse(Message request,Channel channel,Object msg){
+        Message responseMsg = new Message();
+        responseMsg.setMessageType(Constans.MSGTYPE_RESPONSE);
+        responseMsg.setCodec(request.getCodec());
+        responseMsg.setCompressor(request.getCompressor());
+        responseMsg.setBody(msg);
+        responseMsg.setId(request.getId());
+
+        channelWritableCheck(channel,msg);
+        log.info("send response:" + msg + ",channel:" + channel);
+        channel.writeAndFlush(responseMsg);
     }
 
     protected abstract void dispatch(Message message, ChannelHandlerContext ctx);
