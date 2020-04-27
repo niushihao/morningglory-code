@@ -12,8 +12,6 @@ import java.util.concurrent.*;
 public class ThreadPoolTest {
 
     public static void main(String[] args) throws ExecutionException, InterruptedException {
-        Executors.newFixedThreadPool(4);
-        Executors.newCachedThreadPool();
 
         // 创建线程池
         ThreadPoolExecutor executor = new ThreadPoolExecutor(3,6,0L

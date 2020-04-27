@@ -34,7 +34,7 @@ canal:
   host: 127.0.0.1
   port: 11111
   destination: example
-  subscribe: demo,cnooc_acl
+  subscribe: demo\..*,cnooc_acl\..*
 
 terminus:
   acl:

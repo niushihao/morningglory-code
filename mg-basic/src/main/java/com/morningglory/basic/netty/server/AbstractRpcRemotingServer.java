@@ -4,7 +4,7 @@ import com.morningglory.basic.netty.AbstractRpcRemoting;
 import com.morningglory.basic.netty.conf.NettyServerConfig;
 import com.morningglory.basic.netty.protocol.ProtocolV1Decoder;
 import com.morningglory.basic.netty.protocol.ProtocolV1Encoder;
-import com.morningglory.basic.thread.NamedThreadFactory;
+import com.morningglory.basic.concurrent.thread.NamedThreadFactory;
 import io.netty.bootstrap.ServerBootstrap;
 import io.netty.channel.*;
 import io.netty.channel.epoll.EpollEventLoopGroup;

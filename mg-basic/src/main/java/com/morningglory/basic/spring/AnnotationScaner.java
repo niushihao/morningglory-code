@@ -1,6 +1,7 @@
 package com.morningglory.basic.spring;
 
 import lombok.extern.slf4j.Slf4j;
+import org.springframework.beans.factory.support.DefaultListableBeanFactory;
 import org.springframework.context.annotation.AnnotationConfigApplicationContext;
 
 /**
@@ -11,12 +12,16 @@ import org.springframework.context.annotation.AnnotationConfigApplicationContext
 @Slf4j
 public class AnnotationScaner {
 
-    private final static String base_package = "com.morningglory.basic";
+    private final static String base_package = "com.morningglory.basic.spring";
 
     public static void main(String[] args) {
 
         AnnotationConfigApplicationContext context = new AnnotationConfigApplicationContext();
         context.scan(base_package);
-        log.info("123");
+        log.info("ClassPathBeanDefinitionScanner end");
+        context.refresh();
+
+        TestBean1 bean = context.getBean(TestBean1.class);
+        log.info(bean.getMsg());
     }
 }

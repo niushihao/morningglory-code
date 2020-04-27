@@ -43,8 +43,8 @@ public class CanalClient {
     public void init(){
         connector.connect();
         log.info("canal 连接成功");
-        connector.subscribe("demo\\..*");
-        log.info("canal 订阅成功");
+        connector.subscribe(property.getSubscribe());
+        log.info("canal 订阅成功 subscribe = {}",property.getSubscribe());
         connector.rollback();
         listener.init();
         shutDown = false;
@@ -104,7 +104,7 @@ public class CanalClient {
             }
             log.info("canal task 停止工作");
         };
-        new Thread(runnable).start();
+        new Thread(runnable,"canal-client").start();
     }
 
 

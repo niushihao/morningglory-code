@@ -5,7 +5,7 @@ import com.morningglory.basic.netty.conf.NettyClientConfig;
 import com.morningglory.basic.netty.protocol.Constans;
 import com.morningglory.basic.netty.protocol.Message;
 import com.morningglory.basic.netty.protocol.MessageFuture;
-import com.morningglory.basic.thread.NamedThreadFactory;
+import com.morningglory.basic.concurrent.thread.NamedThreadFactory;
 import io.netty.channel.*;
 import io.netty.util.concurrent.Future;
 import io.netty.util.concurrent.GenericFutureListener;
@@ -66,7 +66,7 @@ public abstract class AbstractRpcRemoting extends ChannelDuplexHandler implement
      * The Timer executor.
      */
     protected final ScheduledExecutorService timerExecutor = new ScheduledThreadPoolExecutor(1,
-            new NamedThreadFactory("timeoutChecker", 1, true));
+            new NamedThreadFactory("timeoutChecker"));
 
     private static final int TIMEOUT_CHECK_INTERNAL = 3000;
 

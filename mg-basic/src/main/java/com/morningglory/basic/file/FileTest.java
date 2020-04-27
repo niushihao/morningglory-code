@@ -9,6 +9,9 @@ import java.io.RandomAccessFile;
 import java.nio.ByteBuffer;
 import java.nio.MappedByteBuffer;
 import java.nio.channels.FileChannel;
+import java.nio.file.*;
+
+import static java.nio.file.StandardWatchEventKinds.ENTRY_MODIFY;
 
 /**
  * @Author: qianniu
@@ -27,7 +30,7 @@ public class FileTest {
     static RandomAccessFile file1;
     static RandomAccessFile file2;
 
-    public static void main(String[] args) throws IOException {
+    public static void main(String[] args) throws IOException, InterruptedException {
 
         // 创建指定大小的文件
         create(1024);
@@ -41,7 +44,6 @@ public class FileTest {
         // 局部修改
         change(file1,file2);
 
-
     }
 
     /**
@@ -51,7 +53,7 @@ public class FileTest {
      */
     public static void create(int size) throws IOException {
 
-        file1 = new RandomAccessFile("/Users/nsh/Downloads/111","rw");
+        file1 = new RandomAccessFile("/Users/nsh/Downloads/111","rw1");
         file2 = new RandomAccessFile("/Users/nsh/Downloads/222","rw");
 
         // 第一种设置方式
