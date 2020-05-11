@@ -16,10 +16,7 @@ public class AnnotationScaner {
 
     public static void main(String[] args) {
 
-        AnnotationConfigApplicationContext context = new AnnotationConfigApplicationContext();
-        context.scan(base_package);
-        log.info("ClassPathBeanDefinitionScanner end");
-        context.refresh();
+        AnnotationConfigApplicationContext context = new AnnotationConfigApplicationContext(base_package);
 
         TestBean1 bean = context.getBean(TestBean1.class);
         log.info(bean.getMsg());
