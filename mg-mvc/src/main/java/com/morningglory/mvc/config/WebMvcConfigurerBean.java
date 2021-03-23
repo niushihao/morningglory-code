@@ -3,6 +3,7 @@ package com.morningglory.mvc.config;
 import com.morningglory.mvc.intercept.DemoIntercept;
 import org.springframework.boot.autoconfigure.EnableAutoConfiguration;
 import org.springframework.context.annotation.Configuration;
+import org.springframework.stereotype.Component;
 import org.springframework.web.servlet.config.annotation.InterceptorRegistry;
 import org.springframework.web.servlet.config.annotation.WebMvcConfigurerAdapter;
 
@@ -11,6 +12,7 @@ import org.springframework.web.servlet.config.annotation.WebMvcConfigurerAdapter
  * @Date: 2019-04-12 10:57
  * @Desc:
  */
+@Component
 public class WebMvcConfigurerBean {
 
     @Configuration

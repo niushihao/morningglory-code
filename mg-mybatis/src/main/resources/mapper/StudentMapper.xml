@@ -3,12 +3,14 @@
         PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
         "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
 <mapper namespace="com.morningglory.mybatis.mapper.StudentMapper">
+    <cache></cache>
     <select id="findById" parameterType="long" resultType="com.morningglory.model.Student">
-        select * from student where <!--id = ${id} and--> id = #{id};
+        select * from student where id = ${id} and id = #{id}
+        <if test="id != null"> AND id = 1</if>
     </select>
 
     <select id="findByName" parameterType="string" resultType="com.morningglory.model.Student">
-        select * from student where <!--id = ${id} and--> name = #{name};
+        select * from student where id = ${id} and name = #{name};
     </select>
 
 </mapper>

@@ -1,8 +1,9 @@
 package com.morningglory.basic.spring;
 
+import com.morningglory.basic.spring.populate.TestBean1;
 import lombok.extern.slf4j.Slf4j;
-import org.springframework.beans.factory.support.DefaultListableBeanFactory;
 import org.springframework.context.annotation.AnnotationConfigApplicationContext;
+import org.springframework.core.env.Environment;
 
 /**
  * @Author: qianniu
@@ -20,5 +21,8 @@ public class AnnotationScaner {
 
         TestBean1 bean = context.getBean(TestBean1.class);
         log.info(bean.getMsg());
+
+        Environment environment = context.getBean(Environment.class);
+        environment.getProperty("123");
     }
 }

@@ -1,7 +1,10 @@
 package com.morningglory.basic.pojo.zoo;
 
 import cn.afterturn.easypoi.excel.annotation.Excel;
+import cn.afterturn.easypoi.excel.annotation.ExcelCollection;
 import cn.afterturn.easypoi.excel.annotation.ExcelTarget;
+
+import java.util.List;
 
 /**
  * @Author: qianniu
@@ -22,6 +25,9 @@ public class Animal {
 
     @Excel(name = "动物test",mergeVertical =true,mergeRely = {0},fixedIndex =0)
     private String test;
+
+    //@ExcelCollection(name = "动物特性")
+    private List<Feature> featureList;
 
     public String getName() {
         return name;
@@ -53,5 +59,13 @@ public class Animal {
 
     public void setTest(String test) {
         this.test = test;
+    }
+
+    public List<Feature> getFeatureList() {
+        return featureList;
+    }
+
+    public void setFeatureList(List<Feature> featureList) {
+        this.featureList = featureList;
     }
 }

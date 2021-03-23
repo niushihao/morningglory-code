@@ -3,11 +3,13 @@ package com.morningglory.mvc.service.student;
 import com.morningglory.enums.EsIndexEnums;
 import com.morningglory.model.Student;
 import com.morningglory.mvc.dao.StudentDao;
+import com.morningglory.mvc.service.item.ItemService;
 import com.morningglory.mvc.util.EsUtil;
 import com.morningglory.page.Page;
 import com.morningglory.request.StudentSearchRequest;
 import lombok.extern.slf4j.Slf4j;
 import org.apache.commons.lang3.StringUtils;
+import org.apache.ibatis.session.SqlSession;
 import org.elasticsearch.action.search.SearchRequest;
 import org.elasticsearch.action.search.SearchRequestBuilder;
 import org.elasticsearch.action.search.SearchResponse;
@@ -19,6 +21,7 @@ import org.elasticsearch.index.query.QueryBuilder;
 import org.elasticsearch.index.query.QueryBuilders;
 import org.elasticsearch.search.SearchHit;
 import org.elasticsearch.search.builder.SearchSourceBuilder;
+import org.springframework.context.annotation.Lazy;
 import org.springframework.scheduling.annotation.Async;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
@@ -40,6 +43,12 @@ public class StudentServiceImpl implements StudentService {
 
     @Resource
     private StudentDao studentDao;
+    @Resource
+    private SqlSession sqlSession;
+
+    @Resource
+    @Lazy
+    private ItemService itemService;
 
     @Resource
     private RestHighLevelClient esClient;
@@ -61,6 +70,7 @@ public class StudentServiceImpl implements StudentService {
     }
 
     @Override
+    @Transactional
     public List<Student> listByName(String name) {
 
         // 先从本地查询

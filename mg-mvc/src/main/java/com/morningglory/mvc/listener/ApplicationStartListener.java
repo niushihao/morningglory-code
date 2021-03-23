@@ -8,6 +8,8 @@ import org.springframework.context.event.ContextRefreshedEvent;
 import org.springframework.stereotype.Component;
 
 import javax.annotation.Resource;
+import java.util.ArrayList;
+import java.util.List;
 
 /**
  * @Author: qianniu
@@ -23,6 +25,7 @@ public class ApplicationStartListener implements ApplicationListener<ContextRefr
 
     @Resource
     private CanalListener canalListener;
+
 
     @Override
     public void onApplicationEvent(ContextRefreshedEvent event) {

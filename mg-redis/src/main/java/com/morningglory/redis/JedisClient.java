@@ -18,6 +18,12 @@ public class JedisClient {
         return CLIENT;
     }
 
+    public static Jedis getNewClientWithAuth(String password){
+        Jedis CLIENT  = new Jedis("127.0.0.1", 6379, 400000);
+        CLIENT.auth(password);
+        return CLIENT;
+    }
+
     public static Jedis getClientWithDefaultAuth(){
         CLIENT.auth("123456");
         return CLIENT;

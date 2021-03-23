@@ -109,6 +109,8 @@ public class LockTest {
         return () -> {
             lock.lock();
             Condition condition = lock.newCondition();
+            //condition.await();
+            //condition.signal();
             num++;
 
             try {

@@ -2,8 +2,12 @@ package com.morningglory.mvc.service.item;
 
 import com.morningglory.model.Item;
 import com.morningglory.mvc.dao.ItemDao;
+import com.morningglory.mvc.service.student.StudentService;
 import com.morningglory.request.ItemBuyRequest;
 import lombok.extern.slf4j.Slf4j;
+import org.apache.ibatis.session.SqlSession;
+import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.context.annotation.Lazy;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
 
@@ -21,6 +25,7 @@ public class ItemServiceImpl implements ItemService{
 
     @Resource
     private ItemDao itemDao;
+
     @Override
     public Integer add(Item item) {
         return itemDao.add(item);

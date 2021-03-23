@@ -1,5 +1,7 @@
 package com.morningglory.basic.spring;
 
+import com.morningglory.basic.spring.populate.TestBean1;
+import com.morningglory.basic.spring.populate.TestBean2;
 import lombok.extern.slf4j.Slf4j;
 import org.springframework.beans.factory.annotation.AutowiredAnnotationBeanPostProcessor;
 import org.springframework.beans.factory.support.DefaultListableBeanFactory;

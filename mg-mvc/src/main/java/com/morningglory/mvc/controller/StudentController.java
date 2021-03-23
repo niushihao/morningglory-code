@@ -8,6 +8,7 @@ import com.morningglory.request.StudentSearchRequest;
 import org.springframework.web.bind.annotation.*;
 
 import javax.annotation.Resource;
+import javax.servlet.http.HttpServletRequest;
 import java.io.IOException;
 import java.lang.reflect.InvocationTargetException;
 import java.util.Collections;
@@ -59,8 +60,12 @@ public class StudentController {
         return true;
     }
 
-    @GetMapping("/list")
-    public List<Student> listByName(String name){
+    @GetMapping("/list/{name}")
+    public List<Student> listByName(HttpServletRequest request, @PathVariable String name){
+        request.getHeader("X-Forwarded-Host");
+        if(!"2".equals(name)){
+            throw new RuntimeException("test");
+        }
         return studentService.listByName(name);
     }
 

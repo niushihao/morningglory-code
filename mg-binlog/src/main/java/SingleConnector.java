@@ -28,7 +28,9 @@ public class SingleConnector {
 
         try {
             connector.connect();
-            connector.subscribe();
+            // crm库下 t_开头的所有表
+            connector.subscribe("seata\\.branch_table");
+            //connector.subscribe("crm.t_code_dict,crm.t_call_plan");
             connector.rollback();
             run = true;
             log.info("canal连接成功");

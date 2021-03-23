@@ -20,6 +20,7 @@ import java.lang.reflect.Proxy;
 public class Test {
 
     public static void main(String[] args) {
+        System.getProperties().put("sun.misc.ProxyGenerator.saveGeneratedFiles", "true");
 
         Subject subject = new SubjectImpl();
 

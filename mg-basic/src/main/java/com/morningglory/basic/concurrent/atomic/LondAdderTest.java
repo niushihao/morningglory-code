@@ -19,7 +19,5 @@ public class LondAdderTest {
         System.out.println("after increment long value ="+adder.longValue());
         System.out.println("after increment long value ="+adder.floatValue());
 
-        int a  = (4 - 1) >>> 1;
-        System.out.println(a);
     }
 }

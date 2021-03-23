@@ -6,6 +6,9 @@ import java.util.concurrent.CountDownLatch;
  * @Author: qianniu
  * @Date: 2019-05-13 11:34
  * @Desc: 一般用作等待某些线程执行完后，在执行
+ * 实现原理：内部聚合了一个继承AQS同步器，初始化的时候需要指定count，这个值会被设置到AQS的status字段上
+ * countDown类似释放锁的逻辑，通过CAS将status减1
+ * await类似获取锁的逻辑，当status为0才认为获取锁成功，获取失败就会放入同步队列，直到status被countDown方法减到0
  */
 public class CountDownLatchTest {
 

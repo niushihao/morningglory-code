@@ -28,6 +28,8 @@ public class RedisSortSetType {
         map.put("晓明",10.0);
         map.put("小红",8.7);
         map.put("小白",9.0);
+        map.put("小黑",9.0);
+        map.put("小吕",9.0);
         Long zadd = jedis.zadd(NAME_SPACE + "zadd", map);
         log.info("zadd = {}",zadd);
 
@@ -44,7 +46,7 @@ public class RedisSortSetType {
         log.info("zincrby = {}",zincrby);
 
         // 返回集合中指定范围的数据,按分数升序排
-        Set<String> zrange = jedis.zrange(NAME_SPACE + "zadd", 0, 2);
+        Set<String> zrange = jedis.zrange(NAME_SPACE + "zadd", 0, 5);
         log.info("zrange = {}",zrange);
 
         // 返回集合中指定分数范围的数据

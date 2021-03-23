@@ -19,10 +19,10 @@ public class ReadGcLog {
 
 
         // 不需要stop the word 的gc
-        gcWithoutSTW();
+        //gcWithoutSTW();
 
         // 需要stop the word 的gc
-        //gcSTW();
+        gcSTW();
     }
 
     /**

@@ -3,19 +3,33 @@
   <component name="Encoding">
     <file url="file://$PROJECT_DIR$" charset="UTF-8" />
     <file url="file://$PROJECT_DIR$/mg-basic" charset="UTF-8" />
+    <file url="file://$PROJECT_DIR$/mg-basic/src/main/java" charset="UTF-8" />
     <file url="file://$PROJECT_DIR$/mg-binlog" charset="UTF-8" />
+    <file url="file://$PROJECT_DIR$/mg-binlog/src/main/java" charset="UTF-8" />
     <file url="file://$PROJECT_DIR$/mg-docker-compose" charset="UTF-8" />
     <file url="file://$PROJECT_DIR$/mg-dubbo" charset="UTF-8" />
+    <file url="file://$PROJECT_DIR$/mg-dubbo/src/main/java" charset="UTF-8" />
     <file url="file://$PROJECT_DIR$/mg-es" charset="UTF-8" />
+    <file url="file://$PROJECT_DIR$/mg-es/src/main/java" charset="UTF-8" />
     <file url="file://$PROJECT_DIR$/mg-fsm" charset="UTF-8" />
+    <file url="file://$PROJECT_DIR$/mg-fsm/src/main/java" charset="UTF-8" />
     <file url="file://$PROJECT_DIR$/mg-graphql" charset="UTF-8" />
+    <file url="file://$PROJECT_DIR$/mg-graphql/src/main/java" charset="UTF-8" />
     <file url="file://$PROJECT_DIR$/mg-leetcode" charset="UTF-8" />
+    <file url="file://$PROJECT_DIR$/mg-leetcode/src/main/java" charset="UTF-8" />
     <file url="file://$PROJECT_DIR$/mg-model" charset="UTF-8" />
+    <file url="file://$PROJECT_DIR$/mg-model/src/main/java" charset="UTF-8" />
     <file url="file://$PROJECT_DIR$/mg-mvc" charset="UTF-8" />
+    <file url="file://$PROJECT_DIR$/mg-mvc/src/main/java" charset="UTF-8" />
     <file url="file://$PROJECT_DIR$/mg-mybatis" charset="UTF-8" />
+    <file url="file://$PROJECT_DIR$/mg-mybatis/src/main/java" charset="UTF-8" />
     <file url="file://$PROJECT_DIR$/mg-netty" charset="UTF-8" />
+    <file url="file://$PROJECT_DIR$/mg-netty/src/main/java" charset="UTF-8" />
     <file url="file://$PROJECT_DIR$/mg-redis" charset="UTF-8" />
+    <file url="file://$PROJECT_DIR$/mg-redis/src/main/java" charset="UTF-8" />
     <file url="file://$PROJECT_DIR$/mg-rpc" charset="UTF-8" />
+    <file url="file://$PROJECT_DIR$/mg-rpc/src/main/java" charset="UTF-8" />
     <file url="file://$PROJECT_DIR$/mg-zk" charset="UTF-8" />
+    <file url="file://$PROJECT_DIR$/mg-zk/src/main/java" charset="UTF-8" />
   </component>
 </project>

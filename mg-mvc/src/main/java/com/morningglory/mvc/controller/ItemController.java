@@ -7,13 +7,18 @@ import com.morningglory.request.DecimalRequest;
 import com.morningglory.request.ItemBuyRequest;
 import com.morningglory.mvc.service.item.ItemService;
 import lombok.extern.slf4j.Slf4j;
+import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.beans.factory.annotation.Lookup;
 import org.springframework.beans.factory.annotation.Value;
+import org.springframework.context.annotation.Lazy;
+import org.springframework.data.redis.core.RedisTemplate;
 import org.springframework.data.redis.core.StringRedisTemplate;
 import org.springframework.transaction.annotation.Transactional;
 import org.springframework.web.bind.annotation.*;
 
 import javax.annotation.Resource;
 import javax.servlet.http.HttpServletRequest;
+import java.io.Serializable;
 import java.util.List;
 import java.util.Set;
 import java.util.concurrent.BrokenBarrierException;
@@ -35,11 +40,11 @@ public class ItemController {
         log.info("1111");
     }
 
-    @Resource
+    @Autowired
     private ItemService itemService;
 
     @Resource
-    private StringRedisTemplate redisTemplate;
+    private RedisTemplate<String, Serializable> redisTemplate;
 
     @Value("http.url")
     private String url;
@@ -78,11 +83,21 @@ public class ItemController {
     public List<Item> list(Long id){
         log.info("id = {}",id);
         log.info("url = {}",url);
-        String o = redisTemplate.opsForValue().get("123");
+        String o = (String) redisTemplate.opsForValue().get("123");
         final Object o1 = redisTemplate.opsForValue().get("123");
         Boolean aBoolean = redisTemplate.hasKey("123");
         Boolean aBoolean1 = redisTemplate.hasKey("123");
         log.info("o = {}", JSON.toJSONString(o));
+
+        // hash类型
+        Item item = new Item();
+        item.setId(1L);
+        item.setItemCode("code");
+        item.setItemName("name");
+        redisTemplate.opsForHash().put("template_hash",1,item);
+        Item template_hash = (Item) redisTemplate.opsForHash().get("template_hash", 1);
+        log.info(template_hash.getItemCode());
+
 
         Object str = redisTemplate.opsForValue().get("STR");
         log.info("str = {}", JSON.toJSONString(str));

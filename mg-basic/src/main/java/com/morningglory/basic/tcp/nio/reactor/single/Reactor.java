@@ -4,6 +4,7 @@ import lombok.extern.slf4j.Slf4j;
 
 import java.io.IOException;
 import java.net.InetSocketAddress;
+import java.nio.ByteBuffer;
 import java.nio.channels.SelectionKey;
 import java.nio.channels.Selector;
 import java.nio.channels.ServerSocketChannel;
@@ -76,6 +77,7 @@ public class Reactor implements Runnable{
             try {
                 SocketChannel socketChannel = serverSocketChannel.accept();
                 if(socketChannel != null){
+                    socketChannel.write(ByteBuffer.wrap("Implementation of Reactor Design Partten by nsh\r\nreactor> ".getBytes()));
                     new Handler(socketChannel,selector);
                 }
             } catch (IOException e) {

@@ -20,6 +20,10 @@ public class RedisStringType {
     public static void main(String[] args) {
         Jedis jedis = JedisClient.getClientWithDefaultAuth();
 
+        for(int i=0;i<Integer.MAX_VALUE;i++){
+            String result = jedis.set(NAME_SPACE + "str", DEFAULT_VALUE);
+            log.info("set str result = {}",result);
+        }
         // 没有超时时间
         String result = jedis.set(NAME_SPACE + "str", DEFAULT_VALUE);
         log.info("set str result = {}",result);

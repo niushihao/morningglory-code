@@ -22,9 +22,9 @@ public class EasypoiTest {
 
     public static void main(String[] args) throws Exception {
 
-        //exportExcel();
+        exportExcel();
 
-        importExcel();
+        //importExcel();
     }
 
 

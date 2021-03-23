@@ -34,4 +34,17 @@ public class LRU {
     public void set(int key, int value) {
         cacheMap.put(key, value);
     }
+
+    public int size(){
+        return cacheMap.size();
+    }
+
+    public static void main(String[] args) {
+        LRU lru = new LRU(1);
+        lru.set(1,1);
+        lru.set(2,2);
+        lru.set(3,3);
+        System.out.println(lru.size());
+
+    }
 }

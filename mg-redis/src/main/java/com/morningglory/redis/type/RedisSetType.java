@@ -66,5 +66,7 @@ public class RedisSetType {
         // 删除集合中指定的元素
         Long srem = jedis.srem(NAME_SPACE + "sadd", "1");
         log.info("srem = {}",srem);
+
+        jedis.sadd(NAME_SPACE + "sadd", "5", "2", "4","3","6");
     }
 }

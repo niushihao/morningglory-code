@@ -1,0 +1,18 @@
+[
+  {
+    "bizCode": "mg_action",
+    "operation": "action_list",
+    "nodeList": [
+      "StudentNode",
+      "ItemNode"
+    ]
+  },
+  {
+    "bizCode": "mg_action",
+    "operation": "action_list1",
+    "nodeList": [
+      "ItemNode",
+      "StudentNode"
+    ]
+  }
+]

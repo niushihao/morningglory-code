@@ -17,8 +17,8 @@ public class Handler implements Runnable{
 
     final SocketChannel socketChannel;
     final SelectionKey selectionKey;
-    ByteBuffer input = ByteBuffer.allocate(1024);
-    ByteBuffer output = ByteBuffer.allocate(1024);
+    ByteBuffer input = ByteBuffer.allocate(64);
+    ByteBuffer output = ByteBuffer.allocate(64);
     static final int READING = 0, SENDING = 1;
     int state = READING;
 
@@ -45,22 +45,27 @@ public class Handler implements Runnable{
         
     }
 
-    private void send() throws IOException {
-        String message ="我是服务器,我在发送的时候发的;";
+    private void send() throws IOException, InterruptedException {
+        String message ="我是服务器,我在发送的时候发的;\r\nreactor> ";
         output.clear();
         output.put(message.getBytes());
         output.flip();
         socketChannel.write(output);
         log.info("发送消息:{}",new String(output.array()));
-        selectionKey.cancel();
+        //selectionKey.cancel();
+        state = READING;
+        selectionKey.interestOps(SelectionKey.OP_READ);
     }
 
-    private void read() throws IOException {
+    private void read() throws IOException, InterruptedException {
         socketChannel.read(input);
-        log.info("收到消息:{}",new String(input.array()));
+        String msg = new String(input.array());
+
+        log.info("收到消息:{}",msg);
 
         // 接受消息时也可以发消息
-        String message ="我是服务器,我在接受的时候发的;\n";
+        //String message ="-我是服务器,接收到消息为:["+msg+"];\r\nreactor> ";
+        String message ="-server>我是服务器,接收到消息为\r\nreactor> ";
         output.clear();
         output.put(message.getBytes());
         output.flip();

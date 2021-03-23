@@ -4,6 +4,7 @@ import com.google.common.collect.Lists;
 import com.morningglory.basic.poi.ann.ExcelCollection;
 import com.morningglory.basic.poi.ann.ExcelSheet;
 import com.morningglory.basic.pojo.zoo.Animal;
+import com.morningglory.basic.pojo.zoo.Feature;
 import com.morningglory.basic.pojo.zoo.Zoo;
 import org.apache.commons.lang3.reflect.FieldUtils;
 import org.apache.poi.hssf.usermodel.HSSFWorkbook;
@@ -156,6 +157,15 @@ public class ExportUtil<T> {
                 animal.setAge(j);
                 animal.setSex("男");
                 animals.add(animal);
+
+                List<Feature> features = Lists.newArrayList();
+                for(int h = 0; h< 2; h++){
+                    Feature feature = new Feature();
+                    feature.setName("feature"+h);
+                    feature.setDesc("desc"+h);
+                    features.add(feature);
+                }
+                animal.setFeatureList(features);
             }
             zoo.setAnimals(animals);
             zoo.setAnimalList(Lists.newArrayList("动物1","动物2","动物3","动物4"));

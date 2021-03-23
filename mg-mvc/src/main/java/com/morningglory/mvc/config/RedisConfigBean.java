@@ -1,5 +1,6 @@
 package com.morningglory.mvc.config;
 
+import com.alibaba.fastjson.support.spring.GenericFastJsonRedisSerializer;
 import lombok.extern.slf4j.Slf4j;
 import org.springframework.boot.autoconfigure.condition.ConditionalOnMissingBean;
 import org.springframework.boot.context.properties.ConfigurationProperties;
@@ -7,6 +8,7 @@ import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.Configuration;
 import org.springframework.core.env.Environment;
 import org.springframework.data.redis.connection.jedis.JedisConnectionFactory;
+import org.springframework.data.redis.core.RedisTemplate;
 import org.springframework.data.redis.core.StringRedisTemplate;
 import org.springframework.util.StringUtils;
 import redis.clients.jedis.JedisPoolConfig;
@@ -33,8 +35,8 @@ public class RedisConfigBean {
     }
 
     @Bean
-    public JedisConnectionFactory connectionFactory(JedisPoolConfig poolConfig){
-        JedisConnectionFactory factory = new JedisConnectionFactory(poolConfig);
+    public JedisConnectionFactory connectionFactory(JedisPoolConfig redisConfig){
+        JedisConnectionFactory factory = new JedisConnectionFactory(redisConfig);
 
         String hostName = StringUtils.isEmpty(this.environment.getProperty("spring.redis.host"))
                 ? "localhost" : this.environment.getProperty("spring.redis.host");
@@ -56,12 +58,17 @@ public class RedisConfigBean {
     }
 
     @Bean
-    @ConditionalOnMissingBean(value = {StringRedisTemplate.class})
-    public StringRedisTemplate redisTemplate(JedisConnectionFactory connectionFactory) {
+    @ConditionalOnMissingBean(value = {RedisTemplate.class})
+    public RedisTemplate redisTemplate(JedisConnectionFactory connectionFactory) {
 
-        StringRedisTemplate redisTemplate = new StringRedisTemplate();
+        RedisTemplate redisTemplate = new RedisTemplate();
         redisTemplate.setConnectionFactory(connectionFactory);
         redisTemplate.afterPropertiesSet();
+
+        GenericFastJsonRedisSerializer jsonRedisSerializer = new GenericFastJsonRedisSerializer();
+        redisTemplate.setKeySerializer(jsonRedisSerializer);
+        redisTemplate.setHashKeySerializer(jsonRedisSerializer);
+        redisTemplate.setHashValueSerializer(jsonRedisSerializer);
         return redisTemplate;
     }
 }

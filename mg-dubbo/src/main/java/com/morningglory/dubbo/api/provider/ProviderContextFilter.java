@@ -15,7 +15,7 @@ import org.apache.dubbo.rpc.*;
 public class ProviderContextFilter implements Filter {
     @Override
     public Result invoke(Invoker<?> invoker, Invocation invocation) throws RpcException {
-        log.info("provider[{}] RPC context = {}",RpcContext.getContext().getMethodName(),RpcContext.getContext().getAttachments());
+        log.info("provider[{}] RPC context = {}",RpcContext.getContext().getMethodName(),RpcContext.getContext().getObjectAttachments());
         Result result = invoker.invoke(invocation);
         return result;
 

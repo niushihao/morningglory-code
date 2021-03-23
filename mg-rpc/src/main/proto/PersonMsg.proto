@@ -1,0 +1,18 @@
+//定义使用的protobuf版本
+syntax = "proto3"; //(1)
+
+//定义所在的protobuf包空间
+package com.morningglory.rpc.grpc;//(2)
+
+//生成的java类所在的包路径
+option java_package = "com.morningglory.rpc.grpc.Demo"; //(3)
+//生成的java类的类名
+option java_outer_classname = "PersonMsg"; //(4)
+
+//声明一个message类
+message Person{ //(5)
+      string name = 1;  //(6)
+      int32 age =2;//(7)
+      string email =3;//(8)
+      string phoneNumber =4;//(9)
+}

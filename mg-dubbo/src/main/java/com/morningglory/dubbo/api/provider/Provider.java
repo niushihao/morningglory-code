@@ -20,18 +20,39 @@ import java.io.IOException;
 @Slf4j
 public class Provider {
 
+  public static DubboBootstrap createInJvmProvider(){
+    ServiceConfig<UserServiceImpl> service = new ServiceConfig<>();
+    service.setInterface(DemoService.class);
+    service.setRef(new UserServiceImpl());
+    service.setTimeout(100);
+
+    DubboBootstrap bootstrap = DubboBootstrap.getInstance();
+    bootstrap.application(new ApplicationConfig("dubbo-demo-api-provider"))
+            // export to local
+            .registry(new RegistryConfig("N/A"))
+            // export to zk
+            //.registry(registryConfig)
+            .protocol(new ProtocolConfig("dubbo",4444))
+            .service(service);
+    return bootstrap;
+  }
+
   public static void main(String[] args) throws InterruptedException, IOException {
 
     ServiceConfig<UserServiceImpl> service = new ServiceConfig<>();
     service.setInterface(DemoService.class);
     service.setRef(new UserServiceImpl());
+    service.setTimeout(10);
+
+    RegistryConfig registryConfig = new RegistryConfig("zookeeper://127.0.0.1:2181");
+    registryConfig.setTimeout(10000);
 
     DubboBootstrap bootstrap = DubboBootstrap.getInstance();
     bootstrap.application(new ApplicationConfig("dubbo-demo-api-provider"))
             // export to local
             //.registry(new RegistryConfig("N/A"))
             // export to zk
-            .registry(new RegistryConfig("zookeeper://127.0.0.1:2181"))
+            .registry(registryConfig)
             .protocol(new ProtocolConfig("dubbo",4444))
             .service(service)
             .start()

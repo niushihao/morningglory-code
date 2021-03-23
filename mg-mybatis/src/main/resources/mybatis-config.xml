@@ -5,7 +5,11 @@
 <configuration>
 
     <settings>
-        <setting name="cacheEnabled" value="true"/>
+        <!--开启二级缓存-->
+<!--        <setting name="cacheEnabled" value="true" />-->
+
+        <!--开启一级缓存,默认自动开启一级缓存-->
+        <setting name="localCacheScope" value="SESSION"/>
     </settings>
 
     <typeAliases>
@@ -16,6 +20,7 @@
         <plugin interceptor="com.morningglory.mybatis.plugins.PrepareInterceptor" />
         <plugin interceptor="com.morningglory.mybatis.plugins.ExecutorInterceptor" />
         <plugin interceptor="com.morningglory.mybatis.plugins.ParameterInterceptor" />
+        <plugin interceptor="com.morningglory.mybatis.plugins.ResultSetInterceptor" />
     </plugins>
 
     <environments default="development">
@@ -31,7 +36,7 @@
     </environments>
 
     <mappers>
-        <!--<package name="mapper/*"/>-->
+        <!--<package name="/mapper"/>-->
         <mapper resource="mapper/StudentMapper.xml" />
     </mappers>
 

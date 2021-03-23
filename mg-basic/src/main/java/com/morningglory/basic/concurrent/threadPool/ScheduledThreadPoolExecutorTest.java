@@ -13,6 +13,7 @@ public class ScheduledThreadPoolExecutorTest {
 
     public static void main(String[] args) {
 
+
         // 创建线程池
         ScheduledThreadPoolExecutor executor = new ScheduledThreadPoolExecutor(2);
 
@@ -36,7 +37,7 @@ public class ScheduledThreadPoolExecutorTest {
         executor.scheduleAtFixedRate(runnable,0,10,TimeUnit.SECONDS);
 
         //任务执行完后，按固定的延后时间再执行。
-        //executor.scheduleWithFixedDelay(runnable,0,3,TimeUnit.SECONDS);
+        executor.scheduleWithFixedDelay(runnable,0,3,TimeUnit.SECONDS);
 
     }
 }

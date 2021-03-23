@@ -22,7 +22,7 @@ public interface StudentMapper {
      Student findById(@Param("id") Long id);
 
 
-     Student findByName(@Param("id") Long id);
+     Student findByName(@Param("name") String name);
 
     /**
      * 新增

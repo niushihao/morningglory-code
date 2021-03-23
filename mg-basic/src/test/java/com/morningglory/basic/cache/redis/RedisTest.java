@@ -2,7 +2,6 @@ package com.morningglory.basic.cache.redis;
 
 import com.alibaba.fastjson.JSON;
 import com.google.common.collect.Lists;
-import com.morningglory.basic.pojo.User;
 import org.junit.Test;
 import org.junit.runner.RunWith;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -19,7 +18,7 @@ import java.util.Set;
 import static org.springframework.boot.test.context.SpringBootTest.WebEnvironment.RANDOM_PORT;
 
 @RunWith(SpringJUnit4ClassRunner.class)
-@SpringBootTest(webEnvironment = RANDOM_PORT, classes = {RedisConfig.class})
+//@SpringBootTest(webEnvironment = RANDOM_PORT, classes = {RedisConfig.class})
 @TestPropertySource("classpath:application.yml")
 public class RedisTest {
 
@@ -194,12 +193,12 @@ public class RedisTest {
     @Test
     public void testHash(){
 
-        HashOperations hash = redisTemplate.opsForHash();
-        hash.putIfAbsent("hash","1", JSON.toJSONString(new User()));
-        hash.putIfAbsent("hash","2", JSON.toJSONString(new User()));
-
-        //获取map
-        System.out.println(hash.entries("hash"));
+//        HashOperations hash = redisTemplate.opsForHash();
+//        hash.putIfAbsent("hash","1", JSON.toJSONString(new User()));
+//        hash.putIfAbsent("hash","2", JSON.toJSONString(new User()));
+//
+//        //获取map
+//        System.out.println(hash.entries("hash"));
     }
 
 

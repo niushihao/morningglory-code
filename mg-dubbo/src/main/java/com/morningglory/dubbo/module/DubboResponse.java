@@ -3,6 +3,8 @@ package com.morningglory.dubbo.module;
 import lombok.Data;
 import lombok.experimental.Accessors;
 
+import java.io.Serializable;
+
 /**
  * @Author: qianniu
  * @Date: 2020-03-19 19:01
@@ -10,7 +12,7 @@ import lombok.experimental.Accessors;
  */
 @Data
 @Accessors(chain = true)
-public class DubboResponse {
+public class DubboResponse implements Serializable {
 
     private int id;
 

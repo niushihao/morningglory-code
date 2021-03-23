@@ -2,30 +2,55 @@
 <project version="4">
   <component name="CompilerConfiguration">
     <annotationProcessing>
+      <profile default="true" name="Default" enabled="true" />
       <profile name="Maven default annotation processors profile" enabled="true">
         <sourceOutputDir name="target/generated-sources/annotations" />
         <sourceTestOutputDir name="target/generated-test-sources/test-annotations" />
         <outputRelativeToContentRoot value="true" />
-        <module name="mg-basic" />
         <module name="mg-binlog" />
-        <module name="mg-docker-compose" />
-        <module name="mg-dubbo" />
-        <module name="mg-es" />
-        <module name="mg-fsm" />
-        <module name="mg-graphql" />
-        <module name="mg-leetcode" />
-        <module name="mg-model" />
-        <module name="mg-mvc" />
-        <module name="mg-mybatis" />
-        <module name="mg-netty" />
+        <module name="mg-basic" />
         <module name="mg-redis" />
-        <module name="mg-rpc" />
+        <module name="mg-model" />
+        <module name="mg-leetcode" />
+        <module name="mg-netty" />
         <module name="mg-zk" />
+        <module name="mg-mvc" />
+        <module name="mg-docker-compose" />
+        <module name="mg-fsm" />
+        <module name="mg-rpc" />
+        <module name="mg-graphql" />
+        <module name="mg-es" />
+        <module name="mg-dubbo" />
+        <module name="mg-mybatis" />
       </profile>
     </annotationProcessing>
     <bytecodeTargetLevel>
-      <module name="mg-docker" target="1.8" />
       <module name="mg-docker-compose" target="1.8" />
     </bytecodeTargetLevel>
+  </component>
+  <component name="JavacSettings">
+    <option name="ADDITIONAL_OPTIONS_OVERRIDE">
+      <module name="mg-basic" options="-parameters" />
+      <module name="mg-binlog" options="-parameters" />
+      <module name="mg-cache" options="-parameters" />
+      <module name="mg-design" options="-parameters" />
+      <module name="mg-dubbo" options="-parameters" />
+      <module name="mg-es" options="-parameters" />
+      <module name="mg-fsm" options="-parameters" />
+      <module name="mg-graphql" options="-parameters" />
+      <module name="mg-io" options="-parameters" />
+      <module name="mg-job" options="-parameters" />
+      <module name="mg-leetcode" options="-parameters" />
+      <module name="mg-model" options="-parameters" />
+      <module name="mg-mvc" options="-parameters" />
+      <module name="mg-mybatis" options="-parameters" />
+      <module name="mg-netty" options="-parameters" />
+      <module name="mg-redis" options="-parameters" />
+      <module name="mg-rpc" options="-parameters" />
+      <module name="mg-sentinel" options="-parameters" />
+      <module name="mg-temp" options="-parameters" />
+      <module name="mg-test" options="-parameters" />
+      <module name="mg-zk" options="-parameters" />
+    </option>
   </component>
 </project>

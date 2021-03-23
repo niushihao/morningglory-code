@@ -99,6 +99,7 @@ public class StudentSearch {
         request.source(searchSourceBuilder);
 
         // 通配符会报错：Can only use wildcard queries on keyword and text not on [id] which is of type [long]
+        // 通配符内的值是不会分词的
         searchSourceBuilder.query(QueryBuilders.wildcardQuery("id","*1*"));
         request.source(searchSourceBuilder);
 

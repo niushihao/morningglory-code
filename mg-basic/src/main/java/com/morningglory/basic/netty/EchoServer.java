@@ -7,8 +7,13 @@ import io.netty.channel.*;
 import io.netty.channel.nio.NioEventLoopGroup;
 import io.netty.channel.socket.SocketChannel;
 import io.netty.channel.socket.nio.NioServerSocketChannel;
+import io.netty.handler.codec.DelimiterBasedFrameDecoder;
+import io.netty.handler.codec.Delimiters;
+import io.netty.handler.codec.string.StringDecoder;
+import io.netty.handler.codec.string.StringEncoder;
 import io.netty.util.CharsetUtil;
 import org.springframework.util.CollectionUtils;
+import org.springframework.util.StringUtils;
 
 import java.net.InetSocketAddress;
 
@@ -37,7 +42,12 @@ public class EchoServer {
                     .childHandler(new ChannelInitializer<SocketChannel>() {
                         @Override
                         public void initChannel(SocketChannel ch){
-                            ch.pipeline().addLast(serverHandler);
+                            ch.pipeline()
+                                    // 防止粘包.目前发现他的作用是能过滤掉我们在命令行敲的回车
+                                    .addLast(new DelimiterBasedFrameDecoder(8192, Delimiters.lineDelimiter()))
+                                    .addLast(new StringDecoder())
+                                    .addLast(new StringEncoder())
+                                    .addLast(serverHandler);
                         }
                     });
 
@@ -58,14 +68,35 @@ public class EchoServer {
 
         @Override
         public void channelRead(ChannelHandlerContext context,Object msg){
-            ByteBuf in = (ByteBuf) msg;
-            System.out.println("server received :"+in.toString(CharsetUtil.UTF_8));
-            context.writeAndFlush(in);
+            String in = (String) msg;
+            String out ="";
+            boolean close = false;
+
+            if(StringUtils.isEmpty(in)){
+                out = "Please type something.\nnsh>";
+            }else if("bye".equals(in)){
+                out = "Have a good day!\n";
+                close = true;
+            }else {
+                out = "Did you say '" + in + "'?\nnsh>";
+            }
+            System.out.println("server received :"+in);
+
+            //context.write(out);
+            ChannelFuture channelFuture = context.write(out);
+
+            if(close){
+                channelFuture.addListener(ChannelFutureListener.CLOSE);
+            }
         }
+
+
 
         @Override
         public void channelReadComplete(ChannelHandlerContext ctx) {
-            ctx.writeAndFlush(Unpooled.EMPTY_BUFFER) .addListener(ChannelFutureListener.CLOSE);
+            System.out.println("ReadComplete");
+            //ctx.writeAndFlush(Unpooled.EMPTY_BUFFER) .addListener(ChannelFutureListener.CLOSE);
+            ctx.flush();
         }
 
         @Override

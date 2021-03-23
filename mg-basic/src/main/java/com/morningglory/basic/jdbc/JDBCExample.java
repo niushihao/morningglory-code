@@ -37,7 +37,7 @@ public class JDBCExample {
 
             stmt = conn.createStatement();
 
-            String sql = "SELECT * FROM student where name = 'test' ";
+            String sql = "SELECT * FROM student where name = 'testTTT' ";
 
             ResultSet resultSet = stmt.executeQuery(sql);
 
@@ -58,6 +58,11 @@ public class JDBCExample {
         }
     }
 
+    /**
+     * 预处理会防止sql注入问题
+     * 1.在设置占位符的值时会在两端分别加上 单引号 '
+     * 2.值中间包含的单引号 会被替换成 /'
+     */
     private static void usePreparedStatement() {
 
         Connection conn = null;
@@ -77,8 +82,7 @@ public class JDBCExample {
             String sql = "SELECT * FROM student where name like ?";
             PreparedStatement preparedStatement = conn.prepareStatement(sql);
             // anything' OR 'x'='x
-            preparedStatement.setString(1,"%用户%");
-
+            preparedStatement.setString(1,"test' OR 'x'='x");
             log.info("preparedStatement = {}",preparedStatement.toString());
             ResultSet resultSet = preparedStatement.executeQuery();
 

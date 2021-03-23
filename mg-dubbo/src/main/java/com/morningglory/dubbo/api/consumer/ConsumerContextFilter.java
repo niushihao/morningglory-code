@@ -16,7 +16,9 @@ public class ConsumerContextFilter implements Filter {
     @Override
     public Result invoke(Invoker<?> invoker, Invocation invocation) throws RpcException {
         RpcContext.getContext().setAttachment("name","nsh");
-        log.info("consumer[{}] RPC context = {}",RpcContext.getContext().getMethodName(),RpcContext.getContext().getAttachments());
+        Object value = RpcContext.getContext().get("key");
+        log.info("consumer[{}] RPC context = {},key = {}",RpcContext.getContext().getMethodName()
+                ,RpcContext.getContext().getAttachments(),value);
         return invoker.invoke(invocation);
     }
 }

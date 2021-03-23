@@ -47,6 +47,7 @@ public class MapTest {
         map1.put(new User(),6);
         map1.put(new User(),7);
         map1.put(new User(),8);
+        map1.get("");
         System.out.println(map1.size());
     }
 }

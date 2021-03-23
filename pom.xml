@@ -23,6 +23,13 @@
         <module>mg-fsm</module>
         <module>mg-graphql</module>
         <module>mg-rpc</module>
+        <module>mg-design</module>
+        <module>mg-sentinel</module>
+        <module>mg-io</module>
+        <module>mg-test</module>
+        <module>mg-job</module>
+        <module>mg-temp</module>
+        <module>mg-cache</module>
     </modules>
     <packaging>pom</packaging>
 
@@ -68,17 +75,17 @@
         <version.poi>3.16</version.poi>
         <lombok.version>1.16.20</lombok.version>
         <version.canal.client>1.1.3</version.canal.client>
+        <version.canal.adapter>1.1.5-SNAPSHOT</version.canal.adapter>
         <version.log4j>1.2.17</version.log4j>
         <tomcat_embed_version>9.0.21</tomcat_embed_version>
         <jsonrpc_version>1.2.0</jsonrpc_version>
         <portlet_version>2.0</portlet_version>
         <servlet_version>3.1.0</servlet_version>
-        <zookeeper_version>3.4.13</zookeeper_version>
-        <curator_version>4.0.1</curator_version>
         <resteasy_version>3.10.0.Final</resteasy_version>
         <hessian.version>4.0.63</hessian.version>
         <yaml.version>1.23</yaml.version>
         <asm.version>3.3.1</asm.version>
+        <sentinel.version>1.8.0</sentinel.version>
     </properties>
 
     <dependencies>
@@ -227,6 +234,36 @@
                 <version>${version.canal.client}</version>
             </dependency>
 
+            <dependency>
+                <groupId>com.alibaba.otter</groupId>
+                <artifactId>client-adapter.launcher</artifactId>
+                <version>${version.canal.adapter}</version>
+            </dependency>
+
+            <dependency>
+                <groupId>com.alibaba.otter</groupId>
+                <artifactId>client-adapter.logger</artifactId>
+                <version>${version.canal.adapter}</version>
+                <exclusions>
+                    <exclusion>
+                        <artifactId>*</artifactId>
+                        <groupId>*</groupId>
+                    </exclusion>
+                </exclusions>
+            </dependency>
+
+            <dependency>
+                <groupId>com.alibaba.otter</groupId>
+                <artifactId>client-adapter.es6x</artifactId>
+                <version>${version.canal.adapter}</version>
+                <exclusions>
+                    <exclusion>
+                        <artifactId>*</artifactId>
+                        <groupId>*</groupId>
+                    </exclusion>
+                </exclusions>
+            </dependency>
+
             <!-- es low-level-client begin-->
             <dependency>
                 <groupId>org.elasticsearch.client</groupId>
@@ -312,7 +349,7 @@
             <dependency>
                 <groupId>org.apache.dubbo</groupId>
                 <artifactId>dubbo</artifactId>
-                <version>2.7.5</version>
+                <version>2.7.6</version>
             </dependency>
 
 
@@ -342,54 +379,6 @@
                 <version>${portlet_version}</version>
             </dependency>
 
-            <dependency>
-                <groupId>org.apache.zookeeper</groupId>
-                <artifactId>zookeeper</artifactId>
-                <version>${zookeeper_version}</version>
-                <exclusions>
-                    <exclusion>
-                        <groupId>io.netty</groupId>
-                        <artifactId>netty</artifactId>
-                    </exclusion>
-                    <exclusion>
-                        <artifactId>slf4j-api</artifactId>
-                        <groupId>org.slf4j</groupId>
-                    </exclusion>
-                    <exclusion>
-                        <artifactId>slf4j-log4j12</artifactId>
-                        <groupId>org.slf4j</groupId>
-                    </exclusion>
-                </exclusions>
-            </dependency>
-
-            <dependency>
-                <groupId>org.apache.curator</groupId>
-                <artifactId>curator-framework</artifactId>
-                <version>${curator_version}</version>
-                <exclusions>
-                    <exclusion>
-                        <groupId>org.apache.zookeeper</groupId>
-                        <artifactId>zookeeper</artifactId>
-                    </exclusion>
-                    <exclusion>
-                        <artifactId>slf4j-api</artifactId>
-                        <groupId>org.slf4j</groupId>
-                    </exclusion>
-                </exclusions>
-            </dependency>
-
-            <dependency>
-                <groupId>org.apache.curator</groupId>
-                <artifactId>curator-x-discovery</artifactId>
-                <version>${curator_version}</version>
-                <exclusions>
-                    <exclusion>
-                        <groupId>org.apache.zookeeper</groupId>
-                        <artifactId>zookeeper</artifactId>
-                    </exclusion>
-                </exclusions>
-            </dependency>
-
             <!-- https://mvnrepository.com/artifact/org.jboss.resteasy/resteasy-jaxrs -->
             <dependency>
                 <groupId>org.jboss.resteasy</groupId>
@@ -413,6 +402,17 @@
                 <groupId>asm</groupId>
                 <artifactId>asm</artifactId>
                 <version>${asm.version}</version>
+            </dependency>
+
+            <dependency>
+                <groupId>com.alibaba.csp</groupId>
+                <artifactId>sentinel-core</artifactId>
+                <version>${sentinel.version}</version>
+            </dependency>
+            <dependency>
+                <groupId>com.alibaba.csp</groupId>
+                <artifactId>sentinel-transport-simple-http</artifactId>
+                <version>${sentinel.version}</version>
             </dependency>
 
         </dependencies>

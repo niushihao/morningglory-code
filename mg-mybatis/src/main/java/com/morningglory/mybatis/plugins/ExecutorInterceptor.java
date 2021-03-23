@@ -9,6 +9,7 @@ import org.apache.ibatis.mapping.SqlSource;
 import org.apache.ibatis.plugin.*;
 import org.apache.ibatis.reflection.DefaultReflectorFactory;
 import org.apache.ibatis.reflection.MetaObject;
+import org.apache.ibatis.reflection.SystemMetaObject;
 import org.apache.ibatis.reflection.factory.DefaultObjectFactory;
 import org.apache.ibatis.reflection.wrapper.DefaultObjectWrapperFactory;
 import org.apache.ibatis.session.ResultHandler;
@@ -29,6 +30,7 @@ public class ExecutorInterceptor implements Interceptor {
 
     @Override
     public Object intercept(Invocation invocation) throws Throwable {
+        Executor executor = (Executor) invocation.getTarget();
 
         MappedStatement mappedStatement = (MappedStatement)invocation.getArgs()[0];
         SqlCommandType commandType = mappedStatement.getSqlCommandType();
@@ -38,15 +40,16 @@ public class ExecutorInterceptor implements Interceptor {
         // 获取拦截器指定的方法类型, 通常需要拦截 update
         String methodName = invocation.getMethod().getName();
         String sql = mappedStatement.getBoundSql(parameter).getSql();
-
         String id = mappedStatement.getId();
 
         MappedStatement newStatement = newMappedStatement(mappedStatement, new BoundSqlSqlSource(mappedStatement.getBoundSql(parameter)));
         MetaObject msObject =  MetaObject.forObject(newStatement, new DefaultObjectFactory(), new DefaultObjectWrapperFactory(),new DefaultReflectorFactory());
-        msObject.setValue("sqlSource.boundSql.sql", sql);
+        // TODO 修改sql
+        String newSql = sql.replace(";","") + " AND 1=1;";
+        msObject.setValue("sqlSource.boundSql.sql", newSql);
         invocation.getArgs()[0] = newStatement;
-        log.info("ExecutorInterceptor, methodName: {}, commandType: {}, sql: {}, id: {}"
-                , methodName, commandType,sql,id);
+        log.info("ExecutorInterceptor, methodName: {}, commandType: {}, origin-sql: {},new-sql:{}, id: {}"
+                , methodName, commandType,sql,newSql,id);
 
         return invocation.proceed();
     }

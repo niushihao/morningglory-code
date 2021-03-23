@@ -45,6 +45,13 @@
         <file>${LOG.PATH}/root.log</file>
     </appender>-->
 
+    <!--控制台日志,并使用指定的FORMAT -->
+<!--    <appender name="CONSOLE" class="ch.qos.logback.core.ConsoleAppender">-->
+<!--        <encoder class="ch.qos.logback.classic.encoder.PatternLayoutEncoder">-->
+<!--            <pattern>${LOG.FORMAT}</pattern>-->
+<!--        </encoder>-->
+<!--    </appender>-->
+
     <root level="INFO">
         <appender-ref ref="LOGSTASH" />
         <appender-ref ref="CONSOLE" />

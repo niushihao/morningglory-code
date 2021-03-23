@@ -1,4 +1,7 @@
 spring:
+  output:
+    ansi:
+      enabled: always
   profiles:
 #    include: common
   datasource:
@@ -20,11 +23,16 @@ server:
 
 logging:
   level:
+    com.morningglory.mvc: info
     com:
       morningglory:
         mvc:
           dao: debug
     root: INFO
+  pattern:
+    #console: "%yellow%d{yyyy-MM-dd-HH:mm:ss} %-5level [%X{requestId}] [%thread]  %logger- %msg%n"
+    #console: "%date{yyyy-MM-dd HH:mm:ss.SSS} [%green(%-5level)] [%magenta(%X{requestId})] --- [%15thread] %cyan(%-45.45logger{45}) :%msg%n"
+
 
 es:
   host: 127.0.0.1
@@ -34,7 +42,9 @@ canal:
   host: 127.0.0.1
   port: 11111
   destination: example
-  subscribe: demo\..*,cnooc_acl\..*
+  subscribe: demo\..*,cnooc_acl\..*,cnooc_item\..*,mytest\..*
+
+
 
 terminus:
   acl:
@@ -55,6 +65,28 @@ terminus:
        -
         name: list1
         params:
+
+
+mg:
+  properties:
+    enable: true
+  properties1:
+    items:
+      -
+        name: name1
+        path: path1
+      -
+        name: name2
+        path: path2
+
+  properties2:
+    items:
+      index1:
+        name: name1
+        path: path1
+      index2:
+        name: name2
+        path: path2
 
 
 
