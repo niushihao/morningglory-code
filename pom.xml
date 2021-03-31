@@ -65,7 +65,7 @@
         <version.commons-email>1.2</version.commons-email>
         <version.ibatis>2.3.4.726</version.ibatis>
         <version.dubbo>2.7.5</version.dubbo>
-        <version.guava>25.1-jre</version.guava>
+        <version.guava>29.0-jre</version.guava>
         <version.joda-time>2.3</version.joda-time>
         <!--validator-->
         <version.hibernate-validator>4.3.1.Final</version.hibernate-validator>
