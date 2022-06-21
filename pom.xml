@@ -46,7 +46,7 @@
         <java.version>1.8</java.version>
         <version.spring.boot>2.1.6.RELEASE</version.spring.boot>
         <version.aspectj>1.7.4</version.aspectj>
-        <version.mysql>5.1.40</version.mysql>
+        <version.mysql>8.0.28</version.mysql>
         <version.servlet>3.1.0</version.servlet>
         <version.druid>1.1.5</version.druid>
         <version.junit>4.11</version.junit>
