@@ -81,7 +81,7 @@
         <jsonrpc_version>1.2.0</jsonrpc_version>
         <portlet_version>2.0</portlet_version>
         <servlet_version>3.1.0</servlet_version>
-        <resteasy_version>3.10.0.Final</resteasy_version>
+        <resteasy_version>3.14.0.Final</resteasy_version>
         <hessian.version>4.0.63</hessian.version>
         <yaml.version>1.23</yaml.version>
         <asm.version>3.3.1</asm.version>
