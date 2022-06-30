@@ -69,7 +69,7 @@
         <version.joda-time>2.3</version.joda-time>
         <!--validator-->
         <version.hibernate-validator>4.3.1.Final</version.hibernate-validator>
-        <version.pdf>5.5.11</version.pdf>
+        <version.pdf>5.5.12</version.pdf>
         <version.pdffont>5.2.0</version.pdffont>
         <!-- excel 工具 -->
         <version.poi>3.16</version.poi>
