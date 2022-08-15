@@ -4,6 +4,12 @@
         "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
 <mapper namespace="com.morningglory.mybatis.mapper.StudentMapper">
     <cache></cache>
+    <insert id="addStudent">
+        insert into  student
+        (`createAt`,`updateAt`,`name`,`age`,`interest`,`desc`,`birthday`,`dateTime`)
+        values
+        (#{info.createAt},#{info.updateAt},#{info.name},#{info.age},#{info.interest},#{info.desc},#{info.birthday},#{info.dateTime})
+    </insert>
     <select id="findById" parameterType="long" resultType="com.morningglory.model.Student">
         select * from student where id = ${id} and id = #{id}
         <if test="id != null"> AND id = 1</if>
@@ -11,6 +17,20 @@
 
     <select id="findByName" parameterType="string" resultType="com.morningglory.model.Student">
         select * from student where id = ${id} and name = #{name};
+    </select>
+    <select id="findByQuery" resultType="com.morningglory.model.Student">
+        select * from student
+        <trim prefix="WHERE" prefixOverrides="AND | OR">
+            <if test="name != null and name !=''">
+                AND name like concat('%',#{name},'%')
+            </if>
+
+            <if test="featureQueryMap != null and  featureQueryMap.size >0">
+                <foreach collection="featureQueryMap" index="key" item="value" separator="AND">
+                    and JSON_EXTRACT(feature,'$.${key}') =#{value}
+                </foreach>
+            </if>
+        </trim>
     </select>
 
 </mapper>

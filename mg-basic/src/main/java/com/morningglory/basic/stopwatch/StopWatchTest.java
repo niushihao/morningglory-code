@@ -1,5 +1,6 @@
 package com.morningglory.basic.stopwatch;
 
+import lombok.extern.slf4j.Slf4j;
 import org.springframework.util.StopWatch;
 
 /**
@@ -7,6 +8,7 @@ import org.springframework.util.StopWatch;
  * @Date: 2019-01-30 10:19
  * @Desc:
  */
+@Slf4j
 public class StopWatchTest {
 
     public static void main(String[] args) throws InterruptedException {
@@ -26,6 +28,7 @@ public class StopWatchTest {
         stopWatch.stop();
         System.out.println(stopWatch.getTotalTimeMillis());
         System.out.println(stopWatch.prettyPrint());
+        log.info(stopWatch.prettyPrint());
 
         //commons.lang3.time.StopWatch
         org.apache.commons.lang3.time.StopWatch watch = new org.apache.commons.lang3.time.StopWatch();

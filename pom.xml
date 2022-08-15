@@ -17,7 +17,7 @@
         <module>mg-mybatis</module>
         <module>mg-redis</module>
         <module>mg-model</module>
-        <module>mg-binlog</module>
+<!--        <module>mg-binlog</module>-->
         <module>mg-docker-compose</module>
         <module>mg-netty</module>
         <module>mg-fsm</module>
@@ -30,6 +30,9 @@
         <module>mg-job</module>
         <module>mg-temp</module>
         <module>mg-cache</module>
+        <module>mg-sharding</module>
+        <module>mg-register</module>
+        <module>mg-component</module>
     </modules>
     <packaging>pom</packaging>
 
@@ -47,6 +50,7 @@
         <version.spring.boot>2.1.6.RELEASE</version.spring.boot>
         <version.aspectj>1.7.4</version.aspectj>
         <version.mysql>5.1.40</version.mysql>
+<!--        <version.mysql>8.0.16</version.mysql>-->
         <version.servlet>3.1.0</version.servlet>
         <version.druid>1.1.5</version.druid>
         <version.junit>4.11</version.junit>

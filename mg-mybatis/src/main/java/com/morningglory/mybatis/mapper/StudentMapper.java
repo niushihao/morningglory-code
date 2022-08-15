@@ -1,6 +1,7 @@
 package com.morningglory.mybatis.mapper;
 
 import com.morningglory.model.Student;
+import com.morningglory.request.StudentSearchRequest;
 import org.apache.ibatis.annotations.Mapper;
 import org.apache.ibatis.annotations.Param;
 
@@ -23,6 +24,8 @@ public interface StudentMapper {
 
 
      Student findByName(@Param("name") String name);
+
+     Student findByQuery(StudentSearchRequest request);
 
     /**
      * 新增

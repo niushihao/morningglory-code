@@ -24,7 +24,7 @@ public class TimerTest {
         for(int i= 0; i< 100; i++){
 
             int delay = 5000 + i;
-            //timer.schedule(new MyTimerTask(i),delay);
+            timer.schedule(new MyTimerTask(i),delay);
 
 
             scheduledThreadPoolExecutor.schedule(new MyTimerTask(i),delay, TimeUnit.MILLISECONDS);

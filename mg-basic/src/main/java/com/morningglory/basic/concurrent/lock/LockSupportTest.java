@@ -33,7 +33,7 @@ public class LockSupportTest {
 
         thread.start();
 
-        thread.interrupt();
+        //thread.interrupt();
 
     }
 }

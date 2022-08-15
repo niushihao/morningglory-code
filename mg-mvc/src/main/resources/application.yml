@@ -5,7 +5,8 @@ spring:
   profiles:
 #    include: common
   datasource:
-    url: jdbc:mysql://127.0.0.1:3306/demo?characterEncoding=utf8&useSSL=true
+    url: jdbc:mysql://127.0.0.1:3306/demo?characterEncoding=utf8&useSSL=false
+    ##url: jdbc:mysql://127.0.0.1:3306/demo?characterEncoding=utf8
     driverClassName: com.mysql.jdbc.Driver
     username: root
     password: 123456

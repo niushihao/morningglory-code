@@ -33,9 +33,9 @@ public class ResultSetInterceptor implements Interceptor {
         for(Object obj : result){
             log.info("before obj = {}", JSON.toJSONString(obj));
             try {
-                Field field = obj.getClass().getDeclaredField(column);
-                field.setAccessible(true);
-                field.set(obj,null);
+//                Field field = obj.getClass().getDeclaredField(column);
+//                field.setAccessible(true);
+//                field.set(obj,null);
             }catch (Exception e){
                // do nothing
             }

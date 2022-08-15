@@ -2,6 +2,7 @@ package com.morningglory.basic.collection;
 
 import com.google.common.collect.Maps;
 
+import java.util.HashMap;
 import java.util.LinkedHashMap;
 import java.util.Map;
 import java.util.ServiceLoader;
@@ -27,6 +28,7 @@ public class MapTest {
         LinkedHashMap<String, Object> map = new LinkedHashMap<>();
 
         ConcurrentHashMap<String,Integer> conMap = new ConcurrentHashMap();
+        conMap.put("key",1);
         Object o = conMap.putIfAbsent("1", 1);
         System.out.println(conMap.get("1"));
         System.out.println(conMap);
@@ -37,6 +39,8 @@ public class MapTest {
         map2.putIfAbsent("1",1);
         System.out.println(map2);
 
+        HashMap hashMap = new HashMap(1);
+        hashMap.put("key","value");
 
         Map<User,Integer> map1 = Maps.newHashMap();
         map1.put(new User(),1);

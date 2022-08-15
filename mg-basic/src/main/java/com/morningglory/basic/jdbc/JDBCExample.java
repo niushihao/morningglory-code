@@ -14,13 +14,13 @@ public class JDBCExample {
 
 
     static final String JDBC_DRIVER = "com.mysql.jdbc.Driver";
-    static final String DB_URL = "jdbc:mysql://127.0.0.1:3306/demo?characterEncoding=utf8&useSSL=true";
+    static final String DB_URL = "jdbc:mysql://127.0.0.1:3306/demo?characterEncoding=utf8&useSSL=false";
     static final String USER = "root";
     static final String PASS = "123456";
 
     public static void main(String[] args) {
 
-        useStatement();
+        //useStatement();
 
         usePreparedStatement();
     }

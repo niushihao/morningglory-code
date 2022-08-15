@@ -1,0 +1,2 @@
+com.mg.component.sequence.impl.redis.RedisSequenceFactory
+com.mg.component.sequence.impl.db.DbMgSequenceFactory

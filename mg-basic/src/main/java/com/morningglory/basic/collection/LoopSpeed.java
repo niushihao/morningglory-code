@@ -26,7 +26,7 @@ public class LoopSpeed {
 
         List<Integer> list = Lists.newArrayList();
 
-        for(int i =0;i<100000;i++){
+        for(int i =0;i<100;i++){
             list.add(i);
         }
         StopWatch watch = new StopWatch();

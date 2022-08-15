@@ -5,6 +5,7 @@ import lombok.Data;
 
 import java.util.Date;
 import java.util.List;
+import java.util.Map;
 
 /**
  * @Author: qianniu
@@ -31,6 +32,9 @@ public class StudentSearchRequest extends Page {
 
     /**生日范围*/
     private Date endDate;
+
+
+    private Map<String,Object> featureQueryMap;
 
 
 }

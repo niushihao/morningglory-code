@@ -5,6 +5,8 @@ import com.morningglory.model.Student;
 import com.morningglory.page.Page;
 import com.morningglory.mvc.service.student.StudentService;
 import com.morningglory.request.StudentSearchRequest;
+import lombok.extern.slf4j.Slf4j;
+import org.apache.commons.lang3.StringEscapeUtils;
 import org.springframework.web.bind.annotation.*;
 
 import javax.annotation.Resource;
@@ -21,6 +23,7 @@ import java.util.List;
  */
 @RestController
 @RequestMapping("/student")
+@Slf4j
 public class StudentController {
 
     @Resource
@@ -63,7 +66,7 @@ public class StudentController {
     @GetMapping("/list/{name}")
     public List<Student> listByName(HttpServletRequest request, @PathVariable String name){
         request.getHeader("X-Forwarded-Host");
-        if(!"2".equals(name)){
+        if(!"nsh".equals(name)){
             throw new RuntimeException("test");
         }
         return studentService.listByName(name);
@@ -93,5 +96,16 @@ public class StudentController {
             e.printStackTrace();
         }
         return null;
+    }
+
+    public static void main(String[] args) {
+        String str = "{&quot;documentType&quot;:10,&quot;category&quot;:20,&quot;code&quot;:&quot;F_B2CSO&quot;,&quot;sequenceRule&quot;:{&quot;dateLength&quot;:6,&quot;prefix&quot;:&quot;B2CSO&quot;,&quot;prependDate&quot;:true,&quot;prependWhCode&quot;:false}}";
+        String s = StringEscapeUtils.escapeJson("{\"documentType\":10,\"category\":20,\"code\":\"F_B2CSO\",\"sequenceRule\":{\"dateLength\":6,\"prefix\":\"B2CSO\",\"prependDate\":true,\"prependWhCode\":false}}");
+        log.info(s);
+
+        String s1 = StringEscapeUtils.escapeHtml4(s);
+        log.info(s1);
+
+
     }
 }

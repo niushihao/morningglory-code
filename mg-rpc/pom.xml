@@ -10,6 +10,10 @@
     <modelVersion>4.0.0</modelVersion>
 
     <artifactId>mg-rpc</artifactId>
+    <packaging>pom</packaging>
+    <modules>
+        <module>mg-grpc</module>
+    </modules>
 
     <dependencies>
         <dependency>
