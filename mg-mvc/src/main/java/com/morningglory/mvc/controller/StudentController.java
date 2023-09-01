@@ -26,6 +26,11 @@ import java.util.List;
 @Slf4j
 public class StudentController {
 
+     public StudentController(){
+
+         System.out.println(123);
+    }
+
     @Resource
     private StudentService studentService;
 

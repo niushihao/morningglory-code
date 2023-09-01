@@ -5,7 +5,7 @@ import com.morningglory.basic.webservice.service.SmsService;
 import org.apache.cxf.endpoint.Client;
 import org.apache.cxf.jaxws.JaxWsProxyFactoryBean;
 import org.apache.cxf.jaxws.endpoint.dynamic.JaxWsDynamicClientFactory;
-import org.junit.Test;
+//import org.junit.Test;
 
 /**
  * @Author: qianniu
@@ -14,7 +14,7 @@ import org.junit.Test;
  */
 public class WSTestService {
 
-    @Test
+   // @Test
     public void testSendSms(){
 
         JaxWsDynamicClientFactory dcf = JaxWsDynamicClientFactory.newInstance();
@@ -35,7 +35,7 @@ public class WSTestService {
 
     }
 
-    @Test
+   // @Test
     public void testSendSms1(){
         JaxWsProxyFactoryBean bean = new JaxWsProxyFactoryBean();
         bean.setServiceClass(SmsService.class);
@@ -144,7 +144,7 @@ public class WSTestService {
     }
     */
 
-    @Test
+    //@Test
     public void sendSMS(){
 
        JaxWsProxyFactoryBean bean = new JaxWsProxyFactoryBean();

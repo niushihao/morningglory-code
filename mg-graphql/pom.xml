@@ -22,6 +22,18 @@
             <artifactId>graphql-java</artifactId>
         </dependency>
 
+<!--        <dependency>-->
+<!--            <groupId>com.graphql-java</groupId>-->
+<!--            <artifactId>graphql-spring-boot-starter</artifactId>-->
+<!--            <version>5.0.2</version>-->
+<!--        </dependency>-->
+
+        <dependency>
+            <groupId>com.graphql-java</groupId>
+            <artifactId>graphql-java-tools</artifactId>
+            <version>5.2.4</version>
+        </dependency>
+
         <!--数据库模型 -->
         <dependency>
             <groupId>morningglory-group</groupId>

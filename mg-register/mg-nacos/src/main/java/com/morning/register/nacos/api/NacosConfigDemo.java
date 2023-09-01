@@ -32,15 +32,25 @@ public class NacosConfigDemo {
 
         ConfigService configService = NacosFactory.createConfigService(properties);
 
+        Properties properties2 = new Properties();
+        // 指定 Nacos 地址
+        properties2.put(PropertyKeyConst.SERVER_ADDR, "127.0.0.1:8858");
+        ConfigService configService2 = NacosFactory.createConfigService(properties2);
+
+
+
         Runnable job = () -> {
             // 指定配置的 DataID 和 Group
             String dataId = "testDataId";
             String group = "DEFAULT_GROUP";
             String content = "connectTimeoutInMills=5000";
 
+
             String config = null;
             try {
-                config = configService.getConfig(dataId, group, 5000);
+                configService.publishConfig(dataId,group,"11");
+                Thread.sleep(100);
+                config = configService2.getConfig(dataId, group, 5000);
                 log.info("query config = {}",config);
                 configService.addListener(dataId,group, new AbstractSharedListener() {
 
@@ -52,6 +62,8 @@ public class NacosConfigDemo {
 
                 //configService.publishConfig(dataId,group,"test");
             } catch (NacosException e) {
+                e.printStackTrace();
+            } catch (InterruptedException e) {
                 e.printStackTrace();
             }
 

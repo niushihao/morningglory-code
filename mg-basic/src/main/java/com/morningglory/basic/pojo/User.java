@@ -1,6 +1,6 @@
 package com.morningglory.basic.pojo;
 
-import org.hibernate.validator.constraints.NotEmpty;
+//import org.hibernate.validator.constraints.NotEmpty;
 
 import java.util.Date;
 import java.util.List;
@@ -16,7 +16,7 @@ public class User extends BasePojo{
 
     private String name;
 
-    @NotEmpty(message = "性别不能为空")
+    //@NotEmpty(message = "性别不能为空")
     //@EnumValue(enumClass = UserStatusEnum.class,enumMethod = "isValidName",message = "类型不合法")
     private String sex;
 

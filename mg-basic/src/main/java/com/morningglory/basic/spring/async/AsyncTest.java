@@ -3,6 +3,9 @@ package com.morningglory.basic.spring.async;
 import lombok.extern.slf4j.Slf4j;
 import org.springframework.context.annotation.AnnotationConfigApplicationContext;
 
+import java.util.concurrent.ExecutionException;
+import java.util.concurrent.Future;
+
 /**
  * @author qianniu
  * @date 2020/6/24 11:23 上午
@@ -17,11 +20,15 @@ public class AsyncTest {
 
     private final static String base_package = "com.morningglory.basic.spring.async";
 
-    public static void main(String[] args) {
+    public static void main(String[] args) throws ExecutionException, InterruptedException {
 
         AnnotationConfigApplicationContext context = new AnnotationConfigApplicationContext(base_package);
         AsyncBean bean = context.getBean(AsyncBean.class);
-        log.info(bean.getMsg());
+        log.info("msg="+bean.getMsg());
+
+        Future<String> result = bean.getFutureMsg();
+        String futureMsg = result.get();
+        log.info("futureMsg="+futureMsg);
 
     }
 }

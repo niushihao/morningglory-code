@@ -2,7 +2,10 @@ package com.morningglory.basic.spring.async;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.scheduling.annotation.Async;
+import org.springframework.scheduling.annotation.AsyncResult;
 import org.springframework.stereotype.Component;
+
+import java.util.concurrent.Future;
 
 /**
  * @author qianniu
@@ -21,5 +24,9 @@ public class AsyncBean {
     @Async
     public String getMsg(){
         return "async";
+    }
+
+    public Future<String> getFutureMsg(){
+        return new AsyncResult<>("123");
     }
 }

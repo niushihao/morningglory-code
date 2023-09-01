@@ -22,7 +22,7 @@ public class StudentSearchRequest extends Page {
     private String name;
 
     /**年龄范围*/
-    private int minAge;
+    private Integer minAge;
 
     /**年龄范围*/
     private int maxAge;

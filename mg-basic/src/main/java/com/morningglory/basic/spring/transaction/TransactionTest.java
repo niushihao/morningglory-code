@@ -16,8 +16,11 @@ public class TransactionTest {
     public static void main(String[] args) {
 
         AnnotationConfigApplicationContext context = new AnnotationConfigApplicationContext(base_package);
-        TransactionBean bean = context.getBean(TransactionBean.class);
-        log.info(bean.getMsg());
+//        TransactionBean bean = context.getBean(TransactionBean.class);
+//        log.info(bean.getMsg());
+
+        PropagationTestService bean1 = context.getBean(PropagationTestService.class);
+        bean1.useRequiredAndAllHasTransactional();
 
     }
 

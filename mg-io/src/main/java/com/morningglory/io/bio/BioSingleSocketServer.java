@@ -4,6 +4,7 @@ import lombok.extern.slf4j.Slf4j;
 import java.io.IOException;
 import java.net.ServerSocket;
 import java.net.Socket;
+import java.nio.channels.ServerSocketChannel;
 
 /**
  * @author qianniu
@@ -27,6 +28,8 @@ public class BioSingleSocketServer {
 
     public void runServer() throws IOException {
         serverSocket = new ServerSocket(port);
+        serverSocket = new ServerSocket();
+        ServerSocketChannel channel = serverSocket.getChannel();
         log.info("BioSingleSocketServer 启动成功,等待客户端连接");
 
         Socket socket = serverSocket.accept();

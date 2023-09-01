@@ -1,5 +1,6 @@
 package com.morningglory.basic.concurrent;
 
+import lombok.extern.slf4j.Slf4j;
 import org.assertj.core.util.Lists;
 
 import java.util.List;
@@ -14,6 +15,7 @@ import java.util.stream.Collectors;
  * @Date: 2019-03-20 17:27
  * @Desc:
  */
+@Slf4j
 public class CompletableFutureTest {
 
     private static Random rand = new Random();
@@ -33,19 +35,33 @@ public class CompletableFutureTest {
         return rand.nextInt(100);
     }
     public static void main(String[] args) throws InterruptedException, ExecutionException {
+
+
+        CompletableFuture completableFuture = new CompletableFuture();
+        completableFuture.whenComplete((v,e) -> {
+            log.info("v = {},e = {}",v,e);
+        });
+
+        Thread.sleep(3000);
+        completableFuture.complete(1);
         List<CompletableFuture<Integer>> futureList = Lists.newArrayList();
-        for(int i =1;i<11;i++){
-            int finalI = i;
-            CompletableFuture<Integer> future = CompletableFuture.supplyAsync(() -> {
-                return getMoreData(finalI);
-            });
-            futureList.add(future);
 
-        }
-
-        // CompletableFuture::join不会显示错误信息,结果只返回10条
-        List<Integer> collect = futureList.stream().map(CompletableFuture::join).collect(Collectors.toList());
-        System.out.println(collect.size());
+//        CompletableFuture<Void> voidCompletableFuture = CompletableFuture.runAsync(() -> System.out.println(111));
+//        voidCompletableFuture.whenComplete((v,e) -> {
+//
+//        });
+//        for(int i =1;i<11;i++){
+//            int finalI = i;
+//            CompletableFuture<Integer> future = CompletableFuture.supplyAsync(() -> {
+//                return getMoreData(finalI);
+//            });
+//            futureList.add(future);
+//
+//        }
+//
+//        // CompletableFuture::join不会显示错误信息,结果只返回10条
+//        List<Integer> collect = futureList.stream().map(CompletableFuture::join).collect(Collectors.toList());
+//        System.out.println(collect.size());
 
 //        for(CompletableFuture<Integer> future : futureList){
 //            Integer integer = future.get();

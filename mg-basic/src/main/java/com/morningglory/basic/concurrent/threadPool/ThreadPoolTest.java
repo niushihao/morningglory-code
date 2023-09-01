@@ -25,7 +25,7 @@ public class ThreadPoolTest {
     private static final int TEMP =   RUNNING | 0;
 
 
-    public static void main(String[] args) throws ExecutionException, InterruptedException {
+    public static void main(String[] args) throws ExecutionException, InterruptedException, TimeoutException {
 
         System.out.println("COUNT_BITS ="+COUNT_BITS);
         System.out.println("CAPACITY ="+CAPACITY);
@@ -38,6 +38,8 @@ public class ThreadPoolTest {
         // 创建线程池
         ThreadPoolExecutor executor = new ThreadPoolExecutor(1,6,10L
                 , TimeUnit.SECONDS,new ArrayBlockingQueue<Runnable>(4));
+
+        executor.execute(null);
         // 提交任务
         for(int i= 0; i< 10; i++){
             int temp = i;
@@ -50,6 +52,9 @@ public class ThreadPoolTest {
                 }
                 return temp +2;
             });
+
+            future.get();
+            Integer integer = future.get(1L, TimeUnit.MILLISECONDS);
 
             //获取结果
             //Integer integer = future.get();

@@ -1,5 +1,6 @@
 package com.morningglory.schema;
 
+import com.morningglory.fetcher.StudentDataFetcher;
 import com.morningglory.model.Student;
 import graphql.schema.GraphQLFieldDefinition;
 import graphql.schema.GraphQLList;
@@ -36,28 +37,16 @@ public class StudentSchema implements GQLSchema {
 
     private GraphQLFieldDefinition createUserField() {
         return GraphQLFieldDefinition.newFieldDefinition()
-                .name("student")
+                .name("getStudentById")
                 .argument(newArgument().name("id").type(GraphQLInt).build())
                 .type(type)
-                .dataFetcher(environment -> {
-                    // 获取查询参数
-                    int id = environment.getArgument("id");
-
-                    // 执行查询, 这里随便用一些测试数据来说明问题
-                    Student user = new Student();
-                    user.setId(Long.parseLong(String.valueOf(id)));
-                    user.setAge(id+5);
-                    user.setInterest("🏀");
-                    user.setName("Name_" + id);
-                    user.setDesc("pic_" + id + ".jpg");
-                    return user;
-                })
+                .dataFetcher(new StudentDataFetcher())
                 .build();
     }
 
     private GraphQLFieldDefinition createUsersField() {
         return GraphQLFieldDefinition.newFieldDefinition()
-                .name("students")
+                .name("pageStudents")
                 .argument(newArgument().name("page").type(GraphQLInt).build())
                 .argument(newArgument().name("size").type(GraphQLInt).build())
                 .argument(newArgument().name("name").type(GraphQLString).build())

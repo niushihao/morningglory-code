@@ -1,15 +1,16 @@
 package com.morningglory.basic.spring.transaction;
 
-import com.morningglory.basic.spring.autoconfig.EnableLog;
 import lombok.extern.slf4j.Slf4j;
+import org.springframework.beans.factory.annotation.Qualifier;
+import org.springframework.boot.autoconfigure.jdbc.DataSourceProperties;
 import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.Configuration;
-import org.springframework.transaction.PlatformTransactionManager;
-import org.springframework.transaction.TransactionDefinition;
-import org.springframework.transaction.TransactionException;
+import org.springframework.context.annotation.EnableAspectJAutoProxy;
+import org.springframework.jdbc.datasource.DataSourceTransactionManager;
 import org.springframework.transaction.annotation.EnableTransactionManagement;
-import org.springframework.transaction.support.AbstractPlatformTransactionManager;
-import org.springframework.transaction.support.DefaultTransactionStatus;
+import org.springframework.transaction.support.TransactionTemplate;
+
+import javax.sql.DataSource;
 
 /**
  * @author qianniu
@@ -21,28 +22,48 @@ import org.springframework.transaction.support.DefaultTransactionStatus;
 @Slf4j
 public class TransactionConfig {
 
+
+    /**
+     * spring:
+     *   datasource:
+     *     url: jdbc:mysql://127.0.0.1:3306/demo?characterEncoding=utf8&useSSL=false
+     *     ##url: jdbc:mysql://127.0.0.1:3306/demo?characterEncoding=utf8
+     *     driverClassName: com.mysql.jdbc.Driver
+     *     username: root
+     *     password: 123456
+     *  如果配了 spring.datasource则自动装配
+     *  org.springframework.boot.autoconfigure.jdbc.DataSourceAutoConfiguration
+     * @return
+     */
     @Bean
-    public PlatformTransactionManager txManager() {
-        return new AbstractPlatformTransactionManager() {
-            @Override
-            protected Object doGetTransaction() throws TransactionException {
-                return null;
-            }
+    public DataSource dataSource(){
 
-            @Override
-            protected void doBegin(Object o, TransactionDefinition transactionDefinition) throws TransactionException {
+        // todo 尝试下binder 的用法
+        //new RelaxedDataBinder(pickCompensationConfigInstance).bind(new MutablePropertyValues(properties));
+        DataSourceProperties properties = new DataSourceProperties();
+        properties.setUrl("jdbc:mysql://127.0.0.1:3306/demo?characterEncoding=utf8&useSSL=false");
+        properties.setDriverClassName("com.mysql.jdbc.Driver");
+        properties.setUsername("root");
+        properties.setPassword("123456");
 
-            }
+        return properties.initializeDataSourceBuilder().build();
 
-            @Override
-            protected void doCommit(DefaultTransactionStatus defaultTransactionStatus) throws TransactionException {
+    }
 
-            }
+    /**
+     * 平时用springboot时没有手动创建过这个bean，是因为在
+     * org.springframework.boot.autoconfigure.jdbc.DataSourceTransactionManagerAutoConfiguration
+     * 自动注入了
+     * @param dataSource
+     * @return
+     */
+    @Bean
+    public DataSourceTransactionManager dataSourceTransactionManager(DataSource dataSource) {
+        return new DataSourceTransactionManager(dataSource);
+    }
 
-            @Override
-            protected void doRollback(DefaultTransactionStatus defaultTransactionStatus) throws TransactionException {
-
-            }
-        };
+    @Bean
+    public TransactionTemplate transactionTemplate(DataSourceTransactionManager dataSourceTransactionManager) {
+        return new TransactionTemplate(dataSourceTransactionManager);
     }
 }

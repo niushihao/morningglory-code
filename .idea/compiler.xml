@@ -12,6 +12,7 @@
         <module name="mg-redis" />
         <module name="mg-test" />
         <module name="mg-model" />
+        <module name="mg-component-timer" />
         <module name="mg-component-sequence" />
         <module name="mg-leetcode" />
         <module name="mg-temp" />
@@ -22,15 +23,15 @@
         <module name="mg-mvc" />
         <module name="mg-docker-compose" />
         <module name="mg-fsm" />
+        <module name="mg-grpc" />
         <module name="mg-netty" />
         <module name="mg-graphql" />
         <module name="mg-es" />
-        <module name="mg-sentinel" />
         <module name="mg-io" />
         <module name="mg-mybatis" />
         <module name="mg-nacos" />
         <module name="mg-dubbo" />
-        <module name="mg-grpc" />
+        <module name="mg-sentinel" />
       </profile>
     </annotationProcessing>
     <bytecodeTargetLevel>
@@ -45,6 +46,7 @@
       <module name="mg-cache" options="-parameters" />
       <module name="mg-component" options="" />
       <module name="mg-component-sequence" options="-parameters" />
+      <module name="mg-component-timer" options="-parameters" />
       <module name="mg-design" options="-parameters" />
       <module name="mg-dubbo" options="-parameters" />
       <module name="mg-es" options="-parameters" />

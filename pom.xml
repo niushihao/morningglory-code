@@ -47,7 +47,7 @@
         <project.build.sourceEncoding>UTF-8</project.build.sourceEncoding>
         <project.reporting.outputEncoding>UTF-8</project.reporting.outputEncoding>
         <java.version>1.8</java.version>
-        <version.spring.boot>2.1.6.RELEASE</version.spring.boot>
+        <version.spring.boot>2.7.6</version.spring.boot>
         <version.aspectj>1.7.4</version.aspectj>
         <version.mysql>5.1.40</version.mysql>
 <!--        <version.mysql>8.0.16</version.mysql>-->
@@ -197,6 +197,19 @@
                 <artifactId>graphql-java</artifactId>
                 <version>11.0</version>
             </dependency>
+
+            <dependency>
+                <groupId>com.graphql-java</groupId>
+                <artifactId>graphql-spring-boot-starter</artifactId>
+                <version>5.0.2</version>
+            </dependency>
+
+            <dependency>
+                <groupId>com.graphql-java</groupId>
+                <artifactId>graphql-java-tools</artifactId>
+                <version>5.2.4</version>
+            </dependency>
+
             <!-- graphql-end-->
 
             <!-- zookeeper-start-->
