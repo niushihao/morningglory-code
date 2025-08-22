@@ -17,6 +17,11 @@ import java.lang.reflect.Method;
  */
 public class AopTest {
 
+    /**
+     * 主方法，程序的入口
+     * @param args 接收的命令行参数
+
+     */
     public static void main(String[] args) {
 
 

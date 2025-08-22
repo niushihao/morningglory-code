@@ -36,6 +36,13 @@ public class InjvmConsumer {
     reference.setInterface(DemoService.class);
     reference.setScope(Constants.LOCAL_KEY);
     reference.setCheck(false);
+    reference.setTimeout(1);
+
+    ReferenceConfig<DemoService> reference1 = new ReferenceConfig<>();
+    reference1.setInterface(DemoService.class);
+    reference1.setScope(Constants.LOCAL_KEY);
+    reference1.setCheck(false);
+    reference1.setTimeout(10);
 
     DubboBootstrap bootstrap = DubboBootstrap.getInstance();
     bootstrap.application(new ApplicationConfig("dubbo-demo-api-consumer"))
@@ -43,7 +50,10 @@ public class InjvmConsumer {
             .start();
 
     RpcContext.getContext().setAttachment("key","value");
+    DemoService demoService = reference.get();
+    DemoService demoService1 = reference1.get();
     DubboResponse response = ReferenceConfigCache.getCache().get(reference).get(1);
+    DubboResponse response1 = ReferenceConfigCache.getCache().get(reference).get(1);
     log.info("response = {}",response);
 
     String message = ReferenceConfigCache.getCache().get(reference).sayHi(new DubboRequest().setId(1));

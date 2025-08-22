@@ -26,5 +26,6 @@ public class MgSqlSessionFactoryBuilder {
         String resource = "mybatis-config.xml";
         InputStream inputStream = Resources.getResourceAsStream(resource);
         SqlSessionFactory sqlSessionFactory = new SqlSessionFactoryBuilder().build(inputStream);
+        System.out.println(1111);
     }
 }

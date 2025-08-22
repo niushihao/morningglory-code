@@ -3,7 +3,7 @@ spring:
     ansi:
       enabled: always
   profiles:
-#    include: common
+    include: common
   datasource:
     url: jdbc:mysql://127.0.0.1:3306/demo?characterEncoding=utf8&useSSL=false
     ##url: jdbc:mysql://127.0.0.1:3306/demo?characterEncoding=utf8

@@ -33,6 +33,10 @@
         <module>mg-sharding</module>
         <module>mg-register</module>
         <module>mg-component</module>
+        <module>mg-h2</module>
+        <module>mg-flink</module>
+        <module>mg-steady</module>
+        <module>mg-db</module>
     </modules>
     <packaging>pom</packaging>
 

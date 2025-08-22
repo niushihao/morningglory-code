@@ -19,4 +19,12 @@ public class TransactionBean {
     public String getMsg(){
         return "123";
     }
+
+    public static void main(String[] args) {
+
+        Boolean flag = null;
+        if(flag){
+            System.out.println("111");
+        }
+    }
 }

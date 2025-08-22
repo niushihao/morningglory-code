@@ -1,5 +1,10 @@
 package com.morningglory.basic;
 
+import com.alibaba.fastjson.JSON;
+import com.google.common.collect.Lists;
+import com.google.common.collect.Maps;
+import io.lettuce.core.ScriptOutputType;
+
 import java.util.*;
 
 /**
@@ -103,5 +108,19 @@ public class ConsistentHash<T> {
 
         String node =consistentHash.get("apple");
         System.out.println("node----------->:"+node);
+
+        List<String> list = Lists.newArrayList();
+        list.add("AAA");
+
+        String json = JSON.toJSONString(list);
+
+        Map<String,String> map = Maps.newHashMap();
+        map.put("key",json);
+        System.out.println(JSON.toJSONString(map));
+
+        Map<String, Integer> stringIntegerMap = Collections.singletonMap("a", 1);
+        Integer b = stringIntegerMap.put("b", 2);
+        System.out.println(JSON.toJSONString(stringIntegerMap));
+
     }
 }

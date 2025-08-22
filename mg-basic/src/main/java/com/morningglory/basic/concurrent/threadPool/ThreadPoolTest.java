@@ -39,7 +39,18 @@ public class ThreadPoolTest {
         ThreadPoolExecutor executor = new ThreadPoolExecutor(1,6,10L
                 , TimeUnit.SECONDS,new ArrayBlockingQueue<Runnable>(4));
 
-        executor.execute(null);
+        //executor.execute(null);
+        Future<?> submit = executor.submit(() -> {
+            try {
+                Thread.sleep(10000);
+            } catch (InterruptedException e) {
+                e.printStackTrace();
+            }
+            System.out.println("11");
+        },1);
+        Future<Integer> submit1 = executor.submit(() -> 1);
+        Object o = submit.get();
+        log.info("submit runable = {}",o);
         // 提交任务
         for(int i= 0; i< 10; i++){
             int temp = i;

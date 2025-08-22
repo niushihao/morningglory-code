@@ -1,37 +1,46 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <project version="4">
   <component name="CompilerConfiguration">
+    <excludeFromCompile>
+      <directory url="file://$PROJECT_DIR$/mg-flink/src/main/resources/archetype-resources" includeSubdirectories="true" />
+      <directory url="file://$PROJECT_DIR$/mg-steady/src/main/resources/archetype-resources" includeSubdirectories="true" />
+      <directory url="file://$PROJECT_DIR$/mg-steady/mg-resilience4j/src/main/resources/archetype-resources" includeSubdirectories="true" />
+      <directory url="file://$PROJECT_DIR$/mg-db/src/main/resources/archetype-resources" includeSubdirectories="true" />
+    </excludeFromCompile>
     <annotationProcessing>
       <profile default="true" name="Default" enabled="true" />
       <profile name="Maven default annotation processors profile" enabled="true">
         <sourceOutputDir name="target/generated-sources/annotations" />
         <sourceTestOutputDir name="target/generated-test-sources/test-annotations" />
         <outputRelativeToContentRoot value="true" />
-        <module name="mg-basic" />
-        <module name="mg-design" />
-        <module name="mg-redis" />
-        <module name="mg-test" />
-        <module name="mg-model" />
-        <module name="mg-component-timer" />
-        <module name="mg-component-sequence" />
-        <module name="mg-leetcode" />
-        <module name="mg-temp" />
-        <module name="mg-job" />
-        <module name="mg-cache" />
-        <module name="mg-zk" />
-        <module name="sharding-jdbc" />
-        <module name="mg-mvc" />
-        <module name="mg-docker-compose" />
-        <module name="mg-fsm" />
+        <module name="mg-resilience4j" />
         <module name="mg-grpc" />
-        <module name="mg-netty" />
-        <module name="mg-graphql" />
-        <module name="mg-es" />
+        <module name="mg-nacos" />
+        <module name="mg-component-timer" />
+        <module name="mg-dubbo" />
+        <module name="mg-redis" />
+        <module name="mg-component-sequence" />
+        <module name="mg-job" />
+        <module name="mg-fsm" />
+        <module name="mg-sentinel" />
+        <module name="mg-design" />
         <module name="mg-io" />
         <module name="mg-mybatis" />
-        <module name="mg-nacos" />
-        <module name="mg-dubbo" />
-        <module name="mg-sentinel" />
+        <module name="mg-leetcode" />
+        <module name="mg-temp" />
+        <module name="mg-test" />
+        <module name="mg-cache" />
+        <module name="mg-basic" />
+        <module name="mg-mvc" />
+        <module name="mg-netty" />
+        <module name="mg-zk" />
+        <module name="mg-graphql" />
+        <module name="mg-es" />
+        <module name="mg-flink" />
+        <module name="sharding-jdbc" />
+        <module name="mg-h2" />
+        <module name="mg-model" />
+        <module name="mg-db" />
       </profile>
     </annotationProcessing>
     <bytecodeTargetLevel>
@@ -44,15 +53,18 @@
       <module name="mg-basic" options="-parameters" />
       <module name="mg-binlog" options="-parameters" />
       <module name="mg-cache" options="-parameters" />
-      <module name="mg-component" options="" />
+      <module name="mg-component" options="-parameters" />
       <module name="mg-component-sequence" options="-parameters" />
       <module name="mg-component-timer" options="-parameters" />
+      <module name="mg-db" options="-parameters" />
       <module name="mg-design" options="-parameters" />
       <module name="mg-dubbo" options="-parameters" />
       <module name="mg-es" options="-parameters" />
+      <module name="mg-flink" options="-parameters" />
       <module name="mg-fsm" options="-parameters" />
       <module name="mg-graphql" options="-parameters" />
       <module name="mg-grpc" options="-parameters" />
+      <module name="mg-h2" options="-parameters" />
       <module name="mg-io" options="-parameters" />
       <module name="mg-job" options="-parameters" />
       <module name="mg-leetcode" options="-parameters" />
@@ -62,13 +74,16 @@
       <module name="mg-nacos" options="-parameters" />
       <module name="mg-netty" options="-parameters" />
       <module name="mg-redis" options="-parameters" />
-      <module name="mg-register" options="" />
-      <module name="mg-rpc" options="" />
+      <module name="mg-register" options="-parameters" />
+      <module name="mg-resilience4j" options="-parameters" />
+      <module name="mg-rpc" options="-parameters" />
       <module name="mg-sentinel" options="-parameters" />
-      <module name="mg-sharding" options="" />
+      <module name="mg-sharding" options="-parameters" />
+      <module name="mg-steady" options="-parameters" />
       <module name="mg-temp" options="-parameters" />
       <module name="mg-test" options="-parameters" />
       <module name="mg-zk" options="-parameters" />
+      <module name="morningglory" options="-parameters" />
       <module name="sharding-jdbc" options="-parameters" />
     </option>
   </component>

@@ -47,7 +47,6 @@ public class ThreadPoolShutDownTest {
         // 创建线程池
         ThreadPoolExecutor executor = new ThreadPoolExecutor(3,6,0L
                 , TimeUnit.SECONDS,queue,factory);
-
         for(int i=0;i<3;i++){
             int temp = i;
             Runnable runnable = () -> {

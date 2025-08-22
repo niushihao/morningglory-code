@@ -15,13 +15,33 @@ import lombok.extern.slf4j.Slf4j;
 @Slf4j
 public class Displacement {
 
-    private Long bizMask;
+    private static Long bizMask = 2149580800l;
 
     public static void main(String[] args) {
+
+        Displacement displacement2 = new Displacement();
+        boolean b2 = displacement2.containBizMask(2097152l);
+        System.out.println("__________b2++++++++= "+b2);
+
+
+        Displacement displacement1 = new Displacement();
+        boolean b1 = displacement1.containBizMask((long) Math.pow(2, 22));
+        log.info("sadfasdfasdfasdf = {}",b1);
+        String xxx = "ABC:1";
+
+        String[] split = xxx.split("#");
+        String s0 = split[0];
+        String s1 = split[0];
+        log.info("s0 = {},s1 = {}",s0,s1);
+        String str = "拣选完成，后续区域%s，请集货至交接区%s";
+        String format = String.format(str, null,null);
+        System.out.println(format);
 
         //demoStart();
 
         Displacement displacement = new Displacement();
+        boolean b = displacement.containBizMask((long) Math.pow(2, 30));
+        System.out.println("__________b++++++++= "+b);
         long tag1 = (long) Math.pow(2, 0);
         long tag2 = (long) Math.pow(2, 2);
 
@@ -29,6 +49,8 @@ public class Displacement {
         displacement.containBizMask(tag1);
         displacement.appendBizMask(tag2);
         displacement.removeBizMask(tag2);
+
+
     }
 
     private static void demoStart() {
@@ -106,7 +128,7 @@ public class Displacement {
             this.bizMask = 0L;
         }
 
-        if((bizMask & this.bizMask) == bizMask){
+        if((this.bizMask & bizMask) == bizMask){
             log.info("this.bizMask 包含标:{}",bizMask);
             return true;
         }

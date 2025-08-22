@@ -2,6 +2,8 @@ package com.morningglory.basic.collection;
 
 import com.google.common.collect.Lists;
 import com.morningglory.basic.pojo.User;
+import lombok.extern.slf4j.Slf4j;
+import org.apache.commons.collections.CollectionUtils;
 
 import java.util.*;
 import java.util.function.Function;
@@ -14,6 +16,7 @@ import static org.springframework.boot.autoconfigure.condition.ConditionOutcome.
  * @Date: 2018/5/28
  * @Description:
  */
+@Slf4j
 public class ListTest {
 
 
@@ -29,6 +32,27 @@ public class ListTest {
         System.out.println(a instanceof Object);
         System.out.println(String.class.isInstance(Object.class));
         System.out.println(String.class.isAssignableFrom(Object.class));
+
+        log.info("---------------------begin");
+        List<Integer> l1 = Lists.newArrayList(1,2,3,4,5,6,7,8,9,10,11,12,13,14,15,16);
+        l1.parallelStream().forEach(i -> {
+            try {
+                Thread.sleep(i * 1000);
+                log.info("invoke + {}",i);
+            } catch (InterruptedException e) {
+                e.printStackTrace();
+            }
+        });
+
+        log.info("---------------------end");
+        List<Integer> l2 = Lists.newArrayList(1,2);
+
+        //Collection collection = CollectionUtils.removeAll(l1, l2);
+
+        Collection collection = CollectionUtils.retainAll(l2, l1);
+
+        l1.removeAll(l2);
+        log.info("l1 = {},l2= {},collection = {}",l1,l2,collection);
 
 
         //toArrayTest();

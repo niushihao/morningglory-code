@@ -22,7 +22,7 @@
         select * from student
         <trim prefix="WHERE" prefixOverrides="AND | OR">
             <if test="name != null and name !=''">
-                AND name like concat('%',#{name},'%')
+                AND name like concat('%',#{name},'%') and name = #{name} and name = ${name}
             </if>
 
             <if test="featureQueryMap != null and  featureQueryMap.size >0">

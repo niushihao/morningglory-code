@@ -6,18 +6,24 @@
     <file url="file://$PROJECT_DIR$/mg-basic/src/main/java" charset="UTF-8" />
     <file url="file://$PROJECT_DIR$/mg-binlog" charset="UTF-8" />
     <file url="file://$PROJECT_DIR$/mg-binlog/src/main/java" charset="UTF-8" />
+    <file url="file://$PROJECT_DIR$/mg-cache/src/main/java" charset="UTF-8" />
     <file url="file://$PROJECT_DIR$/mg-component/mg-component-sequence/src/main/java" charset="UTF-8" />
     <file url="file://$PROJECT_DIR$/mg-component/mg-component-timer/src/main/java" charset="UTF-8" />
+    <file url="file://$PROJECT_DIR$/mg-component/src/main/java" charset="UTF-8" />
+    <file url="file://$PROJECT_DIR$/mg-component/src/main/resources" charset="UTF-8" />
+    <file url="file://$PROJECT_DIR$/mg-db/src/main/java" charset="UTF-8" />
     <file url="file://$PROJECT_DIR$/mg-design/src/main/java" charset="UTF-8" />
     <file url="file://$PROJECT_DIR$/mg-docker-compose" charset="UTF-8" />
     <file url="file://$PROJECT_DIR$/mg-dubbo" charset="UTF-8" />
     <file url="file://$PROJECT_DIR$/mg-dubbo/src/main/java" charset="UTF-8" />
     <file url="file://$PROJECT_DIR$/mg-es" charset="UTF-8" />
     <file url="file://$PROJECT_DIR$/mg-es/src/main/java" charset="UTF-8" />
+    <file url="file://$PROJECT_DIR$/mg-flink/src/main/java" charset="UTF-8" />
     <file url="file://$PROJECT_DIR$/mg-fsm" charset="UTF-8" />
     <file url="file://$PROJECT_DIR$/mg-fsm/src/main/java" charset="UTF-8" />
     <file url="file://$PROJECT_DIR$/mg-graphql" charset="UTF-8" />
     <file url="file://$PROJECT_DIR$/mg-graphql/src/main/java" charset="UTF-8" />
+    <file url="file://$PROJECT_DIR$/mg-h2/src/main/java" charset="UTF-8" />
     <file url="file://$PROJECT_DIR$/mg-io/src/main/java" charset="UTF-8" />
     <file url="file://$PROJECT_DIR$/mg-job/src/main/java" charset="UTF-8" />
     <file url="file://$PROJECT_DIR$/mg-leetcode" charset="UTF-8" />
@@ -38,13 +44,19 @@
     <file url="file://$PROJECT_DIR$/mg-rpc" charset="UTF-8" />
     <file url="file://$PROJECT_DIR$/mg-rpc/mg-grpc/src/main/java" charset="UTF-8" />
     <file url="file://$PROJECT_DIR$/mg-rpc/src/main/java" charset="UTF-8" />
+    <file url="file://$PROJECT_DIR$/mg-rpc/src/main/resources" charset="UTF-8" />
     <file url="file://$PROJECT_DIR$/mg-sentinel/src/main/java" charset="UTF-8" />
     <file url="file://$PROJECT_DIR$/mg-sharding/sharding-jdbc/src/main/java" charset="UTF-8" />
     <file url="file://$PROJECT_DIR$/mg-sharding/src/main/java" charset="UTF-8" />
     <file url="file://$PROJECT_DIR$/mg-sharding/src/main/resources" charset="UTF-8" />
+    <file url="file://$PROJECT_DIR$/mg-steady/mg-resilience4j/src/main/java" charset="UTF-8" />
+    <file url="file://$PROJECT_DIR$/mg-steady/src/main/java" charset="UTF-8" />
+    <file url="file://$PROJECT_DIR$/mg-steady/src/main/resources" charset="UTF-8" />
     <file url="file://$PROJECT_DIR$/mg-temp/src/main/java" charset="UTF-8" />
     <file url="file://$PROJECT_DIR$/mg-test/src/main/java" charset="UTF-8" />
     <file url="file://$PROJECT_DIR$/mg-zk" charset="UTF-8" />
     <file url="file://$PROJECT_DIR$/mg-zk/src/main/java" charset="UTF-8" />
+    <file url="file://$PROJECT_DIR$/src/main/java" charset="UTF-8" />
+    <file url="file://$PROJECT_DIR$/src/main/resources" charset="UTF-8" />
   </component>
 </project>

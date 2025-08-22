@@ -1,8 +1,10 @@
 package com.morningglory.basic.spring.transaction;
 
 import lombok.extern.slf4j.Slf4j;
+import org.springframework.context.ApplicationEventPublisher;
 import org.springframework.stereotype.Component;
 import org.springframework.transaction.annotation.Transactional;
+import org.springframework.transaction.event.TransactionalEventListener;
 import org.springframework.transaction.support.TransactionSynchronizationAdapter;
 import org.springframework.transaction.support.TransactionSynchronizationManager;
 
@@ -16,6 +18,9 @@ import javax.annotation.Resource;
 //@Component
 @Slf4j
 public class TransactionHookTest {
+
+    @Resource
+    private ApplicationEventPublisher applicationEventPublisher;
 
     @Resource
     private BizServiceA bizServiceA;
@@ -46,5 +51,11 @@ public class TransactionHookTest {
                 }
             });
         }
+    }
+
+    @TransactionalEventListener
+    public void afterCommit(){
+
+        //applicationEventPublisher.publishEvent();
     }
 }
